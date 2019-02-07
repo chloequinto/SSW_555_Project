@@ -1,7 +1,7 @@
 '''To Do 
 1. Check that it works 
 2. Try and Exception for inputs 
-3. Test 
+3. Unit Tests 
 '''
 
 valid = {
@@ -9,29 +9,31 @@ valid = {
     "1": ("NAME", "SEX", "BIRT", "DEAT", "DIV", "FAMC", "FAMS", "MARR", "HUSB", "WIFE", "CHIL"),
     "2": ("DATE")
 }
+try:
+    inputGed = open("chloequinto.ged", "r")
 
-inputGed = open("GEDCOM.ged", "r")
+    writeOutput = open("output.txt", "w")
 
-writeOutput = open("output.txt", "w")
+    print("Opening files")
+except FileNotFoundError:
+    print("Cannot open file")
+else:
+    for i in inputGed:
+        writeOutput.write("--> " + i)
+        inputSplit = i.strip().split(maxsplit=2)
+        validLine = "N"
 
-print("Opening files")
+        if len(inputSplit) > 2 and inputSplit[2] in ["INDI", "FAM"]:
+            if inputSplit[0] == "0":
+                temp = inputSplit[2]
+                inputSplit[2] = inputSplit[1]
+                inputSplit[1] = temp
+                validLine = "Y"
+        elif inputSplit[0] in valid:
+            if inputSplit[1] in valid[inputSplit[0]]:
+                validLine = "Y"
 
-for i in inputGed:
-    writeOutput.write("--> " + i)
-    inputSplit = i.strip().split(maxsplit=2)
-    validLine = "N"
-
-    if len(inputSplit) > 2 and inputSplit[2] in ["INDI", "FAM"]:
-        if inputSplit[0] == "0":
-            temp = inputSplit[2]
-            inputSplit[2] = inputSplit[1]
-            inputSplit[1] = temp
-            validLine = "Y"
-    elif inputSplit[0] in valid:
-        if inputSplit[1] in valid[inputSplit[0]]:
-            validLine = "Y"
-
-    writeOutput.write("<-- " + inputSplit[0] + "|" + inputSplit[1] + "|" + validLine + "|" + " ".join(inputSplit[2:]) + "\n")
+        writeOutput.write("<-- " + inputSplit[0] + "|" + inputSplit[1] + "|" + validLine + "|" + " ".join(inputSplit[2:]) + "\n")
 
 
-print("All done!")
+    print("All done!")
