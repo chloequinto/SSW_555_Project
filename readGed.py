@@ -25,7 +25,16 @@ Individual_Table = {
     'SPOUSE': []
 }
 
-Family_Table = {}
+Family_Table = {
+    'ID': [],
+    'MARR': [],
+    'DIV': [],
+    'HUSID': [],
+    'HUSNAME': [],
+    'WIFEID': [],
+    'WIFENAME': [],
+    'CHIL': []
+}
 
 def parser(inputGed): 
     global writeOutput
