@@ -15,14 +15,14 @@ valid = {
 
 Individual_Table = {
     'ID': [],
-    'Name': [],
-    'Gender': [],
-    'Birthday': [],
-    'Age': [], 
-    'Alive': [],
-    'Death': [],
-    'Child': [],
-    'Spouse': []
+    'NAME': [],
+    'SEX': [],
+    'BIRT': [],
+    'AGE': [], 
+    'ALIVE': [],
+    'DEAT': [],
+    'CHIL': [],
+    'SPOUSE': []
 }
 
 Family_Table = {}
