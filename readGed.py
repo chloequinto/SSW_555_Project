@@ -57,18 +57,14 @@ def parser(inputGed):
 
 #Function to parse through and store families and individuals
 def fam(inputGed):
-    print("hello")
-    for k, i in enumerate(inputGed):
-        line = i.strip().split(maxsplit=2)
-        if len(line) > 2 and line[2] == "INDI":
-            print(line)
-            if "ID" in Individual_Table:
-                Individual_Table["ID"].append(line[1])
+    # print("hello")
+    for k, i in enumerate(inputGed): 
+    line = i.strip().split(maxsplit=2)
+    if len(line) > 2 and line[2] == "INDI":
+        Individual_Table["ID"].append(line[1])
+    elif line[0] == str(1) and line[1] == "NAME": 
+        Individual_Table["NAME"].append(line[2])
 
-            while line[2] != "INDI":
-                if line[1] in Individual_Table:
-                    Individual_Table[line[1]].append(line[2])
-                k += 1
 
 
     print(Individual_Table)
