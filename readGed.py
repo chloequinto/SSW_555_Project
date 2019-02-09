@@ -70,22 +70,21 @@ def fam(inputGed):
     for i in inputGed:
         line = i.strip().split(maxsplit=2)
         if len(line) > 2 and line[0] == str(0):
-            if new_individual == 1: #if this is an instance that we see a new person
+            if line[2] == "INDI" and new_individual == 1: #if this is an instance that we see a new person
                 indi_list.append(indi_data) 
                 indi_data = []
-                new_individual = 0
-            elif new_family == 1: #if this is an instance that we see a new family 
-                fam_list.append(fam_data)
-                fam_data = []
-                new_family = 0 
+                indi_data.append(line[1])
+            # elif new_family == 1: #if this is an instance that we see a new family 
+            #     fam_list.append(fam_data)
+            #     fam_data = []
+            #     new_family = 0 
             elif line[2] == "INDI" and new_individual == 0: 
                 indi_data.append(line[1])
                 new_individual = 1 
-            elif line[2] == "FAM" and new_individual == 0: 
-                new_family = 1
-                fam_data.append(line[1])
-            else: 
-                pass
+            # elif line[2] == "FAM" and new_individual == 0: 
+            #     new_family = 1
+            #     fam_data.append(line[1])
+           
            
         elif line[0] == str(1): 
             if line[1] == "NAME": 
@@ -96,12 +95,16 @@ def fam(inputGed):
                 indi_data.append("12 27 1997")
                 indi_data.append("21")
                 indi_data.append("Y")
+                
+                indi_data.append("N")
+                indi_data.append("the child")
             elif line[1] == "FAMS": 
                 indi_data.append(line[2])
             elif line[1] == "FAMC": 
                 indi_data.append(line[2])
-            
-    # print(indi_list)
+        else: 
+           pass
+    print(indi_list)
     return indi_list
 
            
@@ -113,9 +116,7 @@ def table(indi_list):
                     'Alive', 'Death', 'Child', 'Spouse']
 
     for i in indi_list: 
-
-        x.add_row([i[0], i[1], i[2], i[3], i[4], 
-        i[0], i[0], i[0], i[0] ])
+        x.add_row([i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8]])
         # print(i[0])
     print("\nIndividuals")
     print(x)
