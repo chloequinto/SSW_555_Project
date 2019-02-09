@@ -6,6 +6,7 @@
 6. Unit Tests 
 '''
 from prettytable import PrettyTable 
+from datetime import datetime
 
 valid = {
     "0": ("HEAD", "TRLR", "NOTE"),
@@ -57,7 +58,6 @@ def parser(inputGed):
 
 #Function to parse through and store families and individuals
 def fam(inputGed):
-    # print("hello")
     for i in inputGed: 
         line = i.strip().split(maxsplit=2)
         if len(line) > 2 and line[2] == "INDI":
@@ -66,18 +66,40 @@ def fam(inputGed):
             Individual_Table["NAME"].append(line[2])
         elif line[0] == "1" and line[1] == "SEX":
             Individual_Table["SEX"].append(line[2])
-        elif line[0] == "1" and (line[1] == "BIRT" or line[1] == "DEAT"):
-            # add date somehow
-            if line[1] == "DEAT":
-                #read death day to 
-                Individual_Table["ALIVE"].append("") #date added
+        # elif line[0] == "1" and line[1] == "BIRT" :
+        #     # add date somehow 
+        #     if line[1] == "DEAT":
+        #         #read death day to 
+        #         Individual_Table["ALIVE"].append("") #date added
+        #     else:
+        #         Individual_Table["ALIVE"].append("NA")
+        elif line[0] == "1" and line[1] == "DEAT": # you reach a problem here
+            if line[2] == "Y": 
+                Individual_Table["ALIVE"].append("False")
             else:
-                Individual_Table["ALIVE"].append("NA")
-
+                Individual_Table["ALIVE"].append("TRUE")
         elif line[0] == "1" and (line[1] == "HUSB" or line[1] == "WIFE"):
             Individual_Table["SPOUSE"].append(line[2])
+        elif line[0] == "1" and (line[1] == "CHIL"): #you reach a problem here
+            #not every individual has a child
+            #need another parameter to check for individuals
+            #propose a different data structure and possibly have pointers 
+            Individual_Table["CHIL"].append(line[2])
 
     print(Individual_Table)
+
+def split_them_lines(lines): 
+    '''Function to split the given line into the corresponding elements ''' 
+    #necessary for getting that death year compare to datetime
+    b = line.split(' ', 2)
+    level = b[0]
+    tag = b[1].strip()
+    if (b[2] != ''): 
+        arg = b[2].strip()
+    else: 
+        arg = ''
+    return [level, tag, arg]
+    
 
 #Function to write the table 
 def table(): 
