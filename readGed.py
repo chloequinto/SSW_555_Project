@@ -14,6 +14,21 @@ valid = {
     "2": ("DATE")
 }
 
+monthWordToInt = {
+    "JAN": "01",
+    "FEB": "02",
+    "MAR": "03",
+    "APR": "04",
+    "MAY": "05",
+    "JUN": "06",
+    "JUL": "07",
+    "AUG": "08",
+    "SEP": "09",
+    "OCT": "10",
+    "NOV": "11",
+    "DEC": "12",
+}
+
 Individual_Table = {
     'ID': [],
     'NAME': [],
@@ -64,7 +79,8 @@ def fam(inputGed):
     indi_data = []
     fam_data = []
     new_individual = 0 
-    new_family = 0 #used to check if new family 
+    new_family = 0 #used to check if new family
+    birth_year = 0
     for i in inputGed:
         line = i.strip().split(maxsplit=2)
         if len(line) > 2 and line[0] == str(0):
@@ -91,11 +107,6 @@ def fam(inputGed):
                 indi_data.append(line[2])
             elif line[1] in ["BIRT", "DEAT"]:
                 date_tag = line[1]
-                # indi_data.append("12 27 1997")
-                # indi_data.append("21")
-                # indi_data.append("Y")
-                # indi_data.append("N")
-                # indi_data.append("the child")
             elif line[1] == "FAMS": 
                 indi_data.append(line[2])
             elif line[1] == "FAMC": 
@@ -103,14 +114,24 @@ def fam(inputGed):
         elif line[0] == str(2): 
             if line[1] == "DATE": 
                 dates = (line[2]).split()
-                if date_tag == "BIRT": 
-                    indi_data.append(line[2])
+                if date_tag == "BIRT":
+                    dates[1] = monthWordToInt[dates[1]]
+                    if (int(dates[0]) < 10):
+                        dates[0] = "0" + dates[0]
+                    indi_data.append("-".join(dates))
                     current = datetime.now()
                     birth_year = int(dates[2])
                     age = current.year - birth_year
                     indi_data.append(age)
-                    indi_data.append("Y")
-                    indi_data.append("N")
+                    indi_data.append("True")
+                    indi_data.append("NA")
+                    indi_data.append("the child")
+                elif date_tag == "DEAT":
+                    deathYear = int(dates[2])
+                    age = deathYear - birth_year
+                    indi_data.append(age)
+                    indi_data.append("False")
+                    indi_data.append(line[2])
                     indi_data.append("the child")
     print(indi_list)
     #python can return things as a tuple so we can return both lists
