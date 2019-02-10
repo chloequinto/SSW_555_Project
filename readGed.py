@@ -81,11 +81,32 @@ def fam(inputGed):
                 fam_list.append(fam_data)
                 fam_data = []
                 fam_data.append(line[1])
-                # new_family = 0
             elif line[2] == "INDI" and new_individual == 0:
                 indi_data.append(line[1])
                 new_individual = 1
             elif line[2] == "FAM" and new_family == 0:
+                if alive == "False":
+                    indi_data.insert(5, "False")
+                    if is_child != "True":
+                        indi_data[7] = "NA"
+                        if has_spouse != "True":
+                            indi_data[8] = "NA"
+                    else:
+                        if has_spouse != "True":
+                            indi_data.append("NA")
+                elif alive != "False":
+                    indi_data.insert(5, "True")
+                    indi_data.insert(6, "NA")
+                    if is_child != "True":
+                        indi_data[7] = "NA"
+                        if has_spouse != "True":
+                            indi_data.append("NA")
+                    else:
+                        if has_spouse != "True":
+                            indi_data.append("NA")
+                indi_list.append(indi_data)
+                # indi_data = []
+                # indi_data.append(line[1])
                 fam_data.append(line[1])
                 new_family = 1
             elif(line[1] in ['NOTE', 'HEAD', 'TRLR']):
@@ -141,8 +162,8 @@ def fam(inputGed):
                     indi_data.insert(5, "-".join(dates))
 
     # indi_list.append(indi_data)
-    # for i in indi_list:
-    #     print(i)
+    for i in indi_list:
+        print(i)
     print(fam_list)
     # python can return things as a tuple so we can return both lists
     return (indi_list, fam_list)
