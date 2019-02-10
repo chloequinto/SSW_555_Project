@@ -63,9 +63,7 @@ def fam(inputGed):
     fam_list = []
     indi_data = []
     fam_data = []
-    new_individual = 0 #used to check if new individual 
-    # if new_individual = 0 -> true 
-    # if new_individual = 1 -> false -> append old values 
+    new_individual = 0 
     new_family = 0 #used to check if new family 
     for i in inputGed:
         line = i.strip().split(maxsplit=2)
@@ -91,19 +89,29 @@ def fam(inputGed):
                 indi_data.append(line[2])
             elif line[1] == "SEX": 
                 indi_data.append(line[2])
-            elif line[1] == "BIRT":
-                indi_data.append("12 27 1997")
-                indi_data.append("21")
-                indi_data.append("Y")
-                
-                indi_data.append("N")
-                indi_data.append("the child")
+            elif line[1] in ["BIRT", "DEAT"]:
+                date_tag = line[1]
+                # indi_data.append("12 27 1997")
+                # indi_data.append("21")
+                # indi_data.append("Y")
+                # indi_data.append("N")
+                # indi_data.append("the child")
             elif line[1] == "FAMS": 
                 indi_data.append(line[2])
             elif line[1] == "FAMC": 
                 indi_data.append(line[2])
-        else: 
-           pass
+        elif line[0] == str(2): 
+            if line[1] == "DATE": 
+                dates = (line[2]).split()
+                if date_tag == "BIRT": 
+                    indi_data.append(line[2])
+                    current = datetime.now()
+                    birth_year = int(dates[2])
+                    age = current.year - birth_year
+                    indi_data.append(age)
+                    indi_data.append("Y")
+                    indi_data.append("N")
+                    indi_data.append("the child")
     print(indi_list)
     return indi_list
 
