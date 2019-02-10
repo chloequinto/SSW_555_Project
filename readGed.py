@@ -91,16 +91,14 @@ def fam(inputGed):
             elif line[2] == "FAM" and new_family == 1: 
                 if is_married == "True": 
                     fam_data.insert(1, "Yes")
-                    fam_data.insert(2, "No")
-                    # fam_data[1] = "Yes"
-                    # fam_data[2] = "No"
+                    fam_data.insert(2, "NA")
                 else: #if divorced
                     fam_data[1] = "No"
                     fam_data[1] = "Yes"
                 fam_list.append(fam_data)
                 fam_data = []
                 fam_data.append(line[1])
-                # new_family = 0 
+                new_family = 0 
             elif line[2] == "INDI" and new_individual == 0: 
                 indi_data.append(line[1])
                 new_individual = 1 
@@ -126,8 +124,10 @@ def fam(inputGed):
                 indi_data.insert(7, "{'" + line[2] + "'}")
             elif line[1] == "HUSB": 
                 is_married = "True"
+                fam_data = famHelper(fam_data, indi_list)
                 fam_data.append(line[2])
             elif line[1] == "WIFE": 
+                fam_data = famHelper(fam_data, indi_list)
                 fam_data.append(line[2])
             elif line[1] == "CHIL": 
                 fam_data.append(line[2])
@@ -158,13 +158,19 @@ def fam(inputGed):
                     dates[0] = temp
                     indi_data.insert(5, "-".join(dates))
 
-    # for i in indi_list: 
-    #     print(i)
     print(fam_list)
     #python can return things as a tuple so we can return both lists
     return (indi_list, fam_list)
 
-           
+#tried to add names of husband and wife
+def famHelper(famList, indiList):
+    if len(famList) > 4 and famList[3] == indiList[0]:
+        if indiList[2] == "F":
+            famList.insert(6, indiList[1])
+        else:
+            famList.insert(4, indiList[1])
+
+    return famList
                     
 #Function to write the table 
 def table(lists): 
