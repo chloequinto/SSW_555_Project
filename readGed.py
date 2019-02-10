@@ -67,22 +67,22 @@ def fam(inputGed):
                 if alive == "False": 
                     indi_data.insert(5, "False") 
                     if is_child != "True": 
-                        indi_data[7] = "Is not a child in this family"
+                        indi_data[7] = "NA"
                         if has_spouse != "True": 
-                            indi_data[8] = "NO SPOUSE FOUND"
+                            indi_data[8] = "NA"
                     else: 
                         if has_spouse != "True": 
-                            indi_data.append("NO SPOUSE FOUND")  
+                            indi_data.append("NA")  
                 elif alive != "False": 
                     indi_data.insert(5, "True")
                     indi_data.insert(6, "NA")
                     if is_child != "True": 
-                        indi_data[7] = "Is not a child in this family"
+                        indi_data[7] = "NA"
                         if has_spouse != "True": 
-                            indi_data.append("NO SPOUSE FOUND")
+                            indi_data.append("NA")
                     else: 
                         if has_spouse != "True": 
-                            indi_data.append("NO SPOUSE FOUND") 
+                            indi_data.append("NA") 
                 indi_list.append(indi_data) 
                 indi_data = []
                 indi_data.append(line[1])
@@ -119,11 +119,11 @@ def fam(inputGed):
                 date_tag = line[1]
             elif line[1] == "FAMC": 
                 is_child = "True"
-                indi_data.insert(5,"Is a child of couple: " + line[2])
+                indi_data.insert(5, "{'" + line[2] + "'}")
             elif line[1] == "FAMS": 
                 has_spouse = "True"
-                indi_data.append(line[2])
-                indi_data.insert(7, line[2])
+                indi_data.append("{'" + line[2] + "'}")
+                indi_data.insert(7, "{'" + line[2] + "'}")
             elif line[1] == "HUSB": 
                 is_married = "True"
                 fam_data.append(line[2])
