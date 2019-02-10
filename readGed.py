@@ -88,16 +88,16 @@ def fam(inputGed):
                 indi_list.append(indi_data) 
                 indi_data = []
                 indi_data.append(line[1])
-            # elif new_family == 1: #if this is an instance that we see a new family 
-            #     fam_list.append(fam_data)
-            #     fam_data = []
-            #     new_family = 0 
+            elif new_family == 1: #if this is an instance that we see a new family 
+                fam_list.append(fam_data)
+                fam_data = []
+                new_family = 0 
             elif line[2] == "INDI" and new_individual == 0: 
                 indi_data.append(line[1])
                 new_individual = 1 
-            # elif line[2] == "FAM" and new_individual == 0: 
-            #     new_family = 1
-            #     fam_data.append(line[1])
+            elif line[2] == "FAM" and new_individual == 0: 
+                new_family = 1
+                fam_data.append(line[1])
            
            
         elif line[0] == str(1): 
@@ -127,16 +127,18 @@ def fam(inputGed):
                     indi_data.insert(6,line[2])
 
     print(indi_list)
-    return indi_list
+    #python can return things as a tuple so we can return both lists
+    return (indi_list, fam_list)
+
            
                     
 #Function to write the table 
-def table(indi_list): 
+def table(lists): 
     x = PrettyTable()
     x.field_names = ['ID', 'Name', 'Gender', 'Birthday', 'Age', 
                     'Alive', 'Death', 'Child', 'Spouse']
 
-    for i in indi_list: 
+    for i in lists[0]: 
         x.add_row([i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8]])
     print("\nIndividuals")
     print(x)
@@ -146,9 +148,8 @@ def table(indi_list):
                     'Husband Name', 'Wife ID', 'Wife Name', 'Children']
     print("Families")  
 
-    # for j in Family_Table.items():
-    #     y.add_row([j.ID, j.MARRIED, i.DIVORCED, i.HUSBANDid, 
-    #     i.HUSBANDname, i.WIFEid, i.WIFEname, i.CHILDREN])
+    for j in lists[1]:
+        y.add_row([j[0], j[1], j[2], j[3], j[4], j[5], j[6], j[7]])
     print(y) 
 
 def main(): 
