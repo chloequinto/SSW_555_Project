@@ -63,12 +63,28 @@ def fam(inputGed):
     fam_list = []
     indi_data = []
     fam_data = []
-    new_individual = 0 
-    new_family = 0 #used to check if new family 
+    new_individual = 0
+    new_family = 0 
+    has_child = "False"
     for i in inputGed:
         line = i.strip().split(maxsplit=2)
         if len(line) > 2 and line[0] == str(0):
             if line[2] == "INDI" and new_individual == 1: #if this is an instance that we see a new person
+                if alive == "False": 
+                    indi_data.insert(5, "False") 
+                    if has_child == "False": 
+                        indi_data.insert(7, "NO CHILD")
+                    else: 
+                        pass
+                elif alive == "True": 
+                    indi_data.insert(5, "True")
+                    indi_data.insert(6, "Not Dead")
+                    if has_child == "False": 
+                        indi_data.insert(7, "NO CHILD")
+                    else: 
+                        pass
+    
+                
                 indi_list.append(indi_data) 
                 indi_data = []
                 indi_data.append(line[1])
@@ -91,14 +107,10 @@ def fam(inputGed):
                 indi_data.append(line[2])
             elif line[1] in ["BIRT", "DEAT"]:
                 date_tag = line[1]
-                # indi_data.append("12 27 1997")
-                # indi_data.append("21")
-                # indi_data.append("Y")
-                # indi_data.append("N")
-                # indi_data.append("the child")
             elif line[1] == "FAMS": 
                 indi_data.append(line[2])
             elif line[1] == "FAMC": 
+                has_child = "True"
                 indi_data.append(line[2])
         elif line[0] == str(2): 
             if line[1] == "DATE": 
@@ -107,11 +119,13 @@ def fam(inputGed):
                     indi_data.append(line[2])
                     current = datetime.now()
                     birth_year = int(dates[2])
-                    age = current.year - birth_year
-                    indi_data.append(age)
-                    indi_data.append("Y")
-                    indi_data.append("N")
-                    indi_data.append("the child")
+                    indi_data.append(current.year - birth_year)
+                    alive = "True"
+                    indi_data.insert(9, "SPACE")
+                elif date_tag == "DEAT": 
+                    alive = "False"
+                    indi_data.insert(6,line[2])
+
     print(indi_list)
     return indi_list
 
@@ -125,7 +139,6 @@ def table(indi_list):
 
     for i in indi_list: 
         x.add_row([i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8]])
-        # print(i[0])
     print("\nIndividuals")
     print(x)
     
@@ -143,13 +156,11 @@ def main():
     global inputGed, writeOutput
     try:
         inputGed = open("input.ged", "r")
-        # print("Opening files")
         writeOutput = open("output.txt", "w")
         
     except FileNotFoundError:
         print("Cannot open file")
     else:
-        # fam(inputGed)
         table(fam(inputGed))
     
 
