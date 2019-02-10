@@ -40,9 +40,19 @@ def fam(inputGed):
     new_family = 0
     has_spouse = "False"
     is_child = "False"
+    at_End = "False"
     for i in inputGed:
         i = re.sub('[@]', '', i)
         line = i.strip().split(maxsplit=2)
+        if line[0] == str(0) and line[1] == "TRLR": 
+            if is_married == "True":
+                fam_data.insert(1, "Yes")
+                fam_data.insert(2, "NA")
+            else: #if divorced
+                fam_data[1] = "No"
+                fam_data[1] = "Yes"
+            fam_list.append(fam_data)
+            fam_data = []
         if len(line) > 2 and line[0] == str(0):
             if line[2] == "INDI" and new_individual == 1:
                 if alive == "False":
@@ -105,11 +115,9 @@ def fam(inputGed):
                         if has_spouse != "True":
                             indi_data.append("NA")
                 indi_list.append(indi_data)
-                # indi_data = []
-                # indi_data.append(line[1])
                 fam_data.append(line[1])
                 new_family = 1
-            elif(line[1] in ['NOTE', 'HEAD', 'TRLR']):
+            elif(line[1] in ['NOTE', 'HEAD']):
                 pass
 
         elif line[0] == str(1):
@@ -162,10 +170,10 @@ def fam(inputGed):
                     indi_data.insert(5, "-".join(dates))
 
     # indi_list.append(indi_data)
-    for i in indi_list:
-        print(i)
-    print(fam_list)
-    # python can return things as a tuple so we can return both lists
+    # for i in indi_list:
+    #     print(i)
+    # print(fam_list)
+    # # python can return things as a tuple so we can return both lists
     return (indi_list, fam_list)
 
 #tried to add names of husband and wife
@@ -175,7 +183,6 @@ def famHelper(famList, indiList):
             famList.insert(6, indiList[1])
         else:
             famList.insert(4, indiList[1])
-
     return famList
                     
 #Function to write the table 
@@ -203,8 +210,6 @@ def main():
     global inputGed
     try:
         inputGed = open("input.ged", "r")
-        # writeOutput = open("output.txt", "w")
-
     except FileNotFoundError:
         print("Cannot open file")
     else:
