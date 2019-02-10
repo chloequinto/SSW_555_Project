@@ -93,7 +93,7 @@ def fam(inputGed):
                         pass
                 elif alive == "True": 
                     indi_data.insert(5, "True")
-                    indi_data.insert(6, "Not Dead")
+                    indi_data.insert(6, "NA")
                     if has_child == "False": 
                         indi_data.insert(7, "NO CHILD")
                     else: 
@@ -142,7 +142,9 @@ def fam(inputGed):
                     indi_data.insert(9, "SPACE")
                 elif date_tag == "DEAT": 
                     alive = "False"
-                    indi_data.insert(6,line[2])
+                    if (int(dates[0]) < 10):
+                        dates[0] = "0" + dates[0]
+                    indi_data.insert(5, "-".join(dates))
 
     print(indi_list)
     #python can return things as a tuple so we can return both lists
