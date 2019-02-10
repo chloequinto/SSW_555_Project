@@ -80,7 +80,6 @@ def fam(inputGed):
     fam_data = []
     new_individual = 0
     new_family = 0 
-    has_child = "False"
     has_spouse = "False"
     for i in inputGed:
         line = i.strip().split(maxsplit=2)
@@ -88,41 +87,39 @@ def fam(inputGed):
             if line[2] == "INDI" and new_individual == 1: #if this is an instance that we see a new person
                 if alive == "False": 
                     indi_data.insert(5, "False") 
-                    if has_child != "True": 
-                        indi_data.insert(7, "NO CHILD 1")
-                        if has_spouse == "False":
-                            indi_data.insert(8, "NO SPOUSE")
-                        else: 
-                            indi_data.insert(8, "HAS SPOUSE")
+                    if has_spouse != "True": 
+                       indi_data[8] = "NoSpouse"
+                       if is_child != "True": 
+                           indi_data[7] = "NOT A CHILD"
                     else: 
-                        pass
-                
+                        if is_child != "True": 
+                           indi_data[7] = "NOT A CHILD"
+                       
+
                 elif alive == "True": 
                     indi_data.insert(5, "True")
                     indi_data.insert(6, "NA")
-                    if has_child != "False": 
-                        indi_data.insert(7, "NO CHILD")
-                        if has_spouse == "False": # if they don't have a spouse 
-                            indi_data.insert(8, "NO SPOUSE")
-                        else: 
-                            indi_data.insert(8, "HAS A SPOUSE") #if they have a soouse 
-                
-    
-                
+                    if has_spouse  != "True": 
+                       indi_data[8] = "NA"
+
+                    
                 indi_list.append(indi_data) 
                 indi_data = []
                 indi_data.append(line[1])
-            elif new_family == 1: #if this is an instance that we see a new family 
+                has_spouse = "False"
+            elif line[2] == "FAM" and new_family == 1: 
                 fam_list.append(fam_data)
                 fam_data = []
+                famm.append(line[1])
                 new_family = 0 
             elif line[2] == "INDI" and new_individual == 0: 
                 indi_data.append(line[1])
                 new_individual = 1 
             elif line[2] == "FAM" and new_individual == 0: 
-                new_family = 1
                 fam_data.append(line[1])
-           
+                new_family = 1
+            elif(line[1] in ['NOTE', 'HEAD', 'TRLR']):
+                    pass
            
         elif line[0] == str(1): 
             if line[1] == "NAME": 
@@ -132,11 +129,13 @@ def fam(inputGed):
             elif line[1] in ["BIRT", "DEAT"]:
                 date_tag = line[1]
             elif line[1] == "FAMC": 
-                has_child = "True"
+                is_child = line[2]
                 indi_data.append(line[2])
             elif line[1] == "FAMS": 
                 has_spouse = "True"
                 indi_data.append(line[2])
+            elif line[1] == "HUSB": 
+                fam_data.append(line[2])
 
                 
         elif line[0] == str(2): 
@@ -154,7 +153,7 @@ def fam(inputGed):
                     birth_year = int(dates[0])
                     indi_data.append(current.year - birth_year)
                     alive = "True"
-                    indi_data.insert(6, "GET RID")
+                    indi_data.append("~~~")
                 elif date_tag == "DEAT": 
                     alive = "False"
                     dates[1] = monthWordToInt[dates[1]]
