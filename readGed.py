@@ -81,23 +81,32 @@ def fam(inputGed):
     new_individual = 0
     new_family = 0 
     has_child = "False"
+    has_spouse = "False"
     for i in inputGed:
         line = i.strip().split(maxsplit=2)
         if len(line) > 2 and line[0] == str(0):
             if line[2] == "INDI" and new_individual == 1: #if this is an instance that we see a new person
                 if alive == "False": 
                     indi_data.insert(5, "False") 
-                    if has_child == "False": 
-                        indi_data.insert(7, "NO CHILD")
+                    if has_child != "True": 
+                        indi_data.insert(7, "NO CHILD 1")
+                        if has_spouse == "False":
+                            indi_data.insert(8, "NO SPOUSE")
+                        else: 
+                            indi_data.insert(8, "HAS SPOUSE")
                     else: 
                         pass
+                
                 elif alive == "True": 
                     indi_data.insert(5, "True")
                     indi_data.insert(6, "NA")
-                    if has_child == "False": 
+                    if has_child != "False": 
                         indi_data.insert(7, "NO CHILD")
-                    else: 
-                        pass
+                        if has_spouse == "False": # if they don't have a spouse 
+                            indi_data.insert(8, "NO SPOUSE")
+                        else: 
+                            indi_data.insert(8, "HAS A SPOUSE") #if they have a soouse 
+                
     
                 
                 indi_list.append(indi_data) 
@@ -122,11 +131,14 @@ def fam(inputGed):
                 indi_data.append(line[2])
             elif line[1] in ["BIRT", "DEAT"]:
                 date_tag = line[1]
-            elif line[1] == "FAMS": 
-                indi_data.append(line[2])
             elif line[1] == "FAMC": 
                 has_child = "True"
                 indi_data.append(line[2])
+            elif line[1] == "FAMS": 
+                has_spouse = "True"
+                indi_data.append(line[2])
+
+                
         elif line[0] == str(2): 
             if line[1] == "DATE": 
                 dates = (line[2]).split()
@@ -139,10 +151,10 @@ def fam(inputGed):
                     dates[0] = temp
                     indi_data.append("-".join(dates))
                     current = datetime.now()
-                    birth_year = int(dates[2])
+                    birth_year = int(dates[0])
                     indi_data.append(current.year - birth_year)
                     alive = "True"
-                    indi_data.insert(9, "SPACE")
+                    indi_data.insert(6, "GET RID")
                 elif date_tag == "DEAT": 
                     alive = "False"
                     dates[1] = monthWordToInt[dates[1]]
