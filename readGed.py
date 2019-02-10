@@ -30,27 +30,6 @@ monthWordToInt = {
 }
 
 
-# This parser probably isn't needed, delete if you guys agree
-def parser(inputGed):
-    global writeOutput
-    for i in inputGed:
-        writeOutput.write("--> " + i)
-        inputSplit = i.strip().split(maxsplit=2)
-        validLine = "N"
-        if len(inputSplit) > 2 and inputSplit[2] in ["INDI", "FAM"]:
-            if inputSplit[0] == "0":
-                temp = inputSplit[2]
-                inputSplit[2] = inputSplit[1]
-                inputSplit[1] = temp
-                validLine = "Y"
-        elif inputSplit[0] in valid:
-            if inputSplit[1] in valid[inputSplit[0]]:
-                validLine = "Y"
-        writeOutput.write("<-- " + inputSplit[0] + "|" + inputSplit[1] +
-                          "|" + validLine + "|" + " ".join(inputSplit[2:]) + "\n")
-    print("All done!")
-
-
 # Function to parse through and store families and individuals
 def fam(inputGed):
     indi_list = []
@@ -195,15 +174,15 @@ def table(lists):
     print("Families")
 
     for j in lists[1]:
-        y.add_row([j[0], j[1], j[2], j[3], j[3], j[4], j[0], j[0]])
+        y.add_row([j[0], j[1], j[2], j[3], j[3], j[4], j[0], j[5:]])
     print(y)
 
 
 def main():
-    global inputGed, writeOutput
+    global inputGed
     try:
         inputGed = open("input.ged", "r")
-        writeOutput = open("output.txt", "w")
+        # writeOutput = open("output.txt", "w")
 
     except FileNotFoundError:
         print("Cannot open file")
