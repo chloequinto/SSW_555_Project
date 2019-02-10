@@ -37,7 +37,7 @@ Family_Table = {
     'CHIL': []
 }
 
-
+# This parser probably isn't needed, delete if you guys agree
 def parser(inputGed): 
     global writeOutput
     for i in inputGed:
@@ -128,7 +128,6 @@ def fam(inputGed):
 
     print(indi_list)
     return indi_list
-
            
                     
 #Function to write the table 
