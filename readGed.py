@@ -134,6 +134,9 @@ def fam(inputGed):
                     dates[1] = monthWordToInt[dates[1]]
                     if (int(dates[0]) < 10):
                         dates[0] = "0" + dates[0]
+                    temp = dates[2]
+                    dates[2] = dates[0]
+                    dates[0] = temp
                     indi_data.append("-".join(dates))
                     current = datetime.now()
                     birth_year = int(dates[2])
@@ -142,8 +145,12 @@ def fam(inputGed):
                     indi_data.insert(9, "SPACE")
                 elif date_tag == "DEAT": 
                     alive = "False"
+                    dates[1] = monthWordToInt[dates[1]]
                     if (int(dates[0]) < 10):
                         dates[0] = "0" + dates[0]
+                    temp = dates[2]
+                    dates[2] = dates[0]
+                    dates[0] = temp
                     indi_data.insert(5, "-".join(dates))
 
     print(indi_list)
