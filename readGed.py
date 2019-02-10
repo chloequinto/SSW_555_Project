@@ -1,7 +1,7 @@
 '''To Do 
-1. Check that it works 
+1. Check that it works [x]
 2. Try and Exception for inputs [x] 
-3. sudo pip3 install Ptable
+3. sudo pip3 install Ptable [x]
 4. Work on fam() function 
 6. Unit Tests 
 '''
@@ -29,28 +29,6 @@ monthWordToInt = {
     "DEC": "12",
 }
 
-Individual_Table = {
-    'ID': [],
-    'NAME': [],
-    'SEX': [],
-    'BIRT': [],
-    'AGE': [], 
-    'ALIVE': [],
-    'DEAT': [],
-    'CHIL': [],
-    'SPOUSE': []
-}
-
-Family_Table = {
-    'ID': [],
-    'MARR': [],
-    'DIV': [],
-    'HUSID': [],
-    'HUSNAME': [],
-    'WIFEID': [],
-    'WIFENAME': [],
-    'CHIL': []
-}
 
 # This parser probably isn't needed, delete if you guys agree
 def parser(inputGed): 
@@ -87,43 +65,46 @@ def fam(inputGed):
         if len(line) > 2 and line[0] == str(0):
             if line[2] == "INDI" and new_individual == 1: 
                 if alive == "False": 
-                    # indi_data[5] = "False"
                     indi_data.insert(5, "False") 
                     if is_child != "True": 
-                        indi_data[7] = "IS NOT A CHILD IN THIS FAMILY"
+                        indi_data[7] = "Is not a child in this family"
                         if has_spouse != "True": 
                             indi_data[8] = "NO SPOUSE FOUND"
                     else: 
                         if has_spouse != "True": 
-                            indi_data.append("NO SPOUSE FOUND")
-                    
+                            indi_data.append("NO SPOUSE FOUND")  
                 elif alive != "False": 
                     indi_data.insert(5, "True")
                     indi_data.insert(6, "NA")
                     if is_child != "True": 
-                        indi_data[7] = "IS NOT A CHILD IN THIS FAMILY"
+                        indi_data[7] = "Is not a child in this family"
                         if has_spouse != "True": 
                             indi_data.append("NO SPOUSE FOUND")
                     else: 
                         if has_spouse != "True": 
-                            indi_data.append("NO SPOUSE FOUND")
-              
-
-                    
+                            indi_data.append("NO SPOUSE FOUND") 
                 indi_list.append(indi_data) 
                 indi_data = []
                 indi_data.append(line[1])
                 has_spouse = "False"
                 is_child = "False"
             elif line[2] == "FAM" and new_family == 1: 
+                if is_married == "True": 
+                    fam_data.insert(1, "Yes")
+                    fam_data.insert(2, "No")
+                    # fam_data[1] = "Yes"
+                    # fam_data[2] = "No"
+                else: #if divorced
+                    fam_data[1] = "No"
+                    fam_data[1] = "Yes"
                 fam_list.append(fam_data)
                 fam_data = []
-                famm.append(line[1])
-                new_family = 0 
+                fam_data.append(line[1])
+                # new_family = 0 
             elif line[2] == "INDI" and new_individual == 0: 
                 indi_data.append(line[1])
                 new_individual = 1 
-            elif line[2] == "FAM" and new_individual == 0: 
+            elif line[2] == "FAM" and new_family == 0: 
                 fam_data.append(line[1])
                 new_family = 1
             elif(line[1] in ['NOTE', 'HEAD', 'TRLR']):
@@ -138,15 +119,17 @@ def fam(inputGed):
                 date_tag = line[1]
             elif line[1] == "FAMC": 
                 is_child = "True"
-                indi_data.insert(5,line[2])
-                # indi_data.append("HALLO")
-                # indi_data.insert(6, line[2])
+                indi_data.insert(5,"Is a child of couple: " + line[2])
             elif line[1] == "FAMS": 
                 has_spouse = "True"
                 indi_data.append(line[2])
                 indi_data.insert(7, line[2])
-
             elif line[1] == "HUSB": 
+                is_married = "True"
+                fam_data.append(line[2])
+            elif line[1] == "WIFE": 
+                fam_data.append(line[2])
+            elif line[1] == "CHIL": 
                 fam_data.append(line[2])
 
                 
@@ -165,7 +148,6 @@ def fam(inputGed):
                     birth_year = int(dates[0])
                     indi_data.append(current.year - birth_year)
                     alive = "True"
-                    # indi_data.append("~~~")
                 elif date_tag == "DEAT": 
                     alive = "False"
                     dates[1] = monthWordToInt[dates[1]]
@@ -176,9 +158,9 @@ def fam(inputGed):
                     dates[0] = temp
                     indi_data.insert(5, "-".join(dates))
 
-    for i in indi_list: 
-        print(i)
-    # print(indi_list)
+    # for i in indi_list: 
+    #     print(i)
+    print(fam_list)
     #python can return things as a tuple so we can return both lists
     return (indi_list, fam_list)
 
@@ -201,7 +183,7 @@ def table(lists):
     print("Families")  
 
     for j in lists[1]:
-        y.add_row([j[0], j[1], j[2], j[3], j[4], j[5], j[6], j[7]])
+        y.add_row([j[0], j[1], j[2], j[3], j[3], j[4], j[0], j[0]])
     print(y) 
 
 def main(): 
