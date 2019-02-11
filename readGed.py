@@ -141,10 +141,10 @@ def fam(inputGed):
                 indi_data.insert(7, "{'" + line[2] + "'}")
             elif line[1] == "HUSB":
                 is_married = "True"
-                fam_data = famHelper(fam_data, indi_list)
+                # fam_data = famHelper(fam_data, indi_list)
                 fam_data.append(line[2])
             elif line[1] == "WIFE": 
-                fam_data = famHelper(fam_data, indi_list)
+                # fam_data = famHelper(fam_data, indi_list)
                 fam_data.append(line[2])
             elif line[1] == "CHIL":
                 fam_data.append("'" + line[2] + "'")
@@ -173,33 +173,14 @@ def fam(inputGed):
                     dates[2] = dates[0]
                     dates[0] = temp
                     indi_data.insert(5, "-".join(dates))
-    print("Dictionary of Names\n")
-    print(names)
+    #change names 
+    for i in fam_list: 
+        if i[3] in names: 
+            i.insert(4, names[i[3]])
+        if i[5] in names: 
+            i.insert(6, names[i[5]])
     return (indi_list, fam_list)
 
-#tried to add names of husband and wife
-def famHelper(famList, indiList):
-    if len(famList) > 4 and famList[3] == indiList[0]:
-        if indiList[2] == "F":
-            famList.insert(6, indiList[1])
-        else:
-            famList.insert(4, indiList[1])
-    return famList
-
-def Names(inputGed): 
-    names = {}
-    for i in inputGed: 
-        line = i.strip().split(maxsplit=2)
-        if len(line) > 2 and line[0] == str(0):
-            if line[2] == "INDI": 
-                ID_tag = line[1]
-        elif line[0] == str(1) and line[1] == "NAME": 
-            NAME_tag = line[2]
-            names[ID_tag] = NAME_tag
-        else: 
-            pass
-    print(names)
-    return names
 
 #Function to write the table 
 def table(lists): 
@@ -221,13 +202,14 @@ def table(lists):
 
     for j in lists[1]:
         children = ""
-        if (len(j[5:]) > 0):
-            children = "{" + ", ".join(j[5:]) + "}"
+        if (len(j[6:]) > 0):
+            children = "{" + ", ".join(j[7:]) + "}"
         else:
             children = 'NA'
-        y.add_row([j[0], j[1], j[2], j[3], j[3], j[4], j[4], children])
+        y.add_row([j[0], j[1], j[2], j[3], j[4], j[5], j[6], children])
     print(y)
 
+# def helper(): 
 
 def main():
     global inputGed
