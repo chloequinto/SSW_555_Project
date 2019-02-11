@@ -134,7 +134,7 @@ def fam(inputGed):
                 date_tag = line[1]
             elif line[1] == "FAMC":
                 is_child = "True"
-                indi_data.insert(5, "{'" + line[2] + "'}")
+                indi_data.insert(6, "{'" + line[2] + "'}")
             elif line[1] == "FAMS":
                 has_spouse = "True"
                 indi_data.append("{'" + line[2] + "'}")
@@ -216,7 +216,7 @@ def table(lists):
 def main():
     global inputGed
     try:
-        inputGed = open("GEDCOM.ged", "r")
+        inputGed = open("input.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
