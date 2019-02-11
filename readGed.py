@@ -32,6 +32,7 @@ monthWordToInt = {
 
 # Function to parse through and store families and individuals
 def fam(inputGed):
+    names = {}
     indi_list = []
     fam_list = []
     indi_data = []
@@ -77,6 +78,7 @@ def fam(inputGed):
 
                 indi_list.append(indi_data)
                 indi_data = []
+                ID_tag = line[1]
                 indi_data.append(line[1])
 
                 has_spouse = "False"
@@ -92,6 +94,7 @@ def fam(inputGed):
                 fam_data = []
                 fam_data.append(line[1])
             elif line[2] == "INDI" and new_individual == 0:
+                ID_tag = line[1]
                 indi_data.append(line[1])
                 new_individual = 1
             elif line[2] == "FAM" and new_family == 0:
@@ -122,6 +125,8 @@ def fam(inputGed):
 
         elif line[0] == str(1):
             if line[1] == "NAME":
+                NAME_tag = line[2]
+                names[ID_tag] = NAME_tag
                 indi_data.append(line[2])
             elif line[1] == "SEX":
                 indi_data.append(line[2])
@@ -168,12 +173,8 @@ def fam(inputGed):
                     dates[2] = dates[0]
                     dates[0] = temp
                     indi_data.insert(5, "-".join(dates))
-
-    # indi_list.append(indi_data)
-    # for i in indi_list:
-    #     print(i)
-    # print(fam_list)
-    # # python can return things as a tuple so we can return both lists
+    print("Dictionary of Names\n")
+    print(names)
     return (indi_list, fam_list)
 
 #tried to add names of husband and wife
@@ -184,9 +185,25 @@ def famHelper(famList, indiList):
         else:
             famList.insert(4, indiList[1])
     return famList
-                    
+
+def Names(inputGed): 
+    names = {}
+    for i in inputGed: 
+        line = i.strip().split(maxsplit=2)
+        if len(line) > 2 and line[0] == str(0):
+            if line[2] == "INDI": 
+                ID_tag = line[1]
+        elif line[0] == str(1) and line[1] == "NAME": 
+            NAME_tag = line[2]
+            names[ID_tag] = NAME_tag
+        else: 
+            pass
+    print(names)
+    return names
+
 #Function to write the table 
 def table(lists): 
+    global names 
     x = PrettyTable()
     x.field_names = ['ID', 'Name', 'Gender', 'Birthday', 'Age',
                      'Alive', 'Death', 'Child', 'Spouse']
@@ -199,7 +216,8 @@ def table(lists):
     y = PrettyTable()
     y.field_names = ['ID', 'Married', 'Divorced', 'Husband ID',
                      'Husband Name', 'Wife ID', 'Wife Name', 'Children']
-    print("Families")
+
+    print("\nFamilies")
 
     for j in lists[1]:
         children = ""
@@ -207,7 +225,7 @@ def table(lists):
             children = "{" + ", ".join(j[5:]) + "}"
         else:
             children = 'NA'
-        y.add_row([j[0], j[1], j[2], j[3], j[3], j[4], j[0], children])
+        y.add_row([j[0], j[1], j[2], j[3], j[3], j[4], j[4], children])
     print(y)
 
 
