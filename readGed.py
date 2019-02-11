@@ -41,7 +41,7 @@ def fam(inputGed):
     new_family = 0
     has_spouse = "False"
     is_child = "False"
-    at_End = "False"
+    birth_year = 0
     for i in inputGed:
         i = re.sub('[@]', '', i)
         line = i.strip().split(maxsplit=2)
@@ -169,6 +169,8 @@ def fam(inputGed):
                     dates[1] = monthWordToInt[dates[1]]
                     if (int(dates[0]) < 10):
                         dates[0] = "0" + dates[0]
+                    death_year = int(dates[2])
+                    indi_data[4] = death_year - birth_year
                     temp = dates[2]
                     dates[2] = dates[0]
                     dates[0] = temp
