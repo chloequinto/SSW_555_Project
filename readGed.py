@@ -142,7 +142,7 @@ def fam(inputGed):
                 fam_data = famHelper(fam_data, indi_list)
                 fam_data.append(line[2])
             elif line[1] == "CHIL":
-                fam_data.append(line[2])
+                fam_data.append("'" + line[2] + "'")
 
         elif line[0] == str(2):
             if line[1] == "DATE":
@@ -202,7 +202,12 @@ def table(lists):
     print("Families")
 
     for j in lists[1]:
-        y.add_row([j[0], j[1], j[2], j[3], j[3], j[4], j[0], j[5:]])
+        children = ""
+        if (len(j[5:]) > 0):
+            children = "{" + ", ".join(j[5:]) + "}"
+        else:
+            children = 'NA'
+        y.add_row([j[0], j[1], j[2], j[3], j[3], j[4], j[0], children])
     print(y)
 
 
