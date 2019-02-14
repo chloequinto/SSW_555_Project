@@ -16,9 +16,9 @@ class TestResults(unittest.TestCase):
         inputGed4 = open("input_4.ged", "r")
         self.assertEqual(us32.checkMultipleBirths(""), [])
         self.assertEqual(us32.checkMultipleBirths(inputGed), "No multiple births found")
-        self.assertEqual(us32.checkMultipleBirths(inputGed2), "Family F2 experienced multiple birth dates on 27 DEC 1997")
-        self.assertEqual(us32.checkMultipleBirths(inputGed3), "Family F2 experienced multiple birth dates on 9 SEP 1968")
-        self.assertEqual(us32.checkMultipleBirths(inputGed4), "Fam: experienced multiple birth dates on ['27 DEC 1997', '9 SEP 1968']")
+        self.assertEqual(us32.checkMultipleBirths(inputGed2), "Family F2 experienced multiple birth dates on 12/27/1997")
+        self.assertEqual(us32.checkMultipleBirths(inputGed3), "Family F2 experienced multiple birth dates on 09/09/1968")
+        self.assertEqual(us32.checkMultipleBirths(inputGed4), "Family ['F2'] experienced multiple birth dates on ['12/27/1997', '09/09/1968']")
 
 
     ### here add your tests 

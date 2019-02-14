@@ -98,7 +98,7 @@ def main():
     except FileNotFoundError:
         print("Can't open the file")
     else:
-        print(checkMultipleBirths(inputGed3))
+        print(checkMultipleBirths(inputGed2))
 
 
 if __name__ == "__main__":
