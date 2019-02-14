@@ -11,13 +11,14 @@ import unittest
 class TestResults(unittest.TestCase): 
     def test_multipleBirths(self): 
         inputGed = open("input.ged", "r")
-        inputGed1 = open("input_2.ged", "r")
-        inputGed2 = open("input_3.ged", "r")
+        inputGed2 = open("input_2.ged", "r")
+        inputGed3 = open("input_3.ged", "r")
+        inputGed4 = open("input_4.ged", "r")
         self.assertEqual(us32.checkMultipleBirths(""), [])
         self.assertEqual(us32.checkMultipleBirths(inputGed), "No multiple births found")
-        self.assertEqual(us32.checkMultipleBirths(inputGed1), "Fam: experienced multiple birth dates on 27 DEC 1997")
-        self.assertEqual(us32.checkMultipleBirths(inputGed2), "Fam: experienced multiple birth dates on 9 SEP 1968")
-        # self.assertEqual(us32.checkMultipleBirths(inputGed2), "Fam: experienced multiple birth dates on 27 DEC 1997\nFam: experienced multiple birth dates on 9 SEP 1968")
+        self.assertEqual(us32.checkMultipleBirths(inputGed2), "Fam: experienced multiple birth dates on 27 DEC 1997")
+        self.assertEqual(us32.checkMultipleBirths(inputGed3), "Fam: experienced multiple birth dates on 9 SEP 1968")
+        self.assertEqual(us32.checkMultipleBirths(inputGed4), "Fam: experienced multiple birth dates on ['27 DEC 1997', '9 SEP 1968']")
 
 
     ### here add your tests 
