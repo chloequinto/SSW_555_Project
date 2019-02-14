@@ -6,6 +6,21 @@ List Multiple Births
 import collections 
 import re
 
+monthWordToInt = {
+    "JAN": "01",
+    "FEB": "02",
+    "MAR": "03",
+    "APR": "04",
+    "MAY": "05",
+    "JUN": "06",
+    "JUL": "07",
+    "AUG": "08",
+    "SEP": "09",
+    "OCT": "10",
+    "NOV": "11",
+    "DEC": "12",
+}
+
 def checkMultipleBirths(inputGed):
     births = []
     result = []
@@ -15,7 +30,6 @@ def checkMultipleBirths(inputGed):
     tags = []
     all_people = []
     all_fam = []
-    multiple_peeps = []
     if inputGed == "": 
         return []
     for i in inputGed: 
@@ -36,10 +50,17 @@ def checkMultipleBirths(inputGed):
             all_fam.append(family)         
         elif line[1] == "BIRT": 
             tag = line[1]
-        elif line[0] == str(2) and line[1] == "DATE": 
+        elif line[0] == str(2) and line[1] == "DATE":
+            dates = (line[2]).split() 
             if tag == "BIRT": 
-                people.append(line[2])
-                births.append(line[2])
+                dates[1] = monthWordToInt[dates[1]]
+                if (int(dates[0]) < 10):
+                    dates[0] = "0" + dates[0]
+                temp = dates[1]
+                dates[1] = dates[0]
+                dates[0] = temp
+                people.append("/".join(dates))
+                births.append("/".join(dates))
         elif line[1] == "HUSB": 
             family.append(line[2])
         elif line[1] == "WIFE": 
@@ -77,7 +98,7 @@ def main():
     except FileNotFoundError:
         print("Can't open the file")
     else:
-        print(checkMultipleBirths(inputGed4))
+        print(checkMultipleBirths(inputGed3))
 
 
 if __name__ == "__main__":
