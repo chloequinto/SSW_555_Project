@@ -16,8 +16,11 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us32.checkMultipleBirths(""), [])
         self.assertEqual(us32.checkMultipleBirths(inputGed), "No multiple births found")
         self.assertEqual(us32.checkMultipleBirths(inputGed1), "Fam: experienced multiple birth dates on 27 DEC 1997")
+        self.assertEqual(us32.checkMultipleBirths(inputGed2), "Fam: experienced multiple birth dates on ")
         # self.assertEqual(us32.checkMultipleBirths(inputGed2), "Fam: experienced multiple birth dates on 27 DEC 1997\nFam: experienced multiple birth dates on 9 SEP 1968")
 
+
+    ### here add your tests 
 
 if __name__ == '__main__':   
     unittest.main() 

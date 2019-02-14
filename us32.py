@@ -42,14 +42,13 @@ def checkMultipleBirths(inputGed):
 def main(): 
     try: 
         inputGed = open("input.ged", "r")
-        inputGed1 = open("input_us32.ged", "r")
-        inputGed2 = open("input_us32_2.ged", "r")
-        
+        # inputGed1 = open("input_us32.ged", "r")
+        # inputGed2 = open("input_us32_2.ged", "r")
         
     except FileNotFoundError:
         print("Can't open the file")
     else:
-        print(checkMultipleBirths(inputGed1))
+        print(checkMultipleBirths(inputGed))
 
 
 if __name__ == "__main__":
