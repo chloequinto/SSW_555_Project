@@ -5,9 +5,13 @@
 4. Work on fam() function 
 6. Unit Tests 
 '''
+
 from prettytable import PrettyTable
 from datetime import datetime
 import re
+import us29
+import us16
+
 valid = {
     "0": ("HEAD", "TRLR", "NOTE"),
     "1": ("NAME", "SEX", "BIRT", "DEAT", "DIV", "FAMC", "FAMS", "MARR", "HUSB", "WIFE", "CHIL"),
@@ -184,9 +188,9 @@ def fam(inputGed):
     return (indi_list, fam_list)
 
 
-#Function to write the table 
+# Function to write the table
+# move to individual files maybe
 def table(lists): 
-    global names 
     x = PrettyTable()
     x.field_names = ['ID', 'Name', 'Gender', 'Birthday', 'Age',
                      'Alive', 'Death', 'Child', 'Spouse']
@@ -203,24 +207,24 @@ def table(lists):
     print("\nFamilies")
 
     for j in lists[1]:
-        children = ""
+        children = "NA"
         if (len(j[6:]) > 0):
             children = "{" + ", ".join(j[7:]) + "}"
-        else:
-            children = 'NA'
         y.add_row([j[0], j[1], j[2], j[3], j[4], j[5], j[6], children])
     print(y)
 
-# def helper(): 
-
 def main():
-    global inputGed
     try:
         inputGed = open("input_1.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
-        table(fam(inputGed))
+        # this line is every family. You can pick the 1st or second depending on
+        # what you need, or use all of it.
+        allLists = fam(inputGed)
+        #table(allLists)
+        us29.main(allLists[0])
+        us16.main(allLists)
 
 
 if __name__ == "__main__":
