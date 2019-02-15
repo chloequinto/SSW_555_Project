@@ -224,7 +224,7 @@ def main():
         allLists = fam(inputGed)
         #table(allLists)
         us29.main(allLists[0])
-        us16.main(allLists)
+        us16.main(allLists[0])
 
 
 if __name__ == "__main__":
