@@ -215,17 +215,15 @@ def table(lists):
 
 def main():
     try:
-        inputGed = open("input.ged", "r")
+        inputGed = open("input_2.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
-        # this line is every family. You can pick the 1st or second depending on
+        # this line is every family. You can pick the 1st or 2nd depending on
         # what you need, or use all of it.
         allLists = fam(inputGed)
-        #table(allLists)
         us29.main(allLists[0])
         us16.main(allLists[0])
-
 
 if __name__ == "__main__":
     main()
