@@ -1,4 +1,4 @@
-# SSW_555_Project
+# SSW 555 Project
 
 ## Introduction
 
@@ -8,8 +8,6 @@ This is a project for SSW-555 (Agile Methods for Software Development). This app
 
 Rakshak Kumar, Chloe Quinto, Mengyuan Wang, Matthew Wisnewski, Renjie Zhou
 
-## Installation
+## Running and Installation
 
-To run this program, you must have any version of Python past version 2.0 installed. This program is run directly from the command line after navigating to the directory in which the file is located.
-
- 
+To run this program, make sure you have Python 3 installed. This program is run directly from the command line after navigating to the directory in which the file is located.

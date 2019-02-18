@@ -1,13 +1,13 @@
 '''
 Chloe Quinto 
-Unit Tests 
+All Unit Tests 
 
-For User Story 32 List Multiple Births 
 
 '''
 import us29
 import us32
 import unittest
+import readGed
 
 class TestResults(unittest.TestCase): 
     def test_multipleBirths(self): 
@@ -29,7 +29,8 @@ class TestResults(unittest.TestCase):
         inputGed2 = open("input_2.ged", "r")
         inputGed3 = open("input_3.ged", "r")
         inputGed4 = open("input_4.ged", "r")
-        self.assertEqual(us29.deaths(inputGed), True)
+        output = readGed.fam(inputGed)
+        self.assertEqual(us29.deaths(output), True)
         self.assertEqual(us29.deaths(inputGed1), [['/Smith/', '/Smith/'], ['/Smith/']])
         self.assertEqual(us29.deaths(inputGed2), False)
         self.assertEqual(us29.deaths(inputGed3), False)

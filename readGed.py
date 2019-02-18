@@ -215,7 +215,7 @@ def table(lists):
 
 def main():
     try:
-        inputGed = open("input_1.ged", "r")
+        inputGed = open("input.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:

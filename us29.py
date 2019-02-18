@@ -1,3 +1,9 @@
+'''
+User Story 29
+List all individual deaths
+
+'''
+
 from prettytable import PrettyTable
 
 def deaths(input):
@@ -16,7 +22,7 @@ def table(lists):
 
     for i in lists:
         x.add_row([i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8]])
-    print("\nIndividuals")
+    print("\nDeaths")
     print(x)
 
 def main(lists):
