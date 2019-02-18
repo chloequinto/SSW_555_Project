@@ -1,8 +1,5 @@
 '''
-Chloe Quinto 
 All Unit Tests 
-
-
 '''
 import us29
 import us32
@@ -21,8 +18,6 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us32.checkMultipleBirths(inputGed3), "Family F2 experienced multiple birth dates on 09/09/1968")
         self.assertEqual(us32.checkMultipleBirths(inputGed4), "Family ['F2'] experienced multiple birth dates on ['12/27/1997', '09/09/1968']")
 
-
-    ### here add your tests 
     def testDeaths(self):
         inputGed = open("input.ged", "r")
         inputGed1 = open("input_1.ged", "r")
