@@ -10,9 +10,12 @@ import readGed
 
 deaths1 = [
     ['I6', 'Grandpa /Quinto/', 'M', '1940-06-03', 64, 'False', '2004-07-17', 'NA', "{'F5'}", "{'F3'}", "{'F5'}"],
+    ['I7', 'Grandma /Quinto/', 'F', '1940-06-11', 62, 'False', '2002-06-06', 'NA', "{'F3'}"],
     ['I9', 'Grandma /Loresco/', 'F', '1940-04-03', 54, 'False', '1994-10-16', 'NA', "{'F4'}"],
     ['I10', 'Ex /Quinto/', 'F', '1945-10-07', 56, 'False', '2001-07-13', 'NA', "{'F5'}"]
 ]
+
+#Ex Quinto has age -144 or something
 
 deaths2 = [
     ['I1', 'Bob /Smiath/', 'M', '1907-04-04', 92, 'False', '1999-10-31', "{'F2'}", "{'F1'}", "{'F1'}"],
@@ -79,8 +82,6 @@ class TestResults(unittest.TestCase):
         inputGed = open("input.ged", "r")
         inputGed1 = open("input_1.ged", "r")
         inputGed2 = open("input_2.ged", "r")
-        inputGed3 = open("input_3.ged", "r")
-        inputGed4 = open("input_4.ged", "r")
         output = readGed.fam(inputGed)
         output1 = readGed.fam(inputGed1)
         output2 = readGed.fam(inputGed2)
@@ -98,12 +99,6 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us16.sameLastName(output[0]), name1)
         self.assertEqual(us16.sameLastName(output1[0]), name2)
         self.assertEqual(us16.sameLastName(output2[0]), name3)
-        self.assertEqual(us29.deaths(output), True)
-        self.assertEqual(us29.deaths(inputGed1), [['/Smith/', '/Smith/'], ['/Smith/']])
-        self.assertEqual(us29.deaths(inputGed2), False)
-        self.assertEqual(us29.deaths(inputGed3), False)
-        self.assertEqual(us29.deaths(inputGed4), True)
-    
     
 
 if __name__ == '__main__':   
