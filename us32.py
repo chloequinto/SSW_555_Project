@@ -53,12 +53,7 @@ def checkMultipleBirths(inputGed):
         elif line[0] == str(2) and line[1] == "DATE":
             dates = (line[2]).split() 
             if tag == "BIRT": 
-                dates[1] = monthWordToInt[dates[1]]
-                if (int(dates[0]) < 10):
-                    dates[0] = "0" + dates[0]
-                temp = dates[1]
-                dates[1] = dates[0]
-                dates[0] = temp
+                formatDate(dates)
                 people.append("/".join(dates))
                 births.append("/".join(dates))
         elif line[1] == "HUSB": 
@@ -69,7 +64,7 @@ def checkMultipleBirths(inputGed):
             family.append(line[2])
     date = [item for item, count in collections.Counter(births).items() if count > 1]
     for i in all_people: 
-        if i[1] in date: #if that person has multiple births 
+        if i[1] in date: 
             tags.append(i[0])
     for i in tags:
         for b in all_fam:
@@ -86,7 +81,13 @@ def checkMultipleBirths(inputGed):
     return "Family "+ str(final) + " experienced multiple birth dates on " + str(result)
         
 
-    
+def formatDate(dates): 
+    dates[1] = monthWordToInt[dates[1]]
+    if (int(dates[0]) < 10):
+        dates[0] = "0" + dates[0]
+    temp = dates[1]
+    dates[1] = dates[0]
+    dates[0] = temp
 
 def main(): 
     try: 

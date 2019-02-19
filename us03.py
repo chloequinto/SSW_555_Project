@@ -1,17 +1,6 @@
-'''To Do 
-1. Check that it works [x]
-2. Try and Exception for inputs [x] 
-3. sudo pip3 install Ptable [x]
-4. Work on fam() function 
-6. Unit Tests 
-'''
-
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29
-import us16
-
 valid = {
     "0": ("HEAD", "TRLR", "NOTE"),
     "1": ("NAME", "SEX", "BIRT", "DEAT", "DIV", "FAMC", "FAMS", "MARR", "HUSB", "WIFE", "CHIL"),
@@ -164,6 +153,8 @@ def fam(inputGed):
                     dates[2] = dates[0]
                     dates[0] = temp
                     indi_data.append("-".join(dates))
+                    birthDateMed = ("-".join(dates))
+                    birthDate = datetime.strptime(birthDateMed, '%Y-%m-%d')
                     current = datetime.now()
                     birth_year = int(dates[0])
                     indi_data.append(current.year - birth_year)
@@ -179,6 +170,16 @@ def fam(inputGed):
                     dates[2] = dates[0]
                     dates[0] = temp
                     indi_data.insert(5, "-".join(dates))
+                    deathDateMed = ("-".join(dates))
+                    deathDate = datetime.strptime(deathDateMed, '%Y-%m-%d')
+    for i in indi_list:
+        if alive == "True":
+            print("Individual: " + indi_data[1] + " is still alive")
+        elif(deathDate > birthDate):
+            print("Pass: " + indi_data[1])
+        else:
+            print("Individual: " + indi_data[1] + " has a birth date after their death date")
+
     #change names 
     for i in fam_list: 
         if i[3] in names: 
@@ -188,9 +189,9 @@ def fam(inputGed):
     return (indi_list, fam_list)
 
 
-# Function to write the table
-# move to individual files maybe
+#Function to write the table 
 def table(lists): 
+    global names 
     x = PrettyTable()
     x.field_names = ['ID', 'Name', 'Gender', 'Birthday', 'Age',
                      'Alive', 'Death', 'Child', 'Spouse']
@@ -200,6 +201,7 @@ def table(lists):
     print("\nIndividuals")
     print(x)
 
+
     y = PrettyTable()
     y.field_names = ['ID', 'Married', 'Divorced', 'Husband ID',
                      'Husband Name', 'Wife ID', 'Wife Name', 'Children']
@@ -207,23 +209,93 @@ def table(lists):
     print("\nFamilies")
 
     for j in lists[1]:
-        children = "NA"
+        children = ""
         if (len(j[6:]) > 0):
             children = "{" + ", ".join(j[7:]) + "}"
+        else:
+            children = 'NA'
         y.add_row([j[0], j[1], j[2], j[3], j[4], j[5], j[6], children])
     print(y)
 
+# def helper(): 
+
 def main():
+    global inputGed
     try:
-        inputGed = open("input_2.ged", "r")
+        inputGed = open("input_1.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
-        # this line is every family. You can pick the 1st or 2nd depending on
-        # what you need, or use all of it.
-        allLists = fam(inputGed)
-        us29.main(allLists[0])
-        us16.main(allLists[0])
+        table(fam(inputGed))
+
 
 if __name__ == "__main__":
     main()
+
+
+
+'''
+User Story 03
+Birth before death
+'''
+'''
+import datetime
+
+def birthBeforeDeath(inputGed):
+    births = []
+    deaths = []
+    people = {}
+    if inputGed == "":
+        return []
+    for i in inputGed:
+        line = i.strip().split(maxsplit=2)
+        if len(line) > 2 and line[0] == str(0):
+            if line[2] == "INDI": 
+                name = line[1]
+        elif line[1] == "NAME":
+            name = line[2]
+        elif line[1] == "BIRT": 
+            tag = line[1]
+        elif line[1] == "DEAT":
+            tag = line[1]
+        elif line[0] == str(2) and line[1] == "DATE": 
+            if tag == "BIRT": 
+                people.append(line[2])
+                births.append(line[2])
+            elif tag == "DEAT": 
+                people.append(line[2])
+                deaths.append(line[2])
+    print("\n")
+    print(people)
+    print("\n")
+    print(deaths)
+    print("\n")
+    print(births)
+
+def main(): 
+    try: 
+        inputGed = open("input.ged", "r")
+        
+    except FileNotFoundError:
+        print("Can't open the file")
+    else:
+       birthBeforeDeath(inputGed)
+
+
+if __name__ == "__main__":
+    main()
+'''
+'''
+def birthBeforeDeath(lists):
+    for i in lists[2]:
+        birthDate = datetime.strptime(lists[i], '%Y-%m-%d')
+        deathDate = datetime.strptime(lists[3][i], '%Y-%m-%d')
+        if(deathDate > birthDate):
+            print("Wow")
+            return True
+        
+        else:
+            print("Error: Individual: has their date of death before their date of birth")
+            return False
+
+'''

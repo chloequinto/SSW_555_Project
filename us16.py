@@ -26,16 +26,12 @@ def sameLastName(inputs):
                 if lastName not in males[famId]:
                     males[famId].append(lastName)
 
-    print(males)
-
     # if there are different names, then the set should be greater than 1
     for i in males:
         if len(list(set(males[i]))) == 1:
             males[i] = True
         else:
             males[i] = False
-
-    print(males)
 
     allSameName = []
     errors = []
