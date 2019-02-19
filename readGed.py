@@ -222,8 +222,8 @@ def main():
         # this line is every family. You can pick the 1st or 2nd depending on
         # what you need, or use all of it.
         allLists = fam(inputGed)
-        us29.main(allLists[0])
         us16.main(allLists[0])
+        us29.main(allLists[0])
 
 if __name__ == "__main__":
     main()
