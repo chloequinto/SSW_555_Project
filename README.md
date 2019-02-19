@@ -69,11 +69,12 @@ Proposed Organization
 
 ## Authors
 
-[Rakshak Kumar](https://github.com/rakshak10)
-[Chloe Quinto](https://github.com/chloequinto)
-[Mengyuan Wang](https://github.com/stdlibrainbow)
-[Matthew Wisnewski](https://github.com/mwisnews)
-[Renjie Zhou](https://github.com/rzhou10)
+[Rakshak Kumar](https://github.com/rakshak10)  
+[Chloe Quinto](https://github.com/chloequinto)  
+[Mengyuan Wang](https://github.com/stdlibrainbow)  
+[Matthew Wisnewski](https://github.com/mwisnews)  
+[Renjie Zhou](https://github.com/rzhou10)  
+
 
 ## Running and Installation
 1. Clone or download the repo
