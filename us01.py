@@ -1,6 +1,6 @@
 '''
-User Story 02
-Birth before marriage
+User Story 01
+Dates before current date
 
 '''
 
@@ -32,11 +32,7 @@ def parseGed(inputGed):
         values = line.split()
         level = values[0]
         tag = values[1]
-        special = ['NAME', 'DATE', 'NOTE']
-        temp = ' '
-        if tag in special:
-            temp = ' '
-        args = temp.join(values[2:])
+        args = ' '.join(values[2:])
         if(tag[0] == '@'):
             tag = values[2]
             args = values[1]
@@ -51,6 +47,10 @@ def parseGed(inputGed):
         elif (level == '1'):
             if(tag == 'BIRT'):
                 date = 'birthDate'
+            elif (tag == 'DEAT'):
+                date = 'deathDate'
+            elif (tag == 'DIV'):
+                date = 'divorceDate'
             elif (tag == 'HUSB'):
                 args = args.strip('@')
                 family[index].setHusband(args)
@@ -67,6 +67,13 @@ def parseGed(inputGed):
                 wife = family[index].getWife()
                 individual[husband].setMarriageDate(args)
                 individual[wife].setMarriageDate(args)
+            elif(date == 'deathDate'):
+                individual[index].setDeathDate(args)
+            elif(date == 'divorceDate'):
+                husband = family[index].getHusband()
+                wife = family[index].getWife()
+                individual[husband].setDivorceDate(args)
+                individual[wife].setDivorceDate(args)
     return individual
 
 
@@ -80,10 +87,12 @@ def formatDate(dates):
 
 
 class Individual(object):
-    def __init__(self, ID='NA', birthDate='NA', marriageDate='NA'):
+    def __init__(self, ID='NA', birthDate='NA', marriageDate='NA', deathDate='NA', divorceDate='NA'):
         self.ID = ID
         self.birthDate = birthDate
         self.marriageDate = marriageDate
+        self.deathDate = deathDate
+        self.divorceDate = divorceDate
 
     def setBirthDate(self, birthDate):
         birthDate = formatDate(birthDate)
@@ -93,11 +102,13 @@ class Individual(object):
         marriageDate = formatDate(marriageDate)
         self.marriageDate = marriageDate
 
-    def getBirthDate(self):
-        return self.birthDate
+    def setDeathDate(self, deathDate):
+        deathDate = formatDate(deathDate)
+        self.deathDate = deathDate
 
-    def getMarriageDate(self):
-        return self.marriageDate
+    def setDivorceDate(self, divorceDate):
+        divorceDate = formatDate(divorceDate)
+        self.divorceDate = divorceDate
 
 
 class Family(object):
@@ -120,29 +131,52 @@ class Family(object):
         return self.wife
 
 
-def checkDate(date1, date2):
+def checkDateNoLaterThanToday(date1, date2):
     dateTime1 = datetime.strptime(str(date1), "%Y-%m-%d")
     dateTime2 = datetime.strptime(str(date2), "%Y-%m-%d")
-    return dateTime1.date() < dateTime2.date()
+    return dateTime1.date() <= dateTime2.date()
 
 
-def BirthBeforeMarriage(individual):
-    return checkDate(individual.birthDate, individual.marriageDate)
+def BirthBeforeCurrent(indi):
+    currentDate = date.today().strftime("%Y-%m-%d")
+    if individual[indi].birthDate != 'NA':
+        return checkDateNoLaterThanToday(individual[indi].birthDate, currentDate)
+    else:
+        return True
+
+
+def DeathBeforeCurrent(indi):
+    currentDate = date.today().strftime("%Y-%m-%d")
+    if individual[indi].deathDate != 'NA':
+        return checkDateNoLaterThanToday(individual[indi].deathDate, currentDate)
+    else:
+        return True
+
+
+def MarriageBeforeCurrent(indi):
+    currentDate = date.today().strftime("%Y-%m-%d")
+    if individual[indi].marriageDate != 'NA':
+        return checkDateNoLaterThanToday(individual[indi].marriageDate, currentDate)
+    else:
+        return True
+
+
+def DivorceBeforeCurrent(indi):
+    currentDate = date.today().strftime("%Y-%m-%d")
+    if individual[indi].divorceDate != 'NA':
+        return checkDateNoLaterThanToday(individual[indi].divorceDate, currentDate)
+    else:
+        return True
 
 
 class TestResults(unittest.TestCase):
-    def test_birthBeforeMarriage(self):
+    def test_dateBeforeCurrent(self):
         inputGed = open("inputGed5.ged", "r")
-        self.assertTrue(BirthBeforeMarriage(
-            Individual('11', '1956-08-02', '1970-04-25')))
-        self.assertTrue(BirthBeforeMarriage(
-            Individual('12', '1953-12-31', '1990-02-12')))
-        self.assertTrue(BirthBeforeMarriage(
-            Individual('07', '1939-08-16', '1961-07-01')))
-        self.assertTrue(BirthBeforeMarriage(
-            Individual('04', '1924-02-04', '1955-06-30')))
-        self.assertTrue(BirthBeforeMarriage(
-            Individual('05', '1933-01-08', '1955-06-30')))
+        for i in individual:
+            self.assertTrue(BirthBeforeCurrent(i))
+            self.assertTrue(DeathBeforeCurrent(i))
+            self.assertTrue(MarriageBeforeCurrent(i))
+            self.assertTrue(DivorceBeforeCurrent(i))
 
 
 def main():
@@ -156,5 +190,5 @@ def main():
 
 
 if __name__ == '__main__':
-    unittest.main()
     main()
+    unittest.main()

@@ -132,7 +132,7 @@
 2 _MARNM Xian
 1 SEX M
 1 BIRT
-2 DATE 31 DEC 1953
+2 DATE 21 DEC 1953
 1 FAMS @F5@
 0 @I13@ INDI
 1 NAME Xiaobo /Meng/
@@ -144,8 +144,8 @@
 2 DATE 3 JUN 1962
 1 FAMC @F3@
 0 @I14@ INDI
-1 NAME Xiangyang /Wang/
-2 GIVN Xiangyang
+1 NAME Yangyang /Wang/
+2 GIVN Yangyang
 2 SURN Wang
 2 _MARNM Wang
 1 SEX M
@@ -162,13 +162,13 @@
 2 DATE 10 MAY 1957
 1 FAMC @F3@
 0 @I16@ INDI
-1 NAME Xiuyun /Wang/
-2 GIVN Xiuyun
+1 NAME Yunyun /Wang/
+2 GIVN Yunyun
 2 SURN Wang
 2 _MARNM Wang
 1 SEX F
 1 BIRT
-2 DATE 31 JUN 1963
+2 DATE 11 JUN 1963
 1 FAMC @F2@
 0 @F1@ FAM
 1 HUSB @I2@
