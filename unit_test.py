@@ -53,9 +53,10 @@ class TestResults(unittest.TestCase):
         inputGed2 = open("input_2.ged", "r")
         inputGed3 = open("input_3.ged", "r")
         inputGed4 = open("input_4.ged", "r")
+        inputGed6 = open("input_6.ged", "r")
         output = readGed.fam(inputGed)
         
-        self.assertEqual(us03.birthBeforeDeath(inputGed), [['Ex /Quinto/', '1945-10-07', '1801-07-13']])
+        self.assertEqual(us03.birthBeforeDeath(inputGed6), [['Ex /Quinto/', '1945-10-07', '1801-07-13']])
         inputGed.close()
         self.assertEqual(us03.birthBeforeDeath(inputGed1), [['Johnathan /Smith/', '1879-11-21', '1859-04-10']])
         inputGed1.close()
