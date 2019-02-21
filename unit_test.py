@@ -1,13 +1,10 @@
 '''
 All Unit Tests 
 '''
-import us07
-import us16
-import us29
-import us32
-import us03
+import us03, us16, us29
 import unittest
 import readGed
+from package.userStories import us07,us32
 
 deaths1 = [
     ['I6', 'Grandpa /Quinto/', 'M', '1940-06-03', 64, 'False', '2004-07-17', 'NA', "{'F5'}", "{'F3'}", "{'F5'}"],
