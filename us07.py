@@ -1,22 +1,7 @@
-#User Story 7 
+# User Story 7 
 
 import re
 from datetime import datetime
-
-monthWordToInt = {
-    "JAN": "01",
-    "FEB": "02",
-    "MAR": "03",
-    "APR": "04",
-    "MAY": "05",
-    "JUN": "06",
-    "JUL": "07",
-    "AUG": "08",
-    "SEP": "09",
-    "OCT": "10",
-    "NOV": "11",
-    "DEC": "12",
-}
 
 def storeData(inputGed): 
     res = []
@@ -44,7 +29,7 @@ def storeData(inputGed):
                 res.append(dates[2])
     return full 
 
-def checkForLessThan150(data): 
+def checkForLessThan150(inputGed): 
     '''
     Function that checks: 
     1.  Death should be less than 150 years
@@ -52,10 +37,12 @@ def checkForLessThan150(data):
     2.  Current date should be less 
     than 150 years after the birth for all living people 
     '''
+    data = storeData(inputGed) #returns data
+    if data == []: 
+        return []
     today = datetime.today()
-    lessThan50 = True 
+    lessThan50 = True #need to be referenced
     for i in data: 
-        # print(i)
         birthYear = i[1]
         if (len(i) <= 2): 
             if (today.year - int(birthYear) < 150): 
@@ -72,16 +59,13 @@ def checkForLessThan150(data):
 
 def main(): 
     try: 
-        inputGed = open("input.ged", "r")
-        inputGed2 = open("input_2.ged", "r")
-        inputGed3 = open("input_3.ged", "r")
-        inputGed4 = open("input_4.ged", "r")
         inputGed7 = open("input_7.ged", "r")
+        inputGed8 = open("input_8.ged", "r")
         
     except FileNotFoundError:
         print("Can't open the file")
     else:
-       print(checkForLessThan150(storeData(inputGed7)))
+       print(checkForLessThan150(inputGed7))
 
 
 if __name__ == "__main__":
