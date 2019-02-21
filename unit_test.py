@@ -1,6 +1,7 @@
 '''
 All Unit Tests 
 '''
+import us07
 import us16
 import us29
 import us32
@@ -57,7 +58,7 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us03.birthBeforeDeath(inputGed4), [['Grandma /Quinto/', '1940-06-11', '1902-06-06']])
         inputGed4.close()
     
-    def test_multipleBirths(self): 
+    def testMultipleBirths(self): #US32
         inputGed = open("input.ged", "r")
         inputGed2 = open("input_2.ged", "r")
         inputGed3 = open("input_3.ged", "r")
@@ -67,6 +68,16 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us32.checkMultipleBirths(inputGed2), "Family F2 experienced multiple birth dates on 12/27/1997")
         self.assertEqual(us32.checkMultipleBirths(inputGed3), "Family F2 experienced multiple birth dates on 09/09/1968")
         self.assertEqual(us32.checkMultipleBirths(inputGed4), "Family ['F2'] experienced multiple birth dates on ['12/27/1997', '09/09/1968']")
+
+
+    def testLessThan150(self): #US07 
+        inputGed7 = open("input_7.ged", "r")
+        inputGed8 = open("input_8.ged", "r")
+        self.assertEqual(us07.checkForLessThan150(""), [])
+        self.assertTrue(us07.checkForLessThan150(inputGed7))
+        self.assertFalse(us07.checkForLessThan150(inputGed8))
+
+
 
     def testDeaths(self):
         inputGed = open("inputRZ1.ged", "r")
