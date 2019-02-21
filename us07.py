@@ -39,11 +39,9 @@ def storeData(inputGed):
         elif line[0] == str(2) and line[1] == "DATE":
             dates = (line[2]).split() 
             if date_tag == "BIRT": 
-                formatDate(dates)
-                res.append(line[2])
+                res.append(dates[2])
             elif date_tag == "DEAT": 
-                formatDate(dates)
-                res.append(line[2])
+                res.append(dates[2])
     return full 
 
 def checkForLessThan150(data): 
@@ -54,24 +52,23 @@ def checkForLessThan150(data):
     2.  Current date should be less 
     than 150 years after the birth for all living people 
     '''
+    today = datetime.today()
+    lessThan50 = True 
     for i in data: 
-        print(i)
-        if (len(i) <= 2): #still alive 
-            # print("still alive")
-            birthDate = i[1]
-            print(birthDate)
-            # deathDate = datetime.strptime(i[2], '%Y-%m-%d')
+        # print(i)
+        birthYear = i[1]
+        if (len(i) <= 2): 
+            if (today.year - int(birthYear) < 150): 
+                  pass
+            else: 
+                lessThan50 = False 
         if (len(i) > 2):
-            print("DEAD")
-            birthDate = datetime.strptime(i[1], '%d %b %Y')
-            deathDate = datetime.strptime(i[2], '%d %b %Y')
-def formatDate(dates): 
-    dates[1] = monthWordToInt[dates[1]]
-    if (int(dates[0]) < 10):
-        dates[0] = "0" + dates[0]
-    temp = dates[1]
-    dates[1] = dates[0]
-    dates[0] = temp
+            deathYear = i[2]
+            if (int(deathYear) - int(birthYear)) < 150: 
+                pass
+            else: 
+                lessThan50 = False
+    return lessThan50 
 
 def main(): 
     try: 
@@ -79,11 +76,12 @@ def main():
         inputGed2 = open("input_2.ged", "r")
         inputGed3 = open("input_3.ged", "r")
         inputGed4 = open("input_4.ged", "r")
+        inputGed7 = open("input_7.ged", "r")
         
     except FileNotFoundError:
         print("Can't open the file")
     else:
-        checkForLessThan150(storeData(inputGed))
+       print(checkForLessThan150(storeData(inputGed7)))
 
 
 if __name__ == "__main__":

@@ -1,10 +1,4 @@
-'''To Do 
-1. Check that it works [x]
-2. Try and Exception for inputs [x] 
-3. sudo pip3 install Ptable [x]
-4. Work on fam() function 
-6. Unit Tests 
-'''
+
 
 from prettytable import PrettyTable
 from datetime import datetime
