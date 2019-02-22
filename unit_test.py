@@ -34,6 +34,7 @@ name2 = (
 )
 
 class TestResults(unittest.TestCase): 
+    
     def testbirthBeforeDeath(self):
         inputGed = open("input.ged", "r")
         inputGed1 = open("input_1.ged", "r")
@@ -61,7 +62,7 @@ class TestResults(unittest.TestCase):
         inputGed3 = open("input_3.ged", "r")
         inputGed4 = open("input_4.ged", "r")
         self.assertEqual(us32.checkMultipleBirths(""), [])
-        self.assertEqual(us32.checkMultipleBirths(inputGed), "No multiple births found")
+        self.assertEqual(us32.checkMultipleBirths(inputGed), [])
         self.assertEqual(us32.checkMultipleBirths(inputGed2), "Family F2 experienced multiple birth dates on 12/27/1997")
         self.assertEqual(us32.checkMultipleBirths(inputGed3), "Family F2 experienced multiple birth dates on 09/09/1968")
         self.assertEqual(us32.checkMultipleBirths(inputGed4), "Family ['F2'] experienced multiple birth dates on ['12/27/1997', '09/09/1968']")
@@ -94,5 +95,6 @@ class TestResults(unittest.TestCase):
     
 
 if __name__ == '__main__':   
+
     unittest.main() 
     
