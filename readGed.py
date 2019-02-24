@@ -209,7 +209,7 @@ def table(lists):
 
 def main():
     try:
-        inputGed = open("input_2.ged", "r")
+        inputGed = open("inputRZ2.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:

@@ -11,6 +11,7 @@ def sameLastName(inputs):
     # use family ids as key, add all men to list
     for i in inputs:
         if i[2] == "M":
+            print(i)
             if i[8] != "NA":
                 famId = i[8].replace("'", "").replace("{", "").replace("}", "")
                 lastName = (i[1].split(" "))[1]
@@ -36,17 +37,18 @@ def sameLastName(inputs):
     allSameName = []
     errors = []
 
+    print(males)
+
     for i in inputs:
         spouse = i[8].replace("'", "").replace("{", "").replace("}", "")
         child = i[7].replace("'", "").replace("{", "").replace("}", "")
         if i[2] == "M":
-            if spouse in males and males[spouse]:
-                allSameName.append(i)
-            elif child in males and males[child]:
-                allSameName.append(i)
+            if spouse in males and not males[spouse]:
+                errors.append("ERROR US16: " + i[1] + " does not have the same last name\n")
+            elif child in males and not males[child]:
+                errors.append("ERROR US16: " + i[1] + " does not have the same last name\n")
             else:
-                male = i[1]
-                errors.append(f"ERROR US16: {male} does not have the same last name\n")
+                allSameName.append(i)
 
     return allSameName, errors
 
