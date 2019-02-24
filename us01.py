@@ -173,10 +173,10 @@ class TestResults(unittest.TestCase):
     def test_dateBeforeCurrent(self):
         inputGed = open("inputGed5.ged", "r")
         for i in individual:
-            self.assertTrue(BirthBeforeCurrent(i))
-            self.assertTrue(DeathBeforeCurrent(i))
-            self.assertTrue(MarriageBeforeCurrent(i))
-            self.assertTrue(DivorceBeforeCurrent(i))
+            self.assertTrue(BirthBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Birthday " + individual[i].birthDate + " occurs in the future")
+            self.assertTrue(DeathBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Death date " + individual[i].deathDate + " occurs in the future")
+            self.assertTrue(MarriageBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Marriage date " + individual[i].marriageDate + " occurs in the future")
+            self.assertTrue(DivorceBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Divorce date " + individual[i].divorceDate + " occurs in the future")
 
 
 def main():
@@ -187,7 +187,7 @@ def main():
         print("Can't open the file")
     else:
         individual = parseGed(inputGed)
-
+        return individual
 
 if __name__ == '__main__':
     main()

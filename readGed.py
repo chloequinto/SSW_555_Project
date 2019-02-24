@@ -4,6 +4,7 @@ from prettytable import PrettyTable
 from datetime import datetime
 import re
 import us29, us16
+import us01, us02
 from package.userStories import us07, us32
 
 valid = {
@@ -222,7 +223,26 @@ def main():
         value = us32.checkMultipleBirths(inputGed)
         if value != []: 
             print('Error: Family: US32: ' + value )
-
+            
+        individual = us01.main()
+        for indi in individual:
+            us01Test_Birth = us01.BirthBeforeCurrent(indi)
+            if us01Test_Birth !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs in the future")
+            us01Test_Death = us01.DeathBeforeCurrent(indi)
+            if us01Test_Death !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Death date " + individual[indi].deathDate + " occurs in the future")
+            us01Test_Marriage = us01.MarriageBeforeCurrent(indi)
+            if us01Test_Marriage !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Marriage date " + individual[indi].marriageDate + " occurs in the future")
+            us01Test_Divorce = us01.DivorceBeforeCurrent(indi)
+            if us01Test_Divorce !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Divorce date " + individual[indi].divorceDate + " occurs in the future")
+            us02Test = us02.BirthBeforeMarriage(individual[indi])
+            if us02Test != True:
+                print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
+            
+            
         print("\n")
 
 if __name__ == "__main__":

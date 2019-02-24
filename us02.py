@@ -32,11 +32,7 @@ def parseGed(inputGed):
         values = line.split()
         level = values[0]
         tag = values[1]
-        special = ['NAME', 'DATE', 'NOTE']
-        temp = ' '
-        if tag in special:
-            temp = ' '
-        args = temp.join(values[2:])
+        args = ' '.join(values[2:])
         if(tag[0] == '@'):
             tag = values[2]
             args = values[1]
@@ -51,6 +47,10 @@ def parseGed(inputGed):
         elif (level == '1'):
             if(tag == 'BIRT'):
                 date = 'birthDate'
+            elif (tag == 'DEAT'):
+                date = 'deathDate'
+            elif (tag == 'DIV'):
+                date = 'divorceDate'
             elif (tag == 'HUSB'):
                 args = args.strip('@')
                 family[index].setHusband(args)
@@ -67,6 +67,13 @@ def parseGed(inputGed):
                 wife = family[index].getWife()
                 individual[husband].setMarriageDate(args)
                 individual[wife].setMarriageDate(args)
+            elif(date == 'deathDate'):
+                individual[index].setDeathDate(args)
+            elif(date == 'divorceDate'):
+                husband = family[index].getHusband()
+                wife = family[index].getWife()
+                individual[husband].setDivorceDate(args)
+                individual[wife].setDivorceDate(args)
     return individual
 
 
@@ -93,12 +100,16 @@ class Individual(object):
         marriageDate = formatDate(marriageDate)
         self.marriageDate = marriageDate
 
-    def getBirthDate(self):
-        return self.birthDate
+    def setDeathDate(self, deathDate):
+        deathDate = formatDate(deathDate)
+        self.deathDate = deathDate
 
-    def getMarriageDate(self):
-        return self.marriageDate
+    def setDivorceDate(self, divorceDate):
+        divorceDate = formatDate(divorceDate)
+        self.divorceDate = divorceDate
 
+
+  
 
 class Family(object):
     def __init__(self, ID='NA', husband='NA', wife='NA', marriageDate='NA'):
@@ -127,22 +138,19 @@ def checkDate(date1, date2):
 
 
 def BirthBeforeMarriage(individual):
-    return checkDate(individual.birthDate, individual.marriageDate)
+    if individual.birthDate != 'NA' and individual.marriageDate != 'NA':
+        return checkDate(individual.birthDate, individual.marriageDate)
+    elif individual.birthDate == 'NA':
+        return True
+    elif individual.marriageDate == 'NA':
+        return True
 
 
 class TestResults(unittest.TestCase):
     def test_birthBeforeMarriage(self):
         inputGed = open("inputGed5.ged", "r")
-        self.assertTrue(BirthBeforeMarriage(
-            Individual('11', '1956-08-02', '1970-04-25')))
-        self.assertTrue(BirthBeforeMarriage(
-            Individual('12', '1953-12-31', '1990-02-12')))
-        self.assertTrue(BirthBeforeMarriage(
-            Individual('07', '1939-08-16', '1961-07-01')))
-        self.assertTrue(BirthBeforeMarriage(
-            Individual('04', '1924-02-04', '1955-06-30')))
-        self.assertTrue(BirthBeforeMarriage(
-            Individual('05', '1933-01-08', '1955-06-30')))
+        for indi in individual:
+            self.assertTrue(BirthBeforeMarriage(individual[indi]),msg="ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
 
 
 def main():
@@ -153,8 +161,9 @@ def main():
         print("Can't open the file")
     else:
         individual = parseGed(inputGed)
+        
 
 
 if __name__ == '__main__':
-    unittest.main()
     main()
+    unittest.main()
