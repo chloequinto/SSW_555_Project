@@ -1,13 +1,10 @@
 '''
 All Unit Tests 
 '''
-import us07
-import us16
-import us29
-import us32
-import us03
+import us03, us16, us29
 import unittest
 import readGed
+from package.userStories import us07,us32
 
 deaths1 = [
     ['I6', 'Grandpa /Quinto/', 'M', '1940-06-03', 64, 'False', '2004-07-17', 'NA', "{'F5'}", "{'F3'}", "{'F5'}"],
@@ -43,6 +40,7 @@ name2 = (
 )
 
 class TestResults(unittest.TestCase): 
+    
     def testbirthBeforeDeath(self):
         inputGed = open("input.ged", "r")
         inputGed1 = open("input_1.ged", "r")
@@ -70,7 +68,7 @@ class TestResults(unittest.TestCase):
         inputGed3 = open("input_3.ged", "r")
         inputGed4 = open("input_4.ged", "r")
         self.assertEqual(us32.checkMultipleBirths(""), [])
-        self.assertEqual(us32.checkMultipleBirths(inputGed), "No multiple births found")
+        self.assertEqual(us32.checkMultipleBirths(inputGed), [])
         self.assertEqual(us32.checkMultipleBirths(inputGed2), "Family F2 experienced multiple birth dates on 12/27/1997")
         self.assertEqual(us32.checkMultipleBirths(inputGed3), "Family F2 experienced multiple birth dates on 09/09/1968")
         self.assertEqual(us32.checkMultipleBirths(inputGed4), "Family ['F2'] experienced multiple birth dates on ['12/27/1997', '09/09/1968']")
@@ -103,5 +101,6 @@ class TestResults(unittest.TestCase):
     
 
 if __name__ == '__main__':   
+
     unittest.main() 
     
