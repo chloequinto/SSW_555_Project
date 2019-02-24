@@ -24,22 +24,31 @@ deaths2 = [
 ]
 
 name1 = (
-    [['I2', 'Rafael /Quinto/', 'M', '1968-04-04', 51, 'True', 'NA', "{'F2'}", "{'F3'}", "{'F2'}"], ['I4', 'Rocky /Quinto/', 'M', '1995-06-28', 24, 'True', 'NA', "{'F2'}", 'NA'], ['I5', 'Thompson /L/', 'M', '1997-01-30', 22, 'True', 'NA', 'NA', "{'F1'}"], ['I6', 'Grandpa /Quinto/', 'M', '1940-06-03', 64, 'False', '2004-07-17', 'NA', "{'F5'}", "{'F3'}", "{'F5'}"], ['I8', 'Grandpa /Loresco/', 'M', '1940-10-05', 79, 'True', 'NA', 'NA', "{'F4'}"], ['I11', 'John /Quinto/', 'M', '1960-09-08', 59, 'True', 'NA', "{'F5'}", 'NA']],
+    [['I2', 'Rafael /Quinto/', 'M', '1968-04-04', 51, 'True', 'NA', "{'F2'}", "{'F3'}", "{'F2'}"], 
+    ['I4', 'Rocky /Quinto/', 'M', '1995-06-28', 24, 'True', 'NA', "{'F2'}", 'NA'], 
+    ['I5', 'Thompson /L/', 'M', '1997-01-30', 22, 'True', 'NA', 'NA', "{'F1'}"],
+    ['I6', 'Grandpa /Quinto/', 'M', '1940-06-03', 64, 'False', '2004-07-17', 'NA', "{'F5'}", "{'F3'}", "{'F5'}"], 
+    ['I8', 'Grandpa /Loresco/', 'M', '1940-10-05', 79, 'True', 'NA', 'NA', "{'F4'}"], 
+    ['I11', 'John /Quinto/', 'M', '1960-09-08', 59, 'True', 'NA', "{'F5'}", 'NA']],
     []
 )
 
 name2 = (
     [
-        ['I1', 'Bob /Smiath/', 'M', '1907-04-04', 92, 'False', '1999-10-31', "{'F2'}", "{'F1'}", "{'F1'}"], ['I2', 'Johnathan /Smith/', 'M', '1879-11-21', 80, 'False', '1959-04-10', 'NA', "{'F2'}"], ['I8', 'Michael /Smith/', 'M', '1975-03-20', 44, 'True', 'NA', "{'F4'}", 'NA'],
-        ['I5', 'Brian /Smith/', 'M', '1942-03-26', 77, 'True', 'NA', "{'F3'}", "{'F1'}", "{'F3'}", "{'F4'}", "{'F4'}"]
+        # ['I1', 'Bob /Smiath/', 'M', '1907-04-04', 92, 'False', '1999-10-31', "{'F2'}", "{'F1'}", "{'F1'}"], 
+        ['I2', 'Johnathan /Smith/', 'M', '1879-11-21', 80, 'False', '1959-04-10', 'NA', "{'F2'}"], 
+        ['I8', 'Michael /Smith/', 'M', '1975-03-20', 44, 'True', 'NA', "{'F4'}", 'NA'],
+        #['I5', 'Brian /Smith/', 'M', '1942-03-26', 77, 'True', 'NA', "{'F3'}", "{'F1'}", "{'F3'}", "{'F4'}", "{'F4'}"]
     ],
     [
-        ["ERROR US16: Bob /Smiath/ does not have the same last name\n"],
-        ["ERROR US16: Brian /Smith/ does not have the same last name\n"]
+        "ERROR US16: Bob /Smiath/ does not have the same last name\n",
+        "ERROR US16: Brian /Smith/ does not have the same last name\n"
     ]
 )
 
 class TestResults(unittest.TestCase): 
+
+    maxDiff = None #check for full errors
     
     def testbirthBeforeDeath(self):
         inputGed = open("input.ged", "r")
@@ -89,7 +98,7 @@ class TestResults(unittest.TestCase):
         output = readGed.fam(inputGed)
         output1 = readGed.fam(inputGed1)
         self.assertEqual(us29.deaths(output[0]), deaths1)
-        self.assertEqual(us29.deaths(output1[0]), deaths2)
+        self.assertEqual(us29.deaths(output1[0]), deaths2) 
 
     def testNames(self):
         inputGed = open("inputRZ1.ged", "r")
@@ -97,7 +106,7 @@ class TestResults(unittest.TestCase):
         output = readGed.fam(inputGed)
         output1 = readGed.fam(inputGed1)
         self.assertEqual(us16.sameLastName(output[0]), name1)
-        self.assertEqual(us16.sameLastName(output1[0]), name2)
+        self.assertEqual(us16.sameLastName(output1[0]), name2) #Error
     
 
 if __name__ == '__main__':   

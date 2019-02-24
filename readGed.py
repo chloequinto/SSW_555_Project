@@ -210,26 +210,20 @@ def table(lists):
 def main():
     try:
         inputGed = open("inputRZ2.ged", "r")
-        inputGed = open("input.ged", "r")
-        inputGed2 = open("input_2.ged", "r")
-        inputGed3 = open("input_3.ged", "r")
-        inputGed4 = open("input_4.ged", "r")
-        inputGed8 = open("input_8.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
-        # this line is every family. You can pick the 1st or 2nd depending on
-        # what you need, or use all of it.
-        allLists = fam(inputGed2)
+        # table(fam(inputGed))
+        allLists = fam(inputGed)
         us16.main(allLists[0])
         us29.main(allLists[0])
-        if us07.checkForLessThan150(inputGed8) != True: 
+        if us07.checkForLessThan150(inputGed) != True: 
             print("\nError: Individual: US07: Current Age > 150 or Death - Birth  > 150")
-        value = us32.checkMultipleBirths(inputGed3)
+        value = us32.checkMultipleBirths(inputGed)
         if value != []: 
             print('Error: Family: US32: ' + value )
 
-        
+        print("\n")
 
 if __name__ == "__main__":
     main()
