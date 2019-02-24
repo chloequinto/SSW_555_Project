@@ -72,10 +72,11 @@ def birthBeforeDeath(input):
                     dates[2] = dates[0]
                     dates[0] = temp
                     names.append("-".join(dates))
+                
 
     for i in res:
         if (len(i)!=3):
-            print(i[0] + " is still alive")
+            #print(i[0] + " is still alive")
         else:
             birthDate = datetime.strptime(i[1], '%Y-%m-%d')
             deathDate = datetime.strptime(i[2], '%Y-%m-%d')
@@ -84,9 +85,9 @@ def birthBeforeDeath(input):
                 print("Error: " + i[0] + "has a birth date after their death date")
                 ans.append(i)
             else:
-                print(i[0] + " has passed")
+                #print(i[0] + " has passed")
                 
-    print(ans)
+    #print(ans)
     return(ans)
 
     
