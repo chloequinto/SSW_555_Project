@@ -80,7 +80,7 @@ def birthBeforeDeath(input):
             deathDate = datetime.strptime(i[2], '%Y-%m-%d')
 
             if birthDate > deathDate:
-                print("Error: " + i[0] + "has a birth date after their death date")
+                print("ERROR: INDIVIDUAL: US03: " + i[0] + " has a birth date " + i[1] + " after their death date " + i[2])
                 ans.append(i)
             
                 

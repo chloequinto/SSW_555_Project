@@ -77,8 +77,8 @@ def divorceBeforeDeath(input):
     family.append(tags)
     res.append(names)
                         
-    print(res)
-    print(family)
+    #print(res)
+    #print(family)
 
     for i in family:
         if len(i) > 1:
@@ -93,9 +93,9 @@ def divorceBeforeDeath(input):
                         death_date = datetime.strptime(j[1], '%Y-%m-%d')
                         #print(death_date)
                         if(death_date < div_date):
-                            print("Error!")
+                            print("ERROR: INDIVIDUAL: US06:")
                             ans.append(j)
-    print(ans)        
+    #print(ans)        
 
 def main():
     try:

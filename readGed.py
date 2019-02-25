@@ -5,6 +5,7 @@ from datetime import datetime
 import re
 import us29, us16
 import us01, us02
+import us03, us06
 from package.userStories import us07, us32
 
 valid = {
@@ -245,7 +246,8 @@ def main():
         
         for i in namesErr[1]:
             print(i)
-            
+        us03.main()
+        us06.main()   
         print("\n")
 if __name__ == "__main__":
     main()
