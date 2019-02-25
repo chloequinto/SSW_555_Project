@@ -11,7 +11,7 @@ def sameLastName(inputs):
     # use family ids as key, add all men to list
     for i in inputs:
         if i[2] == "M":
-            print(i)
+            #print(i)
             if i[8] != "NA":
                 famId = i[8].replace("'", "").replace("{", "").replace("}", "")
                 lastName = (i[1].split(" "))[1]
@@ -37,7 +37,7 @@ def sameLastName(inputs):
     allSameName = []
     errors = []
 
-    print(males)
+    #print(males)
 
     for i in inputs:
         spouse = i[8].replace("'", "").replace("{", "").replace("}", "")
