@@ -217,8 +217,9 @@ def main():
 
         table(fam(inputGed))
         allLists = fam(inputGed)
-        us16.main(allLists[0])
-        us29.main(allLists[0])
+        namesErr = us16.sameLastName(allLists[0])
+        us29.deaths(allLists[0])
+        
         if us07.checkForLessThan150(inputGed) != True: 
             print("\nERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150")
         value = us32.checkMultipleBirths(inputGed)
@@ -241,7 +242,9 @@ def main():
             us02Test = us02.BirthBeforeMarriage(individual[indi])
             if us02Test != True:
                 print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
-            
+        
+        for i in namesErr[1]:
+            print(i)
             
         print("\n")
 if __name__ == "__main__":
