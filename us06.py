@@ -93,9 +93,14 @@ def divorceBeforeDeath(input):
                         death_date = datetime.strptime(j[1], '%Y-%m-%d')
                         #print(death_date)
                         if(death_date < div_date):
-                            print("ERROR: INDIVIDUAL: US06:")
+                            # print("ERROR: INDIVIDUAL: US06:" )
+                            error = True
+                            # print(ans)
                             ans.append(j)
-    #print(ans)        
+    if error == True: 
+        for i in ans: 
+            print("ERROR: INDIVIDUAL: US06:" + str(i)) 
+
 
 def main():
     try:
