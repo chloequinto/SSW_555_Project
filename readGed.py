@@ -214,15 +214,16 @@ def main():
     except FileNotFoundError:
         print("Cannot open file")
     else:
-        # table(fam(inputGed))
+
+        table(fam(inputGed))
         allLists = fam(inputGed)
         us16.main(allLists[0])
         us29.main(allLists[0])
         if us07.checkForLessThan150(inputGed) != True: 
-            print("\nError: Individual: US07: Current Age > 150 or Death - Birth  > 150")
+            print("\nERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150")
         value = us32.checkMultipleBirths(inputGed)
         if value != []: 
-            print('Error: Family: US32: ' + value )
+            print('ERROR: FAMILY: US32: ' + value )
             
         individual = us01.main()
         for indi in individual:
@@ -244,6 +245,5 @@ def main():
             
             
         print("\n")
-
 if __name__ == "__main__":
     main()

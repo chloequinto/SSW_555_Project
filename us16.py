@@ -59,11 +59,11 @@ def table(lists):
 
     for i in lists[0]:
         x.add_row([i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8]])
-    print("\nMale names")
-    print(x)
+    # print("\nMale names")
+    # print(x)
 
-    for i in lists[1]:
-        print(i)
+    # for i in lists[1]:
+    #     print(i)
 
 def main(lists):
     
