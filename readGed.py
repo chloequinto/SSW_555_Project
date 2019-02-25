@@ -216,8 +216,8 @@ def main():
         print("Cannot open file")
     else:
 
-        table(fam(inputGed))
         allLists = fam(inputGed)
+        table(allLists)
         namesErr = us16.sameLastName(allLists[0])
         us29.deaths(allLists[0])
         
