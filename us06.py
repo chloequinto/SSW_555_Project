@@ -104,7 +104,7 @@ def divorceBeforeDeath(input):
 
 def main():
     try:
-        inputGed = open("input_Matt2.ged", "r")
+        inputGed = open("inputRZ2.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:

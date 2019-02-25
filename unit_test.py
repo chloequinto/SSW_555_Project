@@ -1,7 +1,7 @@
 '''
 All Unit Tests 
 '''
-import us03, us16, us29
+import us03, us16, us29, us06
 import unittest
 import readGed
 from package.userStories import us07,us32
@@ -107,6 +107,12 @@ class TestResults(unittest.TestCase):
         output1 = readGed.fam(inputGed1)
         self.assertEqual(us16.sameLastName(output[0]), name1)
         self.assertEqual(us16.sameLastName(output1[0]), name2)
+
+    def testDivorceBeforeDeath(self):
+        inputGed = open("input_Matt2.ged", "r")
+        inputGed1 = open("input_6.ged.ged", "r")
+        self.assertEqual(us06.divorceBeforeDeath(inputGed), [['Eliwood /Ahungus/', '1000-03-01', 'F6']])
+        self.assertEqual(us06.divorceBeforeDeath(inputGed1), [[]])
     
 
 if __name__ == '__main__':   

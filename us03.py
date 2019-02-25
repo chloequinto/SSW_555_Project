@@ -92,7 +92,7 @@ def birthBeforeDeath(input):
 
 def main():
     try:
-        inputGed = open("input.ged", "r")
+        inputGed = open("inputRZ2.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
