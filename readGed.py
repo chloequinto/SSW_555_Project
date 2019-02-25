@@ -215,11 +215,8 @@ def main():
     except FileNotFoundError:
         print("Cannot open file")
     else:
-
-        table(fam(inputGed))
         allLists = fam(inputGed)
-        namesErr = us16.sameLastName(allLists[0])
-        us29.deaths(allLists[0])
+        table(allLists)
         
         if us07.checkForLessThan150(inputGed) != True: 
             print("\nERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150")
@@ -244,10 +241,10 @@ def main():
             if us02Test != True:
                 print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
         
-        for i in namesErr[1]:
-            print(i)
         us03.main()
-        us06.main()   
+        us06.main()  
+        us16.main(allLists[0])
+        us29.deaths(allLists[0]) 
         print("\n")
 if __name__ == "__main__":
     main()
