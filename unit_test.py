@@ -106,7 +106,7 @@ class TestResults(unittest.TestCase):
         output = readGed.fam(inputGed)
         output1 = readGed.fam(inputGed1)
         self.assertEqual(us16.sameLastName(output[0]), name1)
-        self.assertEqual(us16.sameLastName(output1[0]), name2) #Error
+        self.assertEqual(us16.sameLastName(output1[0]), name2)
     
 
 if __name__ == '__main__':   

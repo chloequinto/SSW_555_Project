@@ -224,7 +224,6 @@ def main():
         value = us32.checkMultipleBirths(inputGed)
         if value != []: 
             print('ERROR: FAMILY: US32: ' + value )
-            
         individual = us01.main()
         for indi in individual:
             us01Test_Birth = us01.BirthBeforeCurrent(indi)
