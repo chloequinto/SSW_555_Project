@@ -1,13 +1,13 @@
-'''To Do 
-1. Check that it works [x]
-2. Try and Exception for inputs [x] 
-3. sudo pip3 install Ptable [x]
-4. Work on fam() function 
-6. Unit Tests 
-'''
+
+
 from prettytable import PrettyTable
 from datetime import datetime
 import re
+import us29, us16
+import us01, us02
+import us03, us06
+from package.userStories import us07, us32
+
 valid = {
     "0": ("HEAD", "TRLR", "NOTE"),
     "1": ("NAME", "SEX", "BIRT", "DEAT", "DIV", "FAMC", "FAMS", "MARR", "HUSB", "WIFE", "CHIL"),
@@ -184,9 +184,9 @@ def fam(inputGed):
     return (indi_list, fam_list)
 
 
-#Function to write the table 
+# Function to write the table
+# move to individual files maybe
 def table(lists): 
-    global names 
     x = PrettyTable()
     x.field_names = ['ID', 'Name', 'Gender', 'Birthday', 'Age',
                      'Alive', 'Death', 'Child', 'Spouse']
@@ -203,25 +203,48 @@ def table(lists):
     print("\nFamilies")
 
     for j in lists[1]:
-        children = ""
+        children = "NA"
         if (len(j[6:]) > 0):
             children = "{" + ", ".join(j[7:]) + "}"
-        else:
-            children = 'NA'
         y.add_row([j[0], j[1], j[2], j[3], j[4], j[5], j[6], children])
     print(y)
 
-# def helper(): 
-
 def main():
-    global inputGed
     try:
-        inputGed = open("input_1.ged", "r")
+        inputGed = open("inputRZ2.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
-        table(fam(inputGed))
-
-
+        allLists = fam(inputGed)
+        table(allLists)
+        
+        if us07.checkForLessThan150(inputGed) != True: 
+            print("\nERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150")
+        value = us32.checkMultipleBirths(inputGed)
+        if value != []: 
+            print('ERROR: FAMILY: US32: ' + value )
+        individual = us01.main()
+        for indi in individual:
+            us01Test_Birth = us01.BirthBeforeCurrent(indi)
+            if us01Test_Birth !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs in the future")
+            us01Test_Death = us01.DeathBeforeCurrent(indi)
+            if us01Test_Death !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Death date " + individual[indi].deathDate + " occurs in the future")
+            us01Test_Marriage = us01.MarriageBeforeCurrent(indi)
+            if us01Test_Marriage !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Marriage date " + individual[indi].marriageDate + " occurs in the future")
+            us01Test_Divorce = us01.DivorceBeforeCurrent(indi)
+            if us01Test_Divorce !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Divorce date " + individual[indi].divorceDate + " occurs in the future")
+            us02Test = us02.BirthBeforeMarriage(individual[indi])
+            if us02Test != True:
+                print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
+        
+        us03.main()
+        us06.main()  
+        us16.main(allLists[0])
+        us29.deaths(allLists[0]) 
+        print("\n")
 if __name__ == "__main__":
     main()
