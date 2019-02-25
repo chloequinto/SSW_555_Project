@@ -39,7 +39,7 @@ def sameLastName(inputs):
         if i[2] == "M":
             
             if spouse in males and not males[spouse]:
-                print("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last namefixed")
+                print("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last name\n")
             elif child in males and not males[child]:
                 print("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last name\n")
 
