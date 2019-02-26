@@ -113,7 +113,26 @@ class TestResults(unittest.TestCase):
         inputGed1 = open("input_6.ged", "r")
         self.assertEqual(us06.divorceBeforeDeath(inputGed), [['Eliwood /Ahungus/', '1000-03-01', 'F6']])
         self.assertEqual(us06.divorceBeforeDeath(inputGed1), [])
-    
+
+    def testmarriageBeforeDivorce(self):
+        inputGed = open("input_Rak04.ged", "r")
+        inputGed1 = open("input_Rak05.ged", "r")
+        output = readGed.fam(inputGed)
+
+        self.assertEqual(us04.marriageBeforeDivorce(inputGed), [['Nicole /Kidman/', '1995-12-24', '1990-01-12']])
+        inputGed.close()
+        self.assertEqual(us04.marriageBeforeDivorce(inputGed1), [['Katie /Holmes/', '2006-11-18', '2000-05-07']])
+        inputGed1.close()
+
+    def testmarriageBeforeDeath(self):
+        inputGed = open("input_Rak04.ged", "r")
+        inputGed1 = open("input_Rak05.ged", "r")
+        output = readGed.fam(inputGed)
+
+        self.assertEqual(us05.marriageBeforeDeath(inputGed), [['Nicole /Kidman/', '1995-12-24', '1990-08-08']])
+        inputGed.close()
+        self.assertEqual(us05.marriageBeforeDeath(inputGed1), [['Katie /Holmes/', '2006-11-18', '1990-01-01']])
+        inputGed1.close()    
 
 if __name__ == '__main__':   
 
