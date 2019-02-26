@@ -212,7 +212,6 @@ def table(lists):
 def main():
     try:
         inputGed = open("inputRZ2.ged", "r")
-        inputGed1 = open("input_MW.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
@@ -224,8 +223,7 @@ def main():
         value = us32.checkMultipleBirths(inputGed)
         if value != []: 
             print('ERROR: FAMILY: US32: ' + value )
-        
-        individual = us01.main(inputGed1)
+        individual = us01.main()
         for indi in individual:
             us01Test_Birth = us01.BirthBeforeCurrent(indi)
             if us01Test_Birth !=  True:
