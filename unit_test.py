@@ -1,7 +1,7 @@
 '''
 All Unit Tests 
 '''
-import us03, us16, us29
+import us03, us16, us29, us04, us05
 import unittest
 import readGed
 from package.userStories import us07,us32
@@ -70,6 +70,26 @@ class TestResults(unittest.TestCase):
         inputGed3.close()
         self.assertEqual(us03.birthBeforeDeath(inputGed4), [['Grandma /Quinto/', '1940-06-11', '1902-06-06']])
         inputGed4.close()
+    
+    def testmarriageBeforeDivorce(self):
+        inputGed = open("input_Rak04.ged", "r")
+        inputGed1 = open("input_Rak05.ged", "r")
+        output = readGed.fam(inputGed)
+        
+        self.assertEqual(us04.marriageBeforeDivorce(inputGed), [['Nicole /Kidman/', '1995-12-24', '1990-01-12']])
+        inputGed.close()
+        self.assertEqual(us04.marriageBeforeDivorce(inputGed1), [['Katie /Holmes/', '2006-11-18', '2000-05-07']])
+        inputGed1.close()
+        
+    def testmarriageBeforeDeath(self):
+        inputGed = open("input_Rak04.ged", "r")
+        inputGed1 = open("input_Rak05.ged", "r")
+        output = readGed.fam(inputGed)
+        
+        self.assertEqual(us05.marriageBeforeDeath(inputGed), [['Nicole /Kidman/', '1995-12-24', '1990-08-08']])
+        inputGed.close()
+        self.assertEqual(us05.marriageBeforeDeath(inputGed1), [['Katie /Holmes/', '2006-11-18', '1990-01-01']])
+        inputGed1.close()
     
     def testMultipleBirths(self): #US32
         inputGed = open("input.ged", "r")
