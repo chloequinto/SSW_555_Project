@@ -112,7 +112,7 @@ class TestResults(unittest.TestCase):
         inputGed = open("input_Matt2.ged", "r")
         inputGed1 = open("input_6.ged", "r")
         self.assertEqual(us06.divorceBeforeDeath(inputGed), [['Eliwood /Ahungus/', '1000-03-01', 'F6']])
-        self.assertEqual(us06.divorceBeforeDeath(inputGed1), [[]])
+        self.assertEqual(us06.divorceBeforeDeath(inputGed1), [])
     
 
 if __name__ == '__main__':   

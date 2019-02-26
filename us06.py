@@ -79,7 +79,7 @@ def divorceBeforeDeath(input):
                         
     #print(res)
     #print(family)
-
+    error = False
     for i in family:
         if len(i) > 1:
             div_date = datetime.strptime(i[1], '%Y-%m-%d')
@@ -100,15 +100,16 @@ def divorceBeforeDeath(input):
     if error == True: 
         for i in ans: 
             print("ERROR: INDIVIDUAL: US06:" + str(i)) 
+    return ans      
 
 
 def main():
     try:
-        inputGed = open("inputRZ2.ged", "r")
+        inputGed = open("input_6.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
-        divorceBeforeDeath(inputGed)
+        print(divorceBeforeDeath(inputGed))
 
 if __name__ == "__main__":
     main()
