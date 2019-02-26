@@ -41,8 +41,8 @@ name2 = (
         #['I5', 'Brian /Smith/', 'M', '1942-03-26', 77, 'True', 'NA', "{'F3'}", "{'F1'}", "{'F3'}", "{'F4'}", "{'F4'}"]
     ],
     [
-        "ERROR US16: Bob /Smiath/ does not have the same last name\n",
-        "ERROR US16: Brian /Smith/ does not have the same last name\n"
+        "ERROR: INDIVIDUAL: US16: Bob /Smiath/ does not have the same last name",
+        "ERROR: INDIVIDUAL: US16: Brian /Smith/ does not have the same last name"
     ]
 )
 
@@ -100,7 +100,7 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us29.deaths(output[0]), deaths1)
         self.assertEqual(us29.deaths(output1[0]), deaths2) 
 
-    def testNames(self):
+    def testNames(self): #us16
         inputGed = open("inputRZ1.ged", "r")
         inputGed1 = open("inputRZ2.ged", "r")
         output = readGed.fam(inputGed)
@@ -110,7 +110,7 @@ class TestResults(unittest.TestCase):
 
     def testDivorceBeforeDeath(self):
         inputGed = open("input_Matt2.ged", "r")
-        inputGed1 = open("input_6.ged.ged", "r")
+        inputGed1 = open("input_6.ged", "r")
         self.assertEqual(us06.divorceBeforeDeath(inputGed), [['Eliwood /Ahungus/', '1000-03-01', 'F6']])
         self.assertEqual(us06.divorceBeforeDeath(inputGed1), [[]])
     

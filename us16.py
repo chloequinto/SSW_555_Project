@@ -32,16 +32,23 @@ def sameLastName(inputs):
             males[i] = True
         else:
             males[i] = False
-
+    allSameName = []
+    errors = []
     for i in inputs:
+
         spouse = i[8].replace("'", "").replace("{", "").replace("}", "")
         child = i[7].replace("'", "").replace("{", "").replace("}", "")
         if i[2] == "M":
             
             if spouse in males and not males[spouse]:
                 print("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last name\n")
+                errors.append("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last name")
             elif child in males and not males[child]:
                 print("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last name\n")
+                errors.append("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last name")
+            else:
+                allSameName.append(i)
+    return allSameName, errors
 
 def table(lists):
     x = PrettyTable()
