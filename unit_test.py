@@ -2,6 +2,7 @@
 All Unit Tests 
 '''
 import us03, us16, us29, us06
+import us04, us05
 import unittest
 import readGed
 from package.userStories import us07,us32
