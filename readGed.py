@@ -1,11 +1,7 @@
-
-
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16
-import us01, us02
-import us03, us06
+import us29, us16, us01, us02, us03, us06, us22
 from package.userStories import us07, us32
 
 valid = {
@@ -120,8 +116,6 @@ def fam(inputGed):
                 indi_list.append(indi_data)
                 fam_data.append(line[1])
                 new_family = 1
-            elif(line[1] in ['NOTE', 'HEAD']):
-                pass
 
         elif line[0] == str(1):
             if line[1] == "NAME":
@@ -141,10 +135,8 @@ def fam(inputGed):
                 indi_data.insert(7, "{'" + line[2] + "'}")
             elif line[1] == "HUSB":
                 is_married = "True"
-                # fam_data = famHelper(fam_data, indi_list)
                 fam_data.append(line[2])
             elif line[1] == "WIFE": 
-                # fam_data = famHelper(fam_data, indi_list)
                 fam_data.append(line[2])
             elif line[1] == "CHIL":
                 fam_data.append("'" + line[2] + "'")
@@ -185,7 +177,6 @@ def fam(inputGed):
 
 
 # Function to write the table
-# move to individual files maybe
 def table(lists): 
     x = PrettyTable()
     x.field_names = ['ID', 'Name', 'Gender', 'Birthday', 'Age',
@@ -203,6 +194,7 @@ def table(lists):
     print("\nFamilies")
 
     for j in lists[1]:
+        print(j)
         children = "NA"
         if (len(j[6:]) > 0):
             children = "{" + ", ".join(j[7:]) + "}"
@@ -245,6 +237,7 @@ def main():
         us06.main()  
         us16.main(allLists[0])
         us29.deaths(allLists[0]) 
+        us22.uniqueIDs(allLists)
         print("\n")
 if __name__ == "__main__":
     main()
