@@ -19,4 +19,3 @@ notifications:
 script:
   - coverage run unit_test.py
 
-os: osx 
