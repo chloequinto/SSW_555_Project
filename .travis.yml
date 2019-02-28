@@ -7,7 +7,6 @@ python:
 install:
   - pip install prettytable
   - pip install DateTime
-  - pip install python-logilab-common
 
 
 notifications:
