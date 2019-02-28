@@ -8,6 +8,7 @@ python:
 install:
   - pip install prettytable
   - pip install DateTime
+  - pip install .
 
 notifications:
   slack: ssw555-workspace:BQrt2tCt6OUZdLAyHteMRGW3
