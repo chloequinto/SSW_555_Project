@@ -10,8 +10,6 @@ install:
   - pip install DateTime
   - pip install .
 
-virtualenv:
-  system_site_packages: true
 
 notifications:
   slack: ssw555-workspace:BQrt2tCt6OUZdLAyHteMRGW3
