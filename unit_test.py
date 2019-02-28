@@ -1,7 +1,7 @@
 '''
 All Unit Tests 
 '''
-import us03, us16, us29, us06
+import us03, us16, us29, us06, us01, us02
 import us04, us05
 import unittest
 import readGed
@@ -134,6 +134,23 @@ class TestResults(unittest.TestCase):
         inputGed.close()
         self.assertEqual(us05.marriageBeforeDeath(inputGed1), [['Katie /Holmes/', '2006-11-18', '1990-01-01']])
         inputGed1.close()    
+
+    def test_dateBeforeCurrent(self):
+        inputGed = open("inputForTest_MW.ged", "r")
+        individual = us01.main(inputGed)
+        for i in individual:
+            self.assertTrue(us01.BirthBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Birthday " + individual[i].birthDate + " occurs in the future")
+            self.assertTrue(us01.DeathBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Death date " + individual[i].deathDate + " occurs in the future")
+            self.assertTrue(us01.MarriageBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Marriage date " + individual[i].marriageDate + " occurs in the future")
+            self.assertTrue(us01.DivorceBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Divorce date " + individual[i].divorceDate + " occurs in the future")
+    
+    
+    def test_birthBeforeMarriage(self):
+        inputGed = open("inputForTest_MW.ged", "r")
+        individual = us02.main(inputGed)
+        for indi in individual:
+            self.assertTrue(us02.BirthBeforeMarriage(individual[indi]),msg="ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
+
 
 if __name__ == '__main__':   
 
