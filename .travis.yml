@@ -5,9 +5,14 @@ python:
   - "3.6"
   - "3.7"
 
+install:
+  - pip install prettytable
+  - pip install DateTime
 
 notifications:
   slack: ssw555-workspace:BQrt2tCt6OUZdLAyHteMRGW3
 
-script: pytest
+script:
+  - coverage run unit_test.py
+
 os: osx 
