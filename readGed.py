@@ -194,7 +194,6 @@ def table(lists):
     print("\nFamilies")
 
     for j in lists[1]:
-        print(j)
         children = "NA"
         if (len(j[6:]) > 0):
             children = "{" + ", ".join(j[7:]) + "}"

@@ -11,7 +11,7 @@
 2 DATE 31 OCT 1999
 1 FAMS @F1@
 1 FAMC @F2@
-0 @I2@ INDI
+0 @I1@ INDI
 1 NAME Johnathan /Smith/
 2 GIVN Johnathan
 2 SURN Smith
@@ -99,7 +99,7 @@
 1 CHIL @I5@
 1 _CURRENT N
 0 @F2@ FAM
-1 HUSB @I2@
+1 HUSB @I1@
 1 WIFE @I3@
 1 CHIL @I1@
 1 _CURRENT Y
