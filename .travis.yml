@@ -13,5 +13,5 @@ notifications:
   slack: ssw555-workspace:BQrt2tCt6OUZdLAyHteMRGW3
 
 script:
-  - unit_test.py
+  - pytest
 
