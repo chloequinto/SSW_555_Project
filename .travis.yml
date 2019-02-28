@@ -11,5 +11,5 @@ python:
 notifications:
   slack: ssw555-workspace:BQrt2tCt6OUZdLAyHteMRGW3
 
-script: make test
+script: pytest
 os: osx 
