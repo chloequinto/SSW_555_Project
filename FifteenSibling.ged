@@ -17,6 +17,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX M
+1 BIRT
+2 DATE 13 OCT 1955
 1 FAMS @F1@
 0 @I2@ INDI
 1 NAME Anna /Smith/
@@ -24,6 +26,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX F
+1 BIRT
+2 DATE 7 APR 1960
 1 FAMS @F1@
 0 @I3@ INDI
 1 NAME Ryan /Smith/
@@ -31,6 +35,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX M
+1 BIRT
+2 DATE 29 JUN 1990
 1 FAMC @F1@
 0 @I4@ INDI
 1 NAME Riki /Smith/
@@ -38,6 +44,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX M
+1 BIRT
+2 DATE 10 SEP 1991
 1 FAMC @F1@
 0 @I5@ INDI
 1 NAME Sam /Smith/
@@ -45,6 +53,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX F
+1 BIRT
+2 DATE 23 AUG 1992
 1 FAMC @F1@
 0 @I6@ INDI
 1 NAME Ben /Smith/
@@ -52,6 +62,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX M
+1 BIRT
+2 DATE 7 MAY 1993
 1 FAMC @F1@
 0 @I7@ INDI
 1 NAME Rachael /Smith/
@@ -59,6 +71,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX F
+1 BIRT
+2 DATE 19 FEB 1994
 1 FAMC @F1@
 0 @I8@ INDI
 1 NAME Emily /Smith/
@@ -66,6 +80,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX F
+1 BIRT
+2 DATE 23 MAR 1995
 1 FAMC @F1@
 0 @I9@ INDI
 1 NAME Travis /Smith/
@@ -73,6 +89,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX M
+1 BIRT
+2 DATE 9 AUG 1996
 1 FAMC @F1@
 0 @I10@ INDI
 1 NAME Chloe /Smith/
@@ -80,6 +98,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX F
+1 BIRT
+2 DATE 25 NOV 1997
 1 FAMC @F1@
 0 @I11@ INDI
 1 NAME John /Smith/
@@ -87,6 +107,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX M
+1 BIRT
+2 DATE 24 JAN 1998
 1 FAMC @F1@
 0 @I12@ INDI
 1 NAME Emma /Smith/
@@ -94,6 +116,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX F
+1 BIRT
+2 DATE 17 NOV 1999
 1 FAMC @F1@
 0 @I13@ INDI
 1 NAME Joe /Smith/
@@ -101,6 +125,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX M
+1 BIRT
+2 DATE 20 APR 2000
 1 FAMC @F1@
 0 @I14@ INDI
 1 NAME Angela /Smith/
@@ -108,6 +134,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX F
+1 BIRT
+2 DATE 31 OCT 2001
 1 FAMC @F1@
 0 @I15@ INDI
 1 NAME Matt /Smith/
@@ -115,6 +143,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX M
+1 BIRT
+2 DATE 15 JUL 2002
 1 FAMC @F1@
 0 @I16@ INDI
 1 NAME Angelica /Smith/
@@ -122,6 +152,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX F
+1 BIRT
+2 DATE 17 MAY 2003
 1 FAMC @F1@
 0 @I17@ INDI
 1 NAME Conor /Smith/
@@ -129,6 +161,8 @@
 2 SURN Smith
 2 _MARNM Smith
 1 SEX M
+1 BIRT
+2 DATE 4 JUN 2004
 1 FAMC @F1@
 0 @F1@ FAM
 1 HUSB @I1@
