@@ -208,7 +208,7 @@ def main():
     #     print("Cannot open file")
     # else:
 
-        inputGed = open("input_2.ged", "r")
+        inputGed = open("FifteenSibling.ged", "r")
         allLists = fam(inputGed)
         table(allLists)
         if us07.checkForLessThan150(inputGed) != True: 
@@ -243,7 +243,7 @@ def main():
         us16.main(allLists[0])
         us29.deaths(allLists[0]) 
         us22.uniqueIDs(allLists)
-        print(us31.main(allLists[0]))
+        us31.main(allLists[0])
         us15.main(allLists[1])
         
         print("\n")
