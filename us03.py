@@ -27,12 +27,8 @@ monthWordToInt = {
 
 def birthBeforeDeath(input):
     names = []
-    birth = []
-    death = []
     res = []
     ans = []
-    new_indi = 0
-    has_death = 0
 
     for i in input:
         i = re.sub('[@]', '', i)
@@ -72,16 +68,16 @@ def birthBeforeDeath(input):
                     dates[2] = dates[0]
                     dates[0] = temp
                     names.append("-".join(dates))
-                
+    res.append(names)
+        
 
     for i in res:
         if (len(i)>2):
             birthDate = datetime.strptime(i[1], '%Y-%m-%d')
             deathDate = datetime.strptime(i[2], '%Y-%m-%d')
-
             if birthDate > deathDate:
                 print("ERROR: INDIVIDUAL: US03: " + i[0] + " has a birth date " + i[1] + " after their death date " + i[2])
-                ans.append(i)
+                ans.append("ERROR: INDIVIDUAL: US03: " + i[0] + " has a birth date " + i[1] + " after their death date " + i[2])
             
                 
     #print(ans)
@@ -92,7 +88,7 @@ def birthBeforeDeath(input):
 
 def main():
     try:
-        inputGed = open("inputRZ2.ged", "r")
+        inputGed = open("input_6.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
