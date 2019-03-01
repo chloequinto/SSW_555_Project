@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05,us26
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us26, us31, us05, us15
 from package.userStories import us07, us32
 #from parse import *
 
@@ -202,11 +202,14 @@ def table(lists):
     print(y)
 
 def main():
-    try:
-        inputGed = open("Sprint1.ged", "r")
-    except FileNotFoundError:
-        print("Cannot open file")
-    else:
+    # try:
+    #     inputGed1 = open("Sprint1.ged", "r")
+    #     inputGed1.close
+    # except FileNotFoundError:
+    #     print("Cannot open file")
+    # else:
+
+        inputGed = open("FifteenSibling.ged", "r")
         allLists = fam(inputGed)
         table(allLists)
         if us07.checkForLessThan150(inputGed) != True: 
@@ -228,10 +231,12 @@ def main():
             us01Test_Divorce = us01.DivorceBeforeCurrent(indi)
             if us01Test_Divorce !=  True:
                 print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Divorce date " + individual[indi].divorceDate + " occurs in the future")
-            us02Test = us02.BirthBeforeMarriage(individual[indi])
-            if us02Test != True:
-                print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
+            # us02Test = us02.BirthBeforeMarriage(individual[indi])
+            # if us02Test != True:
+            #     print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
         
+
+        us32.checkMultipleBirths(inputGed)
         us03.birthBeforeDeath(inputGed)
         us06.divorceBeforeDeath(inputGed)
         us04.marriageBeforeDivorce(inputGed)
@@ -240,7 +245,10 @@ def main():
         us29.deaths(allLists[0]) 
         us22.uniqueIDs(allLists)
         #us26.corrEntries(allLists)
+        us31.main(allLists[0])
+        us15.main(allLists[1])
         
         print("\n")
+    
 if __name__ == "__main__":
     main()

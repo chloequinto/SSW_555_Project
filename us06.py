@@ -100,7 +100,7 @@ def divorceBeforeDeath(input):
     if error == True: 
         for i in ans: 
             print("ERROR: INDIVIDUAL: US06:" + str(i)) 
-    #return ans      
+    return ans      
 
 
 def main():
