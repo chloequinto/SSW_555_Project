@@ -1,8 +1,9 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05,us26
 from package.userStories import us07, us32
+#from parse import *
 
 valid = {
     "0": ("HEAD", "TRLR", "NOTE"),
@@ -195,7 +196,7 @@ def table(lists):
 
     for j in lists[1]:
         children = "NA"
-        if (len(j[6:]) > 0):
+        if (len(j[7:]) > 0):
             children = "{" + ", ".join(j[7:]) + "}"
         y.add_row([j[0], j[1], j[2], j[3], j[4], j[5], j[6], children])
     print(y)
@@ -208,7 +209,6 @@ def main():
     else:
         allLists = fam(inputGed)
         table(allLists)
-        us32.checkMultipleBirths(inputGed)
         if us07.checkForLessThan150(inputGed) != True: 
             print("\nERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150")
         value = us32.checkMultipleBirths(inputGed)
@@ -238,7 +238,8 @@ def main():
         us05.marriageBeforeDeath(inputGed) 
         us16.main(allLists[0])
         us29.deaths(allLists[0]) 
-        #us22.uniqueIDs(allLists)
+        us22.uniqueIDs(allLists)
+        #us26.corrEntries(allLists)
         
         print("\n")
 if __name__ == "__main__":
