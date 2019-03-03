@@ -209,8 +209,10 @@ def main():
     #     print("Cannot open file")
     # else:
 
-        inputGed = open("inputGed5.ged", "r")
+        inputGed = open("FifteenSibling.ged", "r")
+        rzInput = open("inputRZ2.ged", "r")
         allLists = fam(inputGed)
+        rzList = fam(rzInput)
         table(allLists)
         if us07.checkForLessThan150(inputGed) != True: 
             print("\nERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150")
@@ -244,7 +246,7 @@ def main():
         us16.main(allLists[0])
         us29.deaths(allLists[0]) 
         us22.uniqueIDs(allLists)
-        us26.corrEntries(allLists)
+        us26.corrEntries(rzList)
         us31.main(allLists[0])
         us15.main(allLists[1])
         

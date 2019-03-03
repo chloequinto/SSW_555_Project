@@ -1,7 +1,11 @@
 '''
 All Unit Tests 
 '''
+<<<<<<< HEAD
 import us03, us16, us29, us06, us04, us05, us22, us15, us35, us01, us02
+=======
+import us03, us16, us29, us06, us04, us05, us22, us15, us26
+>>>>>>> 95050c4dc8d16776e549aebb58ef7dcef613229b
 import unittest
 import readGed
 from package.userStories import us07,us32
@@ -144,6 +148,14 @@ class TestResults(unittest.TestCase):
         output1 = readGed.fam(inputGed1)
         self.assertEqual(us22.uniqueIDs(output), ([], []))
         self.assertEqual(us22.uniqueIDs(output1), (["I1"], []))
+    
+    def testCorrespondingEntries(self):
+        inputGed = open("inputRZ1.ged", "r")
+        inputGed1 = open("inputRZ2.ged", "r")
+        output = readGed.fam(inputGed)
+        output1 = readGed.fam(inputGed1)
+        self.assertEqual(us26.corrEntries(output), [ "ERROR: FAMILY: US26: Family F2 does not have the correct corresponding entries", "ERROR: FAMILY: US26: Family F3 does not have the correct corresponding entries"])
+        self.assertEqual(us26.corrEntries(output1), ["ERROR: FAMILY: US26: Family F4 does not have the correct corresponding entries"])
 
     def test_dateBeforeCurrent(self):
         inputGed = open("inputForTest_MW.ged", "r")
