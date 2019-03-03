@@ -49,25 +49,15 @@ class TestResults(unittest.TestCase):
     maxDiff = None #check for full errors
     
     def testbirthBeforeDeath(self):
-        inputGed = open("input.ged", "r")
-        inputGed1 = open("input_1.ged", "r")
-        inputGed2 = open("input_2.ged", "r")
-        inputGed3 = open("input_3.ged", "r")
-        inputGed4 = open("input_4.ged", "r")
-        inputGed6 = open("input_6.ged", "r")
-        #output = readGed.fam(inputGed)
-        
-        self.assertEqual(us03.birthBeforeDeath(inputGed6), [['Ex /Quinto/', '1945-10-07', '1801-07-13']])
+        inputGed = open("Sprint1.ged", "r")
+        inputGed1 = open("input_6.ged", "r")
+        output = readGed.fam(inputGed)
+        output1 = readGed.fam(inputGed1)
+        self.assertEqual(us03.birthBeforeDeath(output1[0]), ["ERROR: INDIVIDUAL: US03: I10 has a death date before their date of birth."])
         inputGed.close()
-        self.assertEqual(us03.birthBeforeDeath(inputGed1), [['Johnathan /Smith/', '1879-11-21', '1859-04-10']])
+        self.assertEqual(us03.birthBeforeDeath(output[0]), ["ERROR: INDIVIDUAL: US03: I4 has a death date before their date of birth."])
         inputGed1.close()
-        inputGed2 = open("input_2.ged", "r")
-        self.assertEqual(us03.birthBeforeDeath(inputGed2), [['Grandpa /Quinto/', '1940-06-03', '1804-07-17']])
-        inputGed2.close()
-        self.assertEqual(us03.birthBeforeDeath(inputGed3), [['Grandma /Loresco/', '1940-04-03', '1894-10-16']])
-        inputGed3.close()
-        self.assertEqual(us03.birthBeforeDeath(inputGed4), [['Grandma /Quinto/', '1940-06-11', '1902-06-06']])
-        inputGed4.close()
+
     
     def testMultipleBirths(self): #US32
         inputGed = open("input.ged", "r")
