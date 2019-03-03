@@ -208,8 +208,7 @@ def table(lists):
 
 def main():
     try:
-        inputGed = open("Sprint1.ged", "r")
-        #inputGed1 = open("input_MW.ged", "r")
+        inputGed = open("input_8.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:

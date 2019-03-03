@@ -51,6 +51,11 @@ us07res = (
     "ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['2032-06-10']"]
 )
 
+us07res1 = (
+    ["ERROR: INDIVIDUAL: US32: I3 has the same birthdays as someone else on ['1995-06-28']",
+    "ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['1995-06-28']"]
+)
+
 class TestResults(unittest.TestCase): 
 
     maxDiff = None #check for full errors
@@ -78,14 +83,22 @@ class TestResults(unittest.TestCase):
     
     def testUS32(self): #US32
         inputGed = open("Sprint1.ged", "r")
+        inputGed1 = open("input_8.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertEqual(us32.checkMultipleBirths(output[0]),us07res )
+        output1 = readGed.fam(inputGed1)
+        self.assertEqual(us32.checkMultipleBirths(output[0]),us07res)
+        self.assertEqual(us32.checkMultipleBirths(output1[0]),us07res1)
+
 
 
     def testUS07(self): #US07 
         inputGed = open("Sprint1.ged", "r")
+        inputGed1 = open("input_8.ged", "r")
         output = readGed.fam(inputGed)
+        output1 = readGed.fam(inputGed1)
         self.assertEqual(us07.checkForLessThan150(output[0]), ["ERROR: INDIVIDUAL: US07: I3 is older than 150"])
+        self.assertEqual(us07.checkForLessThan150(output1[0]), ["ERROR: INDIVIDUAL: US07: I9 death - birth > 150"])
+
 
 
 
