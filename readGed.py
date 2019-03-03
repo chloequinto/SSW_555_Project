@@ -208,7 +208,7 @@ def table(lists):
 
 def main():
     try:
-        inputGed = open("input_8.ged", "r")
+        inputGed = open("Sprint1.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
@@ -233,7 +233,7 @@ def main():
             if us02Test != True:
                 print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
         
-        us03.main()
+        us03.main(allLists[0])
         us06.main()  
         us07.main(allLists[0])
         us16.main(allLists[0])
