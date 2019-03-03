@@ -36,15 +36,19 @@ name1 = (
 
 name2 = (
     [
-        # ['I1', 'Bob /Smiath/', 'M', '1907-04-04', 92, 'False', '1999-10-31', "{'F2'}", "{'F1'}", "{'F1'}"], 
         ['I2', 'Johnathan /Smith/', 'M', '1879-11-21', 80, 'False', '1959-04-10', 'NA', "{'F2'}"], 
         ['I8', 'Michael /Smith/', 'M', '1975-03-20', 44, 'True', 'NA', "{'F4'}", 'NA'],
-        #['I5', 'Brian /Smith/', 'M', '1942-03-26', 77, 'True', 'NA', "{'F3'}", "{'F1'}", "{'F3'}", "{'F4'}", "{'F4'}"]
+   
     ],
     [
         "ERROR: INDIVIDUAL: US16: Bob /Smiath/ does not have the same last name",
         "ERROR: INDIVIDUAL: US16: Brian /Smith/ does not have the same last name"
     ]
+)
+
+us07res = (
+    ["ERROR: INDIVIDUAL: US32: I1 has the same birthdays as someone else on ['2032-06-10']",
+    "ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['2032-06-10']"]
 )
 
 class TestResults(unittest.TestCase): 
@@ -72,24 +76,16 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us03.birthBeforeDeath(inputGed4), [['Grandma /Quinto/', '1940-06-11', '1902-06-06']])
         inputGed4.close()
     
-    def testMultipleBirths(self): #US32
-        inputGed = open("input.ged", "r")
-        inputGed2 = open("input_2.ged", "r")
-        inputGed3 = open("input_3.ged", "r")
-        inputGed4 = open("input_4.ged", "r")
-        self.assertEqual(us32.checkMultipleBirths(""), [])
-        self.assertEqual(us32.checkMultipleBirths(inputGed), [])
-        self.assertEqual(us32.checkMultipleBirths(inputGed2), "Family F2 experienced multiple birth dates on 12/27/1997")
-        self.assertEqual(us32.checkMultipleBirths(inputGed3), "Family F2 experienced multiple birth dates on 09/09/1968")
-        self.assertEqual(us32.checkMultipleBirths(inputGed4), "Family ['F2'] experienced multiple birth dates on ['12/27/1997', '09/09/1968']")
+    def testUS32(self): #US32
+        inputGed = open("Sprint1.ged", "r")
+        output = readGed.fam(inputGed)
+        self.assertEqual(us32.checkMultipleBirths(output[0]),us07res )
 
 
-    def testLessThan150(self): #US07 
-        inputGed7 = open("input_7.ged", "r")
-        inputGed8 = open("input_8.ged", "r")
-        self.assertEqual(us07.checkForLessThan150(""), [])
-        self.assertTrue(us07.checkForLessThan150(inputGed7))
-        self.assertFalse(us07.checkForLessThan150(inputGed8))
+    def testUS07(self): #US07 
+        inputGed = open("Sprint1.ged", "r")
+        output = readGed.fam(inputGed)
+        self.assertEqual(us07.checkForLessThan150(output[0]), ["ERROR: INDIVIDUAL: US07: I3 is older than 150"])
 
 
 

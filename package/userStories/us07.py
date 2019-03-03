@@ -21,7 +21,7 @@ def checkForLessThan150(lists):
             if(int(death.split("-")[0]) - int(birth.split("-")[0]) > 150 ): 
                 print("ERROR: INDIVIDUAL: US07: " + i[0] + " death - birth > 150")
                 res.append("ERROR: INDIVIDUAL: US07: " + i[0] + " death - birth > 150")
-
+    return res
 
         
 
