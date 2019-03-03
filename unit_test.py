@@ -1,7 +1,7 @@
 '''
 All Unit Tests 
 '''
-import us03, us16, us29, us06
+import us03, us16, us29, us06, us01, us02
 import us04, us05
 import unittest
 import readGed
@@ -36,15 +36,24 @@ name1 = (
 
 name2 = (
     [
-        # ['I1', 'Bob /Smiath/', 'M', '1907-04-04', 92, 'False', '1999-10-31', "{'F2'}", "{'F1'}", "{'F1'}"], 
         ['I2', 'Johnathan /Smith/', 'M', '1879-11-21', 80, 'False', '1959-04-10', 'NA', "{'F2'}"], 
         ['I8', 'Michael /Smith/', 'M', '1975-03-20', 44, 'True', 'NA', "{'F4'}", 'NA'],
-        #['I5', 'Brian /Smith/', 'M', '1942-03-26', 77, 'True', 'NA', "{'F3'}", "{'F1'}", "{'F3'}", "{'F4'}", "{'F4'}"]
+   
     ],
     [
         "ERROR: INDIVIDUAL: US16: Bob /Smiath/ does not have the same last name",
         "ERROR: INDIVIDUAL: US16: Brian /Smith/ does not have the same last name"
     ]
+)
+
+us07res = (
+    ["ERROR: INDIVIDUAL: US32: I1 has the same birthdays as someone else on ['2032-06-10']",
+    "ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['2032-06-10']"]
+)
+
+us07res1 = (
+    ["ERROR: INDIVIDUAL: US32: I3 has the same birthdays as someone else on ['1995-06-28']",
+    "ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['1995-06-28']"]
 )
 
 class TestResults(unittest.TestCase): 
@@ -72,24 +81,24 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us03.birthBeforeDeath(inputGed4), [['Grandma /Quinto/', '1940-06-11', '1902-06-06']])
         inputGed4.close()
     
-    def testMultipleBirths(self): #US32
-        inputGed = open("input.ged", "r")
-        inputGed2 = open("input_2.ged", "r")
-        inputGed3 = open("input_3.ged", "r")
-        inputGed4 = open("input_4.ged", "r")
-        self.assertEqual(us32.checkMultipleBirths(""), [])
-        self.assertEqual(us32.checkMultipleBirths(inputGed), [])
-        self.assertEqual(us32.checkMultipleBirths(inputGed2), "Family F2 experienced multiple birth dates on 12/27/1997")
-        self.assertEqual(us32.checkMultipleBirths(inputGed3), "Family F2 experienced multiple birth dates on 09/09/1968")
-        self.assertEqual(us32.checkMultipleBirths(inputGed4), "Family ['F2'] experienced multiple birth dates on ['12/27/1997', '09/09/1968']")
+    def testUS32(self): #US32
+        inputGed = open("Sprint1.ged", "r")
+        inputGed1 = open("input_8.ged", "r")
+        output = readGed.fam(inputGed)
+        output1 = readGed.fam(inputGed1)
+        self.assertEqual(us32.checkMultipleBirths(output[0]),us07res)
+        self.assertEqual(us32.checkMultipleBirths(output1[0]),us07res1)
 
 
-    def testLessThan150(self): #US07 
-        inputGed7 = open("input_7.ged", "r")
-        inputGed8 = open("input_8.ged", "r")
-        self.assertEqual(us07.checkForLessThan150(""), [])
-        self.assertTrue(us07.checkForLessThan150(inputGed7))
-        self.assertFalse(us07.checkForLessThan150(inputGed8))
+
+    def testUS07(self): #US07 
+        inputGed = open("Sprint1.ged", "r")
+        inputGed1 = open("input_8.ged", "r")
+        output = readGed.fam(inputGed)
+        output1 = readGed.fam(inputGed1)
+        self.assertEqual(us07.checkForLessThan150(output[0]), ["ERROR: INDIVIDUAL: US07: I3 is older than 150"])
+        self.assertEqual(us07.checkForLessThan150(output1[0]), ["ERROR: INDIVIDUAL: US07: I9 death - birth > 150"])
+
 
 
 
@@ -116,24 +125,37 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us06.divorceBeforeDeath(inputGed1), [])
 
     def testmarriageBeforeDivorce(self):
-        inputGed = open("input_Rak04.ged", "r")
-        inputGed1 = open("input_Rak05.ged", "r")
-        output = readGed.fam(inputGed)
-
-        self.assertEqual(us04.marriageBeforeDivorce(inputGed), [['Nicole /Kidman/', '1995-12-24', '1990-01-12']])
+        inputGed = open("input_RakUS04.ged", "r")
+        inputGed1 = open("input_RakUS05_2.ged", "r")
+        self.assertEqual(us04.marriageBeforeDivorce(inputGed), "ERROR: INDIVIDUAL: US04: The divorce date 1000-05-20 is before the marriage date 1960-01-17")
+        self.assertEqual(us04.marriageBeforeDivorce(inputGed1), None)
         inputGed.close()
-        self.assertEqual(us04.marriageBeforeDivorce(inputGed1), [['Katie /Holmes/', '2006-11-18', '2000-05-07']])
+        inputGed1.close()
+        
+    def testmarriageBeforeDeath(self):
+        inputGed = open("input_RakUS05.ged", "r")
+        inputGed1 = open("input_RakUS05_2.ged", "r")
+        self.assertEqual(us05.marriageBeforeDeath(inputGed), "ERROR: INDIVIDUAL: US05:['Nicole /Kidman/', '1977-08-08', 'F5']")
+        self.assertEqual(us05.marriageBeforeDeath(inputGed1), "ERROR: INDIVIDUAL: US05:['John /Smith/', '1000-02-12', 'F2', 'F5']")
+        inputGed.close()
         inputGed1.close()
 
-    def testmarriageBeforeDeath(self):
-        inputGed = open("input_Rak04.ged", "r")
-        inputGed1 = open("input_Rak05.ged", "r")
-        output = readGed.fam(inputGed)
+    def test_dateBeforeCurrent(self):
+        inputGed = open("inputForTest_MW.ged", "r")
+        individual = us01.parseGed(inputGed)
+        for i in individual:
+            self.assertTrue(us01.BirthBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Birthday " + individual[i].birthDate + " occurs in the future")
+            self.assertTrue(us01.DeathBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Death date " + individual[i].deathDate + " occurs in the future")
+            self.assertTrue(us01.MarriageBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Marriage date " + individual[i].marriageDate + " occurs in the future")
+            self.assertTrue(us01.DivorceBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Divorce date " + individual[i].divorceDate + " occurs in the future")
+    
+    
+    def test_birthBeforeMarriage(self):
+        inputGed = open("inputForTest_MW.ged", "r")
+        individual = us02.parseGed(inputGed)
+        for indi in individual:
+            self.assertTrue(us02.BirthBeforeMarriage(individual[indi]),msg="ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
 
-        self.assertEqual(us05.marriageBeforeDeath(inputGed), [['Nicole /Kidman/', '1995-12-24', '1990-08-08']])
-        inputGed.close()
-        self.assertEqual(us05.marriageBeforeDeath(inputGed1), [['Katie /Holmes/', '2006-11-18', '1990-01-01']])
-        inputGed1.close()    
 
 if __name__ == '__main__':   
 
