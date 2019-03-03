@@ -209,14 +209,13 @@ def table(lists):
 def main():
     try:
         inputGed = open("Sprint1.ged", "r")
+        #inputGed1 = open("input_MW.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
         allLists = fam(inputGed)
         table(allLists)
-        
-        
-
+          
         individual = us01.main()
         for indi in individual:
             us01Test_Birth = us01.BirthBeforeCurrent(indi)

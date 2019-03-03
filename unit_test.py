@@ -129,7 +129,7 @@ class TestResults(unittest.TestCase):
 
     def test_dateBeforeCurrent(self):
         inputGed = open("inputForTest_MW.ged", "r")
-        individual = us01.main(inputGed)
+        individual = us01.parseGed(inputGed)
         for i in individual:
             self.assertTrue(us01.BirthBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Birthday " + individual[i].birthDate + " occurs in the future")
             self.assertTrue(us01.DeathBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Death date " + individual[i].deathDate + " occurs in the future")
@@ -139,7 +139,7 @@ class TestResults(unittest.TestCase):
     
     def test_birthBeforeMarriage(self):
         inputGed = open("inputForTest_MW.ged", "r")
-        individual = us02.main(inputGed)
+        individual = us02.parseGed(inputGed)
         for indi in individual:
             self.assertTrue(us02.BirthBeforeMarriage(individual[indi]),msg="ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
 

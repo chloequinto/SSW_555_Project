@@ -7,7 +7,6 @@ Birth before marriage
 from datetime import date
 from datetime import datetime
 from collections import OrderedDict
-import unittest
 
 individual = OrderedDict()
 family = OrderedDict()
@@ -146,24 +145,9 @@ def BirthBeforeMarriage(individual):
         return True
 
 
-class TestResults(unittest.TestCase):
-    def test_birthBeforeMarriage(self):
-        inputGed = open("inputGed5.ged", "r")
-        for indi in individual:
-            self.assertTrue(BirthBeforeMarriage(individual[indi]),msg="ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
 
+def main(): 
+    inputGed = open("Sprint1.ged", "r")
+    individual = parseGed(inputGed)
+    return individual
 
-def main():
-    try:
-        inputGed = open("inputGed5.ged", "r")
-
-    except FileNotFoundError:
-        print("Can't open the file")
-    else:
-        individual = parseGed(inputGed)
-        
-
-
-if __name__ == '__main__':
-    main()
-    unittest.main()
