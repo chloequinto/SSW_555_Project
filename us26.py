@@ -4,6 +4,8 @@ Corresponding entries
 
 '''
 
+from collections import OrderedDict
+
 def corrEntries(input):
     addIndiIdsToFam = {}
 
@@ -33,14 +35,16 @@ def corrEntries(input):
             temp = i[7].replace("{", "").replace("}", "").replace("'", "").split(",")
             for j in temp:
                 famIdWithAllIndiID[i[0]].append(j)
+        
+    indiIdSorted = OrderedDict(sorted(addIndiIdsToFam.items()))
+    famIdSorted = OrderedDict(sorted(famIdWithAllIndiID.items()))
+    errors = []
 
-    for key, value in addIndiIdsToFam.items():
-        print(key)
-        temp = addIndiIdsToFam[key].sort()
-        temp1 = famIdWithAllIndiID[key].sort()
-        print(temp)
-        print(temp1)
-        if addIndiIdsToFam[key].sort() != famIdWithAllIndiID[key].sort():
-            print("ERROR: FAMILY: US26: This family has no corresponding entries")
+    for (key, value), (key1, value1) in zip(indiIdSorted.items(), famIdSorted.items()):
+        value.sort()
+        value1.sort()
+        if value != value1:
+            errors.append(f"ERROR: FAMILY: US26: Family {key} does not have the correct corresponding entries")
+            print(f"ERROR: FAMILY: US26: Family {key} does not have the correct corresponding entries")
     
-    return addIndiIdsToFam, famIdWithAllIndiID
+    return errors

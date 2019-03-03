@@ -210,7 +210,9 @@ def main():
     # else:
 
         inputGed = open("FifteenSibling.ged", "r")
+        rzInput = open("inputRZ2.ged", "r")
         allLists = fam(inputGed)
+        rzList = fam(rzInput)
         table(allLists)
         if us07.checkForLessThan150(inputGed) != True: 
             print("\nERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150")
@@ -231,9 +233,9 @@ def main():
             us01Test_Divorce = us01.DivorceBeforeCurrent(indi)
             if us01Test_Divorce !=  True:
                 print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Divorce date " + individual[indi].divorceDate + " occurs in the future")
-            # us02Test = us02.BirthBeforeMarriage(individual[indi])
-            # if us02Test != True:
-            #     print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
+            us02Test = us02.BirthBeforeMarriage(individual[indi])
+            if us02Test != True:
+                print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
         
 
         us32.checkMultipleBirths(inputGed)
@@ -244,7 +246,7 @@ def main():
         us16.main(allLists[0])
         us29.deaths(allLists[0]) 
         us22.uniqueIDs(allLists)
-        #us26.corrEntries(allLists)
+        us26.corrEntries(rzList)
         us31.main(allLists[0])
         us15.main(allLists[1])
         
