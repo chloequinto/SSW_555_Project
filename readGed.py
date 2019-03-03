@@ -175,7 +175,6 @@ def fam(inputGed):
                     dates[2] = dates[0]
                     dates[0] = temp
                     indi_data.insert(5, "-".join(dates))
-    #change names 
     for i in fam_list: 
         if i[3] in names: 
             i.insert(4, names[i[3]])
@@ -184,8 +183,6 @@ def fam(inputGed):
     return (indi_list, fam_list)
 
 
-# Function to write the table
-# move to individual files maybe
 def table(lists): 
     x = PrettyTable()
     x.field_names = ['ID', 'Name', 'Gender', 'Birthday', 'Age',
@@ -211,18 +208,15 @@ def table(lists):
 
 def main():
     try:
-        inputGed = open("inputRZ2.ged", "r")
+        inputGed = open("Sprint1.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
         allLists = fam(inputGed)
         table(allLists)
         
-        if us07.checkForLessThan150(inputGed) != True: 
-            print("\nERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150")
-        value = us32.checkMultipleBirths(inputGed)
-        if value != []: 
-            print('ERROR: FAMILY: US32: ' + value )
+        
+
         individual = us01.main()
         for indi in individual:
             us01Test_Birth = us01.BirthBeforeCurrent(indi)
@@ -243,8 +237,10 @@ def main():
         
         us03.main()
         us06.main()  
+        us07.main(allLists[0])
         us16.main(allLists[0])
         us29.deaths(allLists[0]) 
+        us32.main(allLists[0])
         print("\n")
 if __name__ == "__main__":
     main()
