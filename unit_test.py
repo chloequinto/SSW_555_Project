@@ -116,24 +116,20 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us06.divorceBeforeDeath(inputGed1), [])
 
     def testmarriageBeforeDivorce(self):
-        inputGed = open("input_Rak04.ged", "r")
-        inputGed1 = open("input_Rak05.ged", "r")
-        output = readGed.fam(inputGed)
-
-        self.assertEqual(us04.marriageBeforeDivorce(inputGed), [['Nicole /Kidman/', '1995-12-24', '1990-01-12']])
+        inputGed = open("input_RakUS04.ged", "r")
+        inputGed1 = open("input_RakUS05_2.ged", "r")
+        self.assertEqual(us04.marriageBeforeDivorce(inputGed), "ERROR: INDIVIDUAL: US04: The divorce date 1000-05-20 is before the marriage date 1960-01-17")
+        self.assertEqual(us04.marriageBeforeDivorce(inputGed1), None)
         inputGed.close()
-        self.assertEqual(us04.marriageBeforeDivorce(inputGed1), [['Katie /Holmes/', '2006-11-18', '2000-05-07']])
         inputGed1.close()
-
+        
     def testmarriageBeforeDeath(self):
-        inputGed = open("input_Rak04.ged", "r")
-        inputGed1 = open("input_Rak05.ged", "r")
-        output = readGed.fam(inputGed)
-
-        self.assertEqual(us05.marriageBeforeDeath(inputGed), [['Nicole /Kidman/', '1995-12-24', '1990-08-08']])
+        inputGed = open("input_RakUS05.ged", "r")
+        inputGed1 = open("input_RakUS05_2.ged", "r")
+        self.assertEqual(us05.marriageBeforeDeath(inputGed), "ERROR: INDIVIDUAL: US05:['Nicole /Kidman/', '1977-08-08', 'F5']")
+        self.assertEqual(us05.marriageBeforeDeath(inputGed1), "ERROR: INDIVIDUAL: US05:['John /Smith/', '1000-02-12', 'F2', 'F5']")
         inputGed.close()
-        self.assertEqual(us05.marriageBeforeDeath(inputGed1), [['Katie /Holmes/', '2006-11-18', '1990-01-01']])
-        inputGed1.close()    
+        inputGed1.close()
 
     def test_dateBeforeCurrent(self):
         inputGed = open("inputForTest_MW.ged", "r")
