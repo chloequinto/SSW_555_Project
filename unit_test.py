@@ -107,11 +107,13 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us16.sameLastName(output[0]), name1)
         self.assertEqual(us16.sameLastName(output1[0]), name2)
 
-    def testDivorceBeforeDeath(self):
-        inputGed = open("input_Matt2.ged", "r")
-        inputGed1 = open("input_6.ged", "r")
-        self.assertEqual(us06.divorceBeforeDeath(inputGed), [['Eliwood /Ahungus/', '1000-03-01', 'F6']])
-        self.assertEqual(us06.divorceBeforeDeath(inputGed1), [])
+    def testUS06(self):
+        inputGed = open("Sprint1.ged", "r")
+        #inputGed1 = open("input_Matt2.ged", "r")
+        output = readGed.fam(inputGed)
+        #output1 = readGed.fam(inputGed1)
+        self.assertEqual(us06.main(output[0], output[1]), ["ERROR: INDIVIDUAL: US06: I4: Divorce date occurs after their date of death."])
+        #self.assertEqual(us06.main(output1[0],output1[1]), ["ERROR: INDIVIDUAL: US06: I4: Divorce date occurs after their date of death."])
 
     def testmarriageBeforeDivorce(self):
         inputGed = open("input_RakUS04.ged", "r")
