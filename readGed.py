@@ -1,12 +1,7 @@
-
-
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16
-import us01, us02
-import us03, us06
-import us04, us05
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05
 from package.userStories import us07, us32
 
 valid = {
@@ -122,10 +117,6 @@ def fam(inputGed):
                 indi_list.append(indi_data)
                 fam_data.append(line[1])
                 new_family = 1
-                
-                is_divorced = "False"
-            elif(line[1] in ['NOTE', 'HEAD']):
-                pass
 
         elif line[0] == str(1):
             if line[1] == "NAME":
@@ -144,6 +135,7 @@ def fam(inputGed):
                 indi_data.append("{'" + line[2] + "'}")
                 indi_data.insert(7, "{'" + line[2] + "'}")
             elif line[1] == "HUSB":
+                is_married = "True"
                 fam_data.append(line[2])
             elif line[1] == "WIFE": 
                 fam_data.append(line[2])
@@ -236,7 +228,12 @@ def main():
     else:
         allLists = fam(inputGed)
         table(allLists)
-          
+        us32.checkMultipleBirths(inputGed)
+        if us07.checkForLessThan150(inputGed) != True: 
+            print("\nERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150")
+        value = us32.checkMultipleBirths(inputGed)
+        if value != []: 
+            print('ERROR: FAMILY: US32: ' + value )
         individual = us01.main()
         for indi in individual:
             us01Test_Birth = us01.BirthBeforeCurrent(indi)

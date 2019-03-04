@@ -1,12 +1,12 @@
 '''
-User Story 02
-Birth before marriage
+User Story 35
+List recent births
 
 '''
-
 from datetime import date
-from datetime import datetime
+from datetime import datetime,timedelta
 from collections import OrderedDict
+import unittest
 
 individual = OrderedDict()
 family = OrderedDict()
@@ -86,10 +86,12 @@ def formatDate(dates):
 
 
 class Individual(object):
-    def __init__(self, ID='NA', birthDate='NA', marriageDate='NA'):
+    def __init__(self, ID='NA', birthDate='NA', marriageDate='NA', deathDate='NA', divorceDate='NA'):
         self.ID = ID
         self.birthDate = birthDate
         self.marriageDate = marriageDate
+        self.deathDate = deathDate
+        self.divorceDate = divorceDate
 
     def setBirthDate(self, birthDate):
         birthDate = formatDate(birthDate)
@@ -107,8 +109,6 @@ class Individual(object):
         divorceDate = formatDate(divorceDate)
         self.divorceDate = divorceDate
 
-
-  
 
 class Family(object):
     def __init__(self, ID='NA', husband='NA', wife='NA', marriageDate='NA'):
@@ -130,22 +130,39 @@ class Family(object):
         return self.wife
 
 
-def checkDate(date1, date2):
-    dateTime1 = datetime.strptime(str(date1), "%Y-%m-%d")
-    dateTime2 = datetime.strptime(str(date2), "%Y-%m-%d")
-    return dateTime1.date() < dateTime2.date()
+
+def RecentBirths(individual):
+    recentBirthID = []
+    for indi in individual:
+        if individual[indi].birthDate != 'NA':
+            birthdate = individual[indi].birthDate
+            today = date.today().strftime("%Y-%m-%d")
+            
+            birthDate = datetime.strptime(birthdate, "%Y-%m-%d")
+            todayDate = datetime.strptime(today, "%Y-%m-%d")
+            diffDate = (todayDate - birthDate)
+            
+            if diffDate.days < 30 and diffDate.days > 0:
+                recentBirthID.append(indi)
+    return recentBirthID
 
 
-def BirthBeforeMarriage(individual):
-    if individual.birthDate != 'NA' and individual.marriageDate != 'NA':
-        return checkDate(individual.birthDate, individual.marriageDate)
-    elif individual.birthDate == 'NA':
-        return True
-    elif individual.marriageDate == 'NA':
-        return True
+class TestResults(unittest.TestCase):
+    def test_dateBeforeCurrent(self):
+        inputGed = open("inputGed5.ged", "r")
+        self.assertEqual(RecentBirths(individual),['I1'])
+            
 
-def main(): 
-    inputGed = open("Sprint1.ged", "r")
-    individual = parseGed(inputGed)
-    return individual
+def main():
+    try:
+        inputGed = open("inputGed5.ged", "r")
 
+    except FileNotFoundError:
+        print("Can't open the file")
+    else:
+        individual = parseGed(inputGed) 
+        return individual
+
+if __name__ == '__main__':
+    main()
+    unittest.main()
