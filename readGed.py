@@ -257,8 +257,8 @@ def main():
         
         us03.main(allLists[0])
         us04.main(allLists[1])
-        us05.main(allLists[0],allLists[1])
-        us06.main(allLists[0],allLists[1])  
+        us05.main(allLists[0], allLists[1])
+        us06.main(allLists[0], allLists[1])  
         us07.main(allLists[0])
         us16.main(allLists[0])
         us29.deaths(allLists[0]) 
