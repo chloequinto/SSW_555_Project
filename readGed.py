@@ -199,8 +199,8 @@ def fam(inputGed):
             i.insert(4, names[i[3]])
         if i[5] in names: 
             i.insert(6, names[i[5]])
-    for i in fam_list: 
-        print(i)
+    #for i in fam_list: 
+        #print(i)
     return (indi_list, fam_list)
 
 
@@ -254,8 +254,9 @@ def main():
             if us02Test != True:
                 print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
         
-        # us03.main(allLists[0])
-        us06.main()  
+        us03.main(allLists[0])
+
+        us06.main(allLists[0],allLists[1])  
         # us07.main(allLists[0])
         us16.main(allLists[0])
         us29.deaths(allLists[0]) 
