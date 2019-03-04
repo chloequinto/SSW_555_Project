@@ -202,18 +202,12 @@ def table(lists):
 
 def main():
     try:
-        inputGed = open("Sprint1.ged", "r")
+        inputGed = open("input_8.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
         allLists = fam(inputGed)
         table(allLists)
-        us32.checkMultipleBirths(inputGed)
-        if us07.checkForLessThan150(inputGed) != True: 
-            print("\nERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150")
-        value = us32.checkMultipleBirths(inputGed)
-        if value != []: 
-            print('ERROR: FAMILY: US32: ' + value )
         individual = us01.main()
         for indi in individual:
             us01Test_Birth = us01.BirthBeforeCurrent(indi)
@@ -238,8 +232,9 @@ def main():
         us05.marriageBeforeDeath(inputGed) 
         us16.main(allLists[0])
         us29.deaths(allLists[0]) 
-        
-        #us22.uniqueIDs(allLists)
+        us22.uniqueIDs(allLists)
+        us07.main(allLists[0])
+        us32.main(allLists[0])
         
         print("\n")
 if __name__ == "__main__":
