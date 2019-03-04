@@ -111,9 +111,8 @@ class TestResults(unittest.TestCase):
         inputGed = open("Sprint1.ged", "r")
         #inputGed1 = open("input_Matt2.ged", "r")
         output = readGed.fam(inputGed)
-        #output1 = readGed.fam(inputGed1)
         self.assertEqual(us06.main(output[0], output[1]), ["ERROR: INDIVIDUAL: US06: I4: Divorce date occurs after their date of death."])
-        #self.assertEqual(us06.main(output1[0],output1[1]), ["ERROR: INDIVIDUAL: US06: I4: Divorce date occurs after their date of death."])
+
 
     def testmarriageBeforeDivorce(self):
         inputGed = open("input_RakUS04.ged", "r")

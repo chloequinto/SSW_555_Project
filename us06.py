@@ -38,15 +38,12 @@ def checkFams(input, indivs):
                         errors.append("ERROR: INDIVIDUAL: US06: " + i[0] + ": Divorce date occurs after their date of death.")
                     problem = True
 
-    if problem == True: 
+    if problem: 
         for i in errors: 
-            print(str(i))
+            print(i)
     return errors
 
 
 def main(inputindi, inputfam):
     #indivDeaths(tables[1])
-    checkFams(inputindi, indivDeaths(inputfam))
-
-
-            
+    return checkFams(inputindi, indivDeaths(inputfam))
