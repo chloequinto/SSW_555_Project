@@ -1,12 +1,14 @@
 language: python
 python:
-  - "2.6"
-  - "2.7"
-  - "3.3"
-  - "3.4"
-  - "3.5"
   - "3.6"
-  - "3.7"
 
-script: make test
-os: osx 
+install:
+  - pip install prettytable
+  - pip install DateTime
+
+
+notifications:
+  slack: ssw555-workspace:BQrt2tCt6OUZdLAyHteMRGW3
+
+script:
+  - pytest
