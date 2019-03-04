@@ -41,19 +41,21 @@ def fam(inputGed):
     new_family = 0
     has_spouse = "False"
     is_child = "False"
+    is_married_date = "False"
+    is_divorced = "False"
     birth_year = 0
     for i in inputGed:
         i = re.sub('[@]', '', i)
         line = i.strip().split(maxsplit=2)
         if line[0] == str(0) and line[1] == "TRLR": 
-            if is_married == "True":
-                fam_data.insert(1, "Yes")
-                fam_data.insert(2, "NA")
-            else: #if divorced
-                fam_data[1] = "No"
-                fam_data[1] = "Yes"
+            if is_married_date != "True": 
+                fam_data.insert(1, "NA")
+                fam_data.insert(2, "NA") #divorced
+            is_married_date = "False"
+            is_divorced = "False"
             fam_list.append(fam_data)
             fam_data = []
+
         if len(line) > 2 and line[0] == str(0):
             if line[2] == "INDI" and new_individual == 1:
                 if alive == "False":
@@ -84,12 +86,11 @@ def fam(inputGed):
                 has_spouse = "False"
                 is_child = "False"
             elif line[2] == "FAM" and new_family == 1:
-                if is_married == "True":
-                    fam_data.insert(1, "Yes")
-                    fam_data.insert(2, "NA")
-                else: #if divorced
-                    fam_data[1] = "No"
-                    fam_data[1] = "Yes"
+                if is_married_date != "True": 
+                    fam_data.insert(1, "NA")
+                    fam_data.insert(2, "NA") #divorced
+                is_married_date = "False"
+                is_divorced = "False"
                 fam_list.append(fam_data)
                 fam_data = []
                 fam_data.append(line[1])
@@ -120,6 +121,8 @@ def fam(inputGed):
                 indi_list.append(indi_data)
                 fam_data.append(line[1])
                 new_family = 1
+                
+                is_divorced = "False"
             elif(line[1] in ['NOTE', 'HEAD']):
                 pass
 
@@ -130,7 +133,7 @@ def fam(inputGed):
                 indi_data.append(line[2])
             elif line[1] == "SEX":
                 indi_data.append(line[2])
-            elif line[1] in ["BIRT", "DEAT"]:
+            elif line[1] in ["BIRT", "DEAT", "MARR", "DIV"]:
                 date_tag = line[1]
             elif line[1] == "FAMC":
                 is_child = "True"
@@ -140,11 +143,8 @@ def fam(inputGed):
                 indi_data.append("{'" + line[2] + "'}")
                 indi_data.insert(7, "{'" + line[2] + "'}")
             elif line[1] == "HUSB":
-                is_married = "True"
-                # fam_data = famHelper(fam_data, indi_list)
                 fam_data.append(line[2])
             elif line[1] == "WIFE": 
-                # fam_data = famHelper(fam_data, indi_list)
                 fam_data.append(line[2])
             elif line[1] == "CHIL":
                 fam_data.append("'" + line[2] + "'")
@@ -175,11 +175,32 @@ def fam(inputGed):
                     dates[2] = dates[0]
                     dates[0] = temp
                     indi_data.insert(5, "-".join(dates))
+                elif date_tag == "MARR": 
+                    dates[1] = monthWordToInt[dates[1]]
+                    if (int(dates[0]) < 10):
+                        dates[0] = "0" + dates[0]
+                    temp = dates[2]
+                    dates[2] = dates[0]
+                    dates[0] = temp
+                    fam_data.insert(1, "-".join(dates))
+                    is_married_date = "True"
+                elif date_tag == "DIV": 
+                    dates[1] = monthWordToInt[dates[1]]
+                    if (int(dates[0]) < 10):
+                        dates[0] = "0" + dates[0]
+                    temp = dates[2]
+                    dates[2] = dates[0]
+                    dates[0] = temp
+                    fam_data.insert(2, "-".join(dates))
+                    is_divorced = "True"
+
     for i in fam_list: 
         if i[3] in names: 
             i.insert(4, names[i[3]])
         if i[5] in names: 
             i.insert(6, names[i[5]])
+    for i in fam_list: 
+        print(i)
     return (indi_list, fam_list)
 
 
@@ -233,9 +254,9 @@ def main():
             if us02Test != True:
                 print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
         
-        us03.main(allLists[0])
+        # us03.main(allLists[0])
         us06.main()  
-        us07.main(allLists[0])
+        # us07.main(allLists[0])
         us16.main(allLists[0])
         us29.deaths(allLists[0]) 
         us32.main(allLists[0])
