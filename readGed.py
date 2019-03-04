@@ -6,7 +6,7 @@ import re
 import us29, us16
 import us01, us02
 import us03, us06
-import us04
+import us04, us05
 from package.userStories import us07, us32
 
 valid = {
@@ -257,6 +257,7 @@ def main():
         
         us03.main(allLists[0])
         us04.main(allLists[1])
+        us05.main(allLists[0],allLists[1])
         us06.main(allLists[0],allLists[1])  
         # us07.main(allLists[0])
         us16.main(allLists[0])
