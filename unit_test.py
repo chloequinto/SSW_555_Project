@@ -58,7 +58,7 @@ class TestResults(unittest.TestCase):
 
     maxDiff = None #check for full errors
     
-    def testbirthBeforeDeath(self):
+    def testUS03(self):
         inputGed = open("Sprint1.ged", "r")
         inputGed1 = open("input_6.ged", "r")
         output = readGed.fam(inputGed)
@@ -84,7 +84,7 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us07.checkForLessThan150(output[0]), ["ERROR: INDIVIDUAL: US07: I3 is older than 150"])
         self.assertEqual(us07.checkForLessThan150(output1[0]), ["ERROR: INDIVIDUAL: US07: I9 death - birth > 150"])
 
-    def testDeaths(self):
+    def testUS29(self):
         inputGed = open("inputRZ1.ged", "r")
         inputGed1 = open("inputRZ2.ged", "r")
         output = readGed.fam(inputGed)
@@ -92,7 +92,7 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us29.deaths(output[0]), deaths1)
         self.assertEqual(us29.deaths(output1[0]), deaths2) 
 
-    def testNames(self): #us16
+    def testUS16(self): #us16
         inputGed = open("inputRZ1.ged", "r")
         inputGed1 = open("inputRZ2.ged", "r")
         output = readGed.fam(inputGed)
@@ -105,19 +105,19 @@ class TestResults(unittest.TestCase):
         output = readGed.fam(inputGed)
         self.assertEqual(us06.main(output[0], output[1]), ["ERROR: INDIVIDUAL: US06: I4: Divorce date occurs after their date of death."])
 
-    def testmarriageBeforeDivorce(self):
+    def testUS04(self):
         inputGed = open("Sprint1.ged", "r")
         output = readGed.fam(inputGed)
         self.assertEqual(us04.marriageBeforeDivorce(output[1]), ['ERROR: FAMILY: US04: F1: Divorce date occurs before their marriage.'])
         inputGed.close()
         
-    def testmarriageBeforeDeath(self):
+    def testUS05(self):
         inputGed = open("Sprint1.ged", "r")
         output = readGed.fam(inputGed)
         self.assertEqual(us05.main(output[0], output[1]), ["ERROR: INDIVIDUAL: US05: I4: Marriage date occurs after their date of death."])
         inputGed.close()
 
-    def test_dateBeforeCurrent(self):
+    def testUS01(self):
         inputGed = open("inputForTest_MW.ged", "r")
         individual = us01.parseGed(inputGed)
         for i in individual:
@@ -127,7 +127,7 @@ class TestResults(unittest.TestCase):
             self.assertTrue(us01.DivorceBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Divorce date " + individual[i].divorceDate + " occurs in the future")
     
     
-    def test_birthBeforeMarriage(self):
+    def testUS02(self):
         inputGed = open("inputForTest_MW.ged", "r")
         individual = us02.parseGed(inputGed)
         for indi in individual:

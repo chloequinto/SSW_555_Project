@@ -19,6 +19,8 @@ Families
 | F2 |     NA     |     NA     |     I2     |   Buddy /Tony/  |    I3   |  Emily /Rogers/  | {'I1', 'I4'} |
 | F3 | 2010-07-07 | 2018-10-31 |     I6     |   Tim /Jones/   |    I4   | Rachael /Rogers/ |      {}      |
 +----+------------+------------+------------+-----------------+---------+------------------+--------------+
+
+ERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150
 ERROR: INDIVIDUAL: US01: I1: Birthday 2032-06-10 occurs in the future
 ERROR: INDIVIDUAL: US02: I1: Birthday 2032-06-10 occurs before marriage 2005-11-01
 ERROR: INDIVIDUAL: US01: I4: Birthday 2032-06-10 occurs in the future
