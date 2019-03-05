@@ -1,10 +1,7 @@
-
-    
 '''
 All Unit Tests 
 '''
-import us03, us16, us29, us06, us01, us02
-import us04, us05
+import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21
 import unittest
 import readGed
 from package.userStories import us07,us32
@@ -16,31 +13,30 @@ deaths1 = [
     ['I10', 'Ex /Quinto/', 'F', '1945-10-07', 56, 'False', '2001-07-13', 'NA', "{'F5'}"]
 ]
 
-#Ex Quinto has age -144 or something
-
 deaths2 = [
     ['I1', 'Bob /Smiath/', 'M', '1907-04-04', 92, 'False', '1999-10-31', "{'F2'}", "{'F1'}", "{'F1'}"],
-    ['I2', 'Johnathan /Smith/', 'M', '1879-11-21', 80, 'False', '1959-04-10', 'NA', "{'F2'}"],
+    ['I1', 'Johnathan /Smith/', 'M', '1879-11-21', 80, 'False', '1959-04-10', 'NA', "{'F2'}"],
     ['I3', 'Dorothy /Rodgers/', 'F', '1879-10-01', 83, 'False', '1962-05-18', 'NA', "{'F2'}"],
     ['I4', 'Mary /Johnson/', 'F', '1908-02-03', 81, 'False', '1989-06-29', 'NA', "{'F1'}"],
     ['I6', 'Nancy /Jefferson/', 'F', '1942-02-15', 34, 'False', '1976-12-09', 'NA', "{'F4'}"]
 ]
 
 name1 = (
-    [['I2', 'Rafael /Quinto/', 'M', '1968-04-04', 51, 'True', 'NA', "{'F2'}", "{'F3'}", "{'F2'}"], 
-    ['I4', 'Rocky /Quinto/', 'M', '1995-06-28', 24, 'True', 'NA', "{'F2'}", 'NA'], 
-    ['I5', 'Thompson /L/', 'M', '1997-01-30', 22, 'True', 'NA', 'NA', "{'F1'}"],
-    ['I6', 'Grandpa /Quinto/', 'M', '1940-06-03', 64, 'False', '2004-07-17', 'NA', "{'F5'}", "{'F3'}", "{'F5'}"], 
-    ['I8', 'Grandpa /Loresco/', 'M', '1940-10-05', 79, 'True', 'NA', 'NA', "{'F4'}"], 
-    ['I11', 'John /Quinto/', 'M', '1960-09-08', 59, 'True', 'NA', "{'F5'}", 'NA']],
+    [
+        ['I2', 'Rafael /Quinto/', 'M', '1968-04-04', 51, 'True', 'NA', "{'F2'}", "{'F3'}", "{'F2'}"], 
+        ['I4', 'Rocky /Quinto/', 'M', '1995-06-28', 24, 'True', 'NA', "{'F2'}", 'NA'], 
+        ['I5', 'Thompson /L/', 'M', '1997-01-30', 22, 'True', 'NA', 'NA', "{'F1'}"],
+        ['I6', 'Grandpa /Quinto/', 'M', '1940-06-03', 64, 'False', '2004-07-17', 'NA', "{'F5'}", "{'F3'}", "{'F5'}"], 
+        ['I8', 'Grandpa /Loresco/', 'M', '1940-10-05', 79, 'True', 'NA', 'NA', "{'F4'}"], 
+        ['I11', 'John /Quinto/', 'M', '1960-09-08', 59, 'True', 'NA', "{'F5'}", 'NA']
+    ],
     []
 )
 
 name2 = (
     [
-        ['I2', 'Johnathan /Smith/', 'M', '1879-11-21', 80, 'False', '1959-04-10', 'NA', "{'F2'}"], 
+        ['I1', 'Johnathan /Smith/', 'M', '1879-11-21', 80, 'False', '1959-04-10', 'NA', "{'F2'}"], 
         ['I8', 'Michael /Smith/', 'M', '1975-03-20', 44, 'True', 'NA', "{'F4'}", 'NA'],
-   
     ],
     [
         "ERROR: INDIVIDUAL: US16: Bob /Smiath/ does not have the same last name",
@@ -62,7 +58,7 @@ class TestResults(unittest.TestCase):
 
     maxDiff = None #check for full errors
     
-    def testUS03(self):
+    def testbirthBeforeDeath(self):
         inputGed = open("Sprint1.ged", "r")
         inputGed1 = open("input_6.ged", "r")
         output = readGed.fam(inputGed)
@@ -137,7 +133,20 @@ class TestResults(unittest.TestCase):
         for indi in individual:
             self.assertTrue(us02.BirthBeforeMarriage(individual[indi]),msg="ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
 
+    def testRecentBirth(self):
+        inputGed = open("inputForTest_MW.ged", "r")
+        individual = us35.parseGed(inputGed)
+        self.assertEqual(us35.RecentBirths(individual),['I1'])
 
+    def testGenderForRole(self):
+        inputGed = open("inputForTest_MW.ged", "r")
+        family = us21.parseGed(inputGed)
+        for i in family:
+            self.assertTrue(us21.CheckGenderForRole(
+                i), msg="ERROR: FAMILY: US21: " + family[i].ID + ": gender was wrong")
+
+    
 if __name__ == '__main__':   
 
-    unittest.main()
+
+    unittest.main() 

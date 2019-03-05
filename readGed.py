@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us35, us21
 from package.userStories import us07, us32
 
 valid = {
@@ -202,12 +202,18 @@ def table(lists):
 
 def main():
     try:
-        inputGed = open("input_8.ged", "r")
+        inputGed = open("Sprint1.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
         allLists = fam(inputGed)
         table(allLists)
+        us32.checkMultipleBirths(inputGed)
+        if us07.checkForLessThan150(inputGed) != True: 
+            print("\nERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150")
+        value = us32.checkMultipleBirths(inputGed)
+        if value != []: 
+            print('ERROR: FAMILY: US32: ' + value )
         individual = us01.main()
         for indi in individual:
             us01Test_Birth = us01.BirthBeforeCurrent(indi)
@@ -232,9 +238,16 @@ def main():
         us05.marriageBeforeDeath(inputGed) 
         us16.main(allLists[0])
         us29.deaths(allLists[0]) 
-        us22.uniqueIDs(allLists)
-        us07.main(allLists[0])
-        us32.main(allLists[0])
+        family = us21.main()
+        for i in family:
+            if us21.CheckGenderForRole(i) != True:
+                print("ERROR: FAMILY: US21: " + family[i].ID + ": gender was wrong")
+
+        recentBirthList = us35.RecentBirths(individual)
+        if len(recentBirthList) > 0:
+            for i in recentBirthList:
+                print("NOTIFICATION: INDIVIDUAL: US35: "+ i + ": Birthday " + individual[i].birthDate + " was born in the last 30 days")
+        #us22.uniqueIDs(allLists)
         
         print("\n")
 if __name__ == "__main__":
