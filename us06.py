@@ -46,4 +46,4 @@ def checkFams(input, indivs):
 
 def main(inputindi, inputfam):
     #indivDeaths(tables[1])
-return checkFams(inputindi, indivDeaths(inputfam))
+    return checkFams(inputindi, indivDeaths(inputfam))

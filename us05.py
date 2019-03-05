@@ -1,119 +1,49 @@
 '''
-Rakshak Kumar
-
 User Story 05
 Marriage before death
-
 '''
-
 from prettytable import PrettyTable
 from datetime import datetime
-
 import re
+import readGed
 
-monthNumbers = {
-    "JAN": "01",
-    "FEB": "02",
-    "MAR": "03",
-    "APR": "04",
-    "MAY": "05",
-    "JUN": "06",
-    "JUL": "07",
-    "AUG": "08",
-    "SEP": "09",
-    "OCT": "10",
-    "NOV": "11",
-    "DEC": "12",
-}
-
-def marriageBeforeDeath(input):
-    names = []
-    tags = []
-    family = []
-    
-    result = []
-    reply = []
-    date_tag = "Null"
-    
-    for i in input:
-        i = re.sub('[@]', '', i)
-        line = i.strip().split(maxsplit=2)
-        
-        if len(line) > 2 and line[0] == str(0):
-            if line[2] == "FAM":
-                family_tag = line[1]
-                if tags != []:
-                    family.append(tags)
-                tags = []
-                tags.append(family_tag)
-        
-        elif line[0] == str(1):
-            if line[1] == "NAME":
-                NAME_tag = line[2] 
-                if names != []:
-                    result.append(names)
-                names = []
-                names.append(NAME_tag)
-                date_tag = "ALIVE"
-            
-            elif line[1] == "DEAT":
-                date_tag = "DEAT"
-            
-            elif line[1] == "FAMS":
-                family_tag = line[2]
-                names.append(family_tag) 
-            
-            elif line[1] == "MARR":
-                date_tag = "MARR"
-        
-        elif line[0] == str(2):
-            if line[1] == "DATE":
-                dates = (line[2]).split()
-                if date_tag == "DEAT":
-                    dates[1] = monthNumbers[dates[1]]
-                    if (int(dates[0]) < 10):
-                        dates[0] = "0" + dates[0]
-                    temp = dates[2]
-                    dates[2] = dates[0]
-                    dates[0] = temp
-                    names.append("-".join(dates))
                 
-                elif date_tag == "MARR":
-                    dates[1] = monthNumbers[dates[1]]
-                    if (int(dates[0]) < 10):
-                        dates[0] = "0" + dates[0]
-                    temp = dates[2]
-                    dates[2] = dates[0]
-                    dates[0] = temp
-                    tags.append("-".join(dates))
-    
-    family.append(tags)
-    result.append(names)
-                        
-    print(result)
-    print(family)
-
-    for i in family:
-        if len(i) > 1:
-            marr_date = datetime.strptime(i[1], '%Y-%m-%d')
-            tag = i[0]
-            for j in result:
-                if tag in j:
-                    if len(j) > 2:
-                        death_date = datetime.strptime(j[1], '%Y-%m-%d')
-                        if(death_date < marr_date):
-                            print("Error! Marriage has to be before death!")
-                            reply.append(j)
-    print(reply)
-
-def main():
-    try:
-        inputGed = open("input_2.ged", "r")
-    except FileNotFoundError:
-        print("Cannot open file")
-    else:
-        marriageBeforeDeath(inputGed)
-
-if __name__ == "__main__":
-    main()
+def indivDeaths(input):
+    problem = False
+    fams = []
+    indivs = []
+    errors = []
+    for i in input: 
+        if i[2] != "NA":
+            fams = []
+            fams.append(i[0])
+            fams.append(i[2])
+            fams.append(i[3])
+            fams.append(i[5])
+            indivs.append(fams)
             
+    # print(indivs)        
+    return indivs
+
+def checkFams(input, indivs):
+    errors = []
+    problem = False
+    for i in input:
+        for j in indivs:
+            if j[2] == i[0] or j[3] == i[0]: #checks 
+                if i[6] != "NA": #if dead 
+                    deathDate = datetime.strptime(i[6], '%Y-%m-%d')
+                    marriageDate = datetime.strptime(j[1], '%Y-%m-%d') 
+                    if marriageDate > deathDate:
+                        errors.append("ERROR: INDIVIDUAL: US05: " + i[0] + ": Marriage date occurs after their date of death.")
+                    problem = True
+
+    if problem == True: 
+        for i in errors: 
+            print(str(i))
+    return errors
+
+
+def main(inputindi, inputfam):
+    #indivDeaths(tables[1])
+    return checkFams(inputindi, indivDeaths(inputfam))

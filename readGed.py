@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us35, us21
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05
 from package.userStories import us07, us32
 
 valid = {
@@ -37,19 +37,21 @@ def fam(inputGed):
     new_family = 0
     has_spouse = "False"
     is_child = "False"
+    is_married_date = "False"
+    is_divorced = "False"
     birth_year = 0
     for i in inputGed:
         i = re.sub('[@]', '', i)
         line = i.strip().split(maxsplit=2)
         if line[0] == str(0) and line[1] == "TRLR": 
-            if is_married == "True":
-                fam_data.insert(1, "Yes")
-                fam_data.insert(2, "NA")
-            else: #if divorced
-                fam_data[1] = "No"
-                fam_data[1] = "Yes"
+            if is_married_date != "True": 
+                fam_data.insert(1, "NA")
+                fam_data.insert(2, "NA") #divorced
+            is_married_date = "False"
+            is_divorced = "False"
             fam_list.append(fam_data)
             fam_data = []
+
         if len(line) > 2 and line[0] == str(0):
             if line[2] == "INDI" and new_individual == 1:
                 if alive == "False":
@@ -80,12 +82,11 @@ def fam(inputGed):
                 has_spouse = "False"
                 is_child = "False"
             elif line[2] == "FAM" and new_family == 1:
-                if is_married == "True":
-                    fam_data.insert(1, "Yes")
-                    fam_data.insert(2, "NA")
-                else: #if divorced
-                    fam_data[1] = "No"
-                    fam_data[1] = "Yes"
+                if is_married_date != "True": 
+                    fam_data.insert(1, "NA")
+                    fam_data.insert(2, "NA") #divorced
+                is_married_date = "False"
+                is_divorced = "False"
                 fam_list.append(fam_data)
                 fam_data = []
                 fam_data.append(line[1])
@@ -124,7 +125,7 @@ def fam(inputGed):
                 indi_data.append(line[2])
             elif line[1] == "SEX":
                 indi_data.append(line[2])
-            elif line[1] in ["BIRT", "DEAT"]:
+            elif line[1] in ["BIRT", "DEAT", "MARR", "DIV"]:
                 date_tag = line[1]
             elif line[1] == "FAMC":
                 is_child = "True"
@@ -167,16 +168,35 @@ def fam(inputGed):
                     dates[2] = dates[0]
                     dates[0] = temp
                     indi_data.insert(5, "-".join(dates))
-    #change names 
+                elif date_tag == "MARR": 
+                    dates[1] = monthWordToInt[dates[1]]
+                    if (int(dates[0]) < 10):
+                        dates[0] = "0" + dates[0]
+                    temp = dates[2]
+                    dates[2] = dates[0]
+                    dates[0] = temp
+                    fam_data.insert(1, "-".join(dates))
+                    is_married_date = "True"
+                elif date_tag == "DIV": 
+                    dates[1] = monthWordToInt[dates[1]]
+                    if (int(dates[0]) < 10):
+                        dates[0] = "0" + dates[0]
+                    temp = dates[2]
+                    dates[2] = dates[0]
+                    dates[0] = temp
+                    fam_data.insert(2, "-".join(dates))
+                    is_divorced = "True"
+
     for i in fam_list: 
         if i[3] in names: 
             i.insert(4, names[i[3]])
         if i[5] in names: 
             i.insert(6, names[i[5]])
+    #for i in fam_list: 
+        #print(i)
     return (indi_list, fam_list)
 
 
-# Function to write the table
 def table(lists): 
     x = PrettyTable()
     x.field_names = ['ID', 'Name', 'Gender', 'Birthday', 'Age',
@@ -233,22 +253,13 @@ def main():
                 print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
         
         us03.main(allLists[0])
-        us06.divorceBeforeDeath(inputGed)
-        us04.marriageBeforeDivorce(inputGed)
-        us05.marriageBeforeDeath(inputGed) 
+        us04.main(allLists[1])
+        us05.main(allLists[0], allLists[1])
+        us06.main(allLists[0], allLists[1])  
+        us07.main(allLists[0])
         us16.main(allLists[0])
         us29.deaths(allLists[0]) 
-        family = us21.main()
-        for i in family:
-            if us21.CheckGenderForRole(i) != True:
-                print("ERROR: FAMILY: US21: " + family[i].ID + ": gender was wrong")
-
-        recentBirthList = us35.RecentBirths(individual)
-        if len(recentBirthList) > 0:
-            for i in recentBirthList:
-                print("NOTIFICATION: INDIVIDUAL: US35: "+ i + ": Birthday " + individual[i].birthDate + " was born in the last 30 days")
-        #us22.uniqueIDs(allLists)
-        
+        us32.main(allLists[0])
         print("\n")
 if __name__ == "__main__":
     main()

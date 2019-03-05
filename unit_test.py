@@ -1,7 +1,7 @@
 '''
 All Unit Tests 
 '''
-import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21
+import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31
 import unittest
 import readGed
 from package.userStories import us07,us32
@@ -63,9 +63,9 @@ class TestResults(unittest.TestCase):
         inputGed1 = open("input_6.ged", "r")
         output = readGed.fam(inputGed)
         output1 = readGed.fam(inputGed1)
-        self.assertEqual(us03.birthBeforeDeath(output1[0]), ["ERROR: INDIVIDUAL: US03: I10: Death date occurs before their date of birth."])
+        self.assertEqual(us03.birthBeforeDeath(output1[0]), ["ERROR: INDIVIDUAL: US03: I10 has a death date before their date of birth."])
         inputGed.close()
-        self.assertEqual(us03.birthBeforeDeath(output[0]), ["ERROR: INDIVIDUAL: US03: I4: Death date occurs before their date of birth."])
+        self.assertEqual(us03.birthBeforeDeath(output[0]), ["ERROR: INDIVIDUAL: US03: I4 has a death date before their date of birth."])
         inputGed1.close()
     
     def testUS32(self): #US32
@@ -144,6 +144,17 @@ class TestResults(unittest.TestCase):
         for i in family:
             self.assertTrue(us21.CheckGenderForRole(
                 i), msg="ERROR: FAMILY: US21: " + family[i].ID + ": gender was wrong")
+    def testUS31(self):
+        inputGed = open("Sprint1.ged", "r")
+        inputGed1 = open("input_6.ged", "r")
+        output = readGed.fam(inputGed)
+        output1 = readGed.fam(inputGed1)
+        self.assertEqual(us31.checkForLivingSingle(output1[0]), ['ERROR: INDIVIDUAL: US31 I4 Rocky /Quinto/ is living and single', 'ERROR: INDIVIDUAL: US31 I11 John /Quinto/ is living and single'])
+        inputGed.close()
+        self.assertEqual(us31.checkForLivingSingle(output[0]), [])
+        inputGed1.close()
+       
+        
 
     
 if __name__ == '__main__':   
