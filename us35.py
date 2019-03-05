@@ -6,7 +6,7 @@ List recent births
 from datetime import date
 from datetime import datetime,timedelta
 from collections import OrderedDict
-import unittest
+
 
 individual = OrderedDict()
 family = OrderedDict()
@@ -147,22 +147,9 @@ def RecentBirths(individual):
     return recentBirthID
 
 
-class TestResults(unittest.TestCase):
-    def test_dateBeforeCurrent(self):
-        inputGed = open("inputGed5.ged", "r")
-        self.assertEqual(RecentBirths(individual),['I1'])
-            
 
 def main():
-    try:
-        inputGed = open("inputGed5.ged", "r")
-
-    except FileNotFoundError:
-        print("Can't open the file")
-    else:
-        individual = parseGed(inputGed) 
-        return individual
-
-if __name__ == '__main__':
-    main()
-    unittest.main()
+    
+    inputGed = open("Sprint1.ged", "r")
+    individual = parseGed(inputGed)
+    return individual
