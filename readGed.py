@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us35
 from package.userStories import us07, us32
 
 valid = {
@@ -259,6 +259,16 @@ def main():
         us07.main(allLists[0])
         us16.main(allLists[0])
         us29.deaths(allLists[0]) 
+        
+        family = us21.main()
+        for i in family:
+            if us21.CheckGenderForRole(i) != True:
+                print("ERROR: FAMILY: US21: " + family[i].ID + ": gender was wrong")
+
+        recentBirthList = us35.RecentBirths(individual)
+        if len(recentBirthList) > 0:
+            for i in recentBirthList:
+                print("NOTIFICATION: INDIVIDUAL: US35: "+ i + ": Birthday " + individual[i].birthDate + " was born in the last 30 days")
         us32.main(allLists[0])
         print("\n")
 if __name__ == "__main__":
