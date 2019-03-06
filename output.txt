@@ -1,0 +1,39 @@
+
+Individuals
++----+--------------------+--------+------------+-----+-------+------------+--------+--------+
+| ID |        Name        | Gender |  Birthday  | Age | Alive |   Death    | Child  | Spouse |
++----+--------------------+--------+------------+-----+-------+------------+--------+--------+
+| I1 |    Bob /Smiath/    |   M    | 1907-04-04 |  92 | False | 1999-10-31 | {'F2'} | {'F1'} |
+| I2 | Johnathan /Smith/  |   M    | 1879-11-21 |  80 | False | 1959-04-10 |   NA   | {'F2'} |
+| I3 | Dorothy /Rodgers/  |   F    | 1879-10-01 |  83 | False | 1962-05-18 |   NA   | {'F2'} |
+| I4 |   Mary /Johnson/   |   F    | 1908-02-03 |  81 | False | 1989-06-29 |   NA   | {'F1'} |
+| I5 |   Brian /Smith/    |   M    | 1942-03-26 |  77 |  True |     NA     | {'F3'} | {'F1'} |
+| I6 | Nancy /Jefferson/  |   F    | 1942-02-15 |  34 | False | 1976-12-09 |   NA   | {'F4'} |
+| I7 | Barbara /Williams/ |   F    | 1943-08-09 |  76 |  True |     NA     |   NA   | {'F3'} |
+| I8 |  Michael /Smith/   |   M    | 1975-03-20 |  44 |  True |     NA     | {'F4'} |   NA   |
+| I9 |  Melissa /Smith/   |   F    | 1978-10-09 |  41 |  True |     NA     | {'F3'} |   NA   |
++----+--------------------+--------+------------+-----+-------+------------+--------+--------+
+
+Families
++----+---------+----------+------------+-------------------+---------+--------------------+----------+
+| ID | Married | Divorced | Husband ID |    Husband Name   | Wife ID |     Wife Name      | Children |
++----+---------+----------+------------+-------------------+---------+--------------------+----------+
+| F1 |   Yes   |    NA    |     I1     |    Bob /Smiath/   |    I4   |   Mary /Johnson/   |  {'I5'}  |
+| F2 |   Yes   |    NA    |     I2     | Johnathan /Smith/ |    I3   | Dorothy /Rodgers/  |  {'I1'}  |
+| F3 |   Yes   |    NA    |     I5     |   Brian /Smith/   |    I7   | Barbara /Williams/ |  {'I9'}  |
+| F4 |   Yes   |    NA    |     I5     |   Brian /Smith/   |    I6   | Nancy /Jefferson/  |  {'I8'}  |
++----+---------+----------+------------+-------------------+---------+--------------------+----------+
+
+ERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150
+ERROR: INDIVIDUAL: US01: I2: Birthday 2968-11-21 occurs in the future
+ERROR: INDIVIDUAL: US02: I2: Birthday 2968-11-21 occurs before marriage 1994-01-01
+ERROR: INDIVIDUAL: US01: I7: Marriage date 3961-07-01 occurs in the future
+ERROR: INDIVIDUAL: US01: I11: Death date 3980-07-03 occurs in the future
+ERROR: INDIVIDUAL: US01: I16: Birthday 2963-06-11 occurs in the future
+[]
+ERROR: INDIVIDUAL: US16: Bob /Smiath/ does not have the same last name
+
+ERROR: INDIVIDUAL: US16: Brian /Smith/ does not have the same last name
+
+
+
