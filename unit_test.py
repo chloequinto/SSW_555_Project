@@ -1,7 +1,7 @@
 '''
 All Unit Tests 
 '''
-import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31
+import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10
 import unittest
 import readGed
 from package.userStories import us07,us32
@@ -153,6 +153,15 @@ class TestResults(unittest.TestCase):
         inputGed.close()
         self.assertEqual(us31.checkForLivingSingle(output[0]), [])
         inputGed1.close()
+
+    def testUS10(self):
+        inputGed = open("Sprint1.ged", "r")
+        inputGed1 = open("input_6.ged", "r")
+        output = readGed.fam(inputGed)
+        output1 = readGed.fam(inputGed1)
+        self.assertEqual(us10.main(output[0], output[1]), ['ERROR: INDIVIDUAL: US10: I1 marriage date occurs before they are 15', 'ERROR: INDIVIDUAL: US10: I4 marriage date occurs before they are 15', 'ERROR: INDIVIDUAL: US10: I5 marriage date occurs before they are 15', 'ERROR: INDIVIDUAL: US10: I6 marriage date occurs before they are 15'])
+        inputGed1.close()
+        
        
         
 
