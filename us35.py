@@ -144,7 +144,6 @@ def RecentBirths(individual):
             
             if diffDate.days < 30 and diffDate.days > 0:
                 recentBirthID.append(indi)
-    print(recentBirthID)
     return recentBirthID
 
 
