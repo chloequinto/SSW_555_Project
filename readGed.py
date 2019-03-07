@@ -47,6 +47,8 @@ def fam(inputGed):
             if is_married_date != "True": 
                 fam_data.insert(1, "NA")
                 fam_data.insert(2, "NA") #divorced
+            elif is_married_date == "True" and is_divorced == "False":
+                    fam_data.insert(2, "NA") #Married but not divorced
             is_married_date = "False"
             is_divorced = "False"
             fam_list.append(fam_data)
@@ -85,6 +87,8 @@ def fam(inputGed):
                 if is_married_date != "True": 
                     fam_data.insert(1, "NA")
                     fam_data.insert(2, "NA") #divorced
+                elif is_married_date == "True" and is_divorced == "False":
+                    fam_data.insert(2, "NA") #Married but not divorced
                 is_married_date = "False"
                 is_divorced = "False"
                 fam_list.append(fam_data)
@@ -222,7 +226,7 @@ def table(lists):
 
 def main():
     try:
-        inputGed = open("Sprint1.ged", "r")
+        inputGed = open("Sprint2.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
