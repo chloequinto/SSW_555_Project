@@ -1,11 +1,7 @@
 '''
 All Unit Tests 
 '''
-<<<<<<< HEAD
-import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us14
-=======
-import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26
->>>>>>> 7dc718312e8947157e78e1bf0da6ea3226bd537a
+import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14
 import unittest
 import readGed
 from package.userStories import us07,us32
@@ -165,7 +161,6 @@ class TestResults(unittest.TestCase):
         output1 = readGed.fam(inputGed1)
         self.assertEqual(us10.main(output[0], output[1]), ['ERROR: INDIVIDUAL: US10: I1 marriage date occurs before they are 15', 'ERROR: INDIVIDUAL: US10: I4 marriage date occurs before they are 15', 'ERROR: INDIVIDUAL: US10: I5 marriage date occurs before they are 15', 'ERROR: INDIVIDUAL: US10: I6 marriage date occurs before they are 15'])
         inputGed1.close()
-<<<<<<< HEAD
         
     def testUS14(self):
         inputGed = open("Sprint2.ged", "r")
@@ -173,7 +168,6 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us14.main(output[0], output[1]), ["ERROR: FAMILY: US14: F4 MORE THAN 5 SIBLINGS HAVE MULTIPLE BIRTHDAYS ON YEAR 2018"])
        
         
-=======
 
     def testUS22(self):
         inputGed = open("Sprint2.ged", "r")
@@ -184,7 +178,6 @@ class TestResults(unittest.TestCase):
         inputGed = open("Sprint2.ged", "r")
         output = readGed.fam(inputGed)
         self.assertEqual(us22.uniqueIDs(output), (['I21'], []))        
->>>>>>> 7dc718312e8947157e78e1bf0da6ea3226bd537a
 
     
 if __name__ == '__main__':   
