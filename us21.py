@@ -109,6 +109,6 @@ def CheckGenderForRole(index):
 
 
 def main():
-    inputGed = open("Sprint1.ged", "r")
+    inputGed = open("Sprint2.ged", "r")
     family = parseGed(inputGed)
     return family

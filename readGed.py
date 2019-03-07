@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us35
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26
 from package.userStories import us07, us32
 
 valid = {
@@ -263,7 +263,10 @@ def main():
         us07.main(allLists[0])
         us10.main(allLists[0], allLists[1])
         us16.main(allLists[0])
-        us29.deaths(allLists[0]) 
+        us29.deaths(allLists[0])
+        us26.corrEntries(allLists)
+        us22.uniqueIDs(allLists)
+        us31.checkForLivingSingle(allLists[0])
         
         family = us21.main()
         for i in family:

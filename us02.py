@@ -147,6 +147,6 @@ def BirthBeforeMarriage(individual):
 
 
 def main(): 
-    inputGed = open("Sprint1.ged", "r")
+    inputGed = open("Sprint2.ged", "r")
     individual = parseGed(inputGed)
     return individual

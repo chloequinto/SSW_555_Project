@@ -149,7 +149,7 @@ class TestResults(unittest.TestCase):
         inputGed1 = open("input_6.ged", "r")
         output = readGed.fam(inputGed)
         output1 = readGed.fam(inputGed1)
-        self.assertEqual(us31.checkForLivingSingle(output1[0]), ['ERROR: INDIVIDUAL: US31 I4 Rocky /Quinto/ is living and single', 'ERROR: INDIVIDUAL: US31 I11 John /Quinto/ is living and single'])
+        self.assertEqual(us31.checkForLivingSingle(output1[0]), ['ERROR: INDIVIDUAL: US31: I4 Rocky /Quinto/ is living and single', 'ERROR: INDIVIDUAL: US31: I11 John /Quinto/ is living and single'])
         inputGed.close()
         self.assertEqual(us31.checkForLivingSingle(output[0]), [])
         inputGed1.close()

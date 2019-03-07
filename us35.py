@@ -144,12 +144,12 @@ def RecentBirths(individual):
             
             if diffDate.days < 30 and diffDate.days > 0:
                 recentBirthID.append(indi)
+    print(recentBirthID)
     return recentBirthID
 
 
 
 def main():
     
-    inputGed = open("Sprint1.ged", "r")
-    individual = parseGed(inputGed)
+    inputGed = open("Sprint2.ged", "r")
     return individual
