@@ -144,7 +144,7 @@ def fam(inputGed):
             elif line[1] == "WIFE": 
                 fam_data.append(line[2])
             elif line[1] == "CHIL":
-                fam_data.append("'" + line[2] + "'")
+                fam_data.append("" + line[2] + "")
 
         elif line[0] == str(2):
             if line[1] == "DATE":
