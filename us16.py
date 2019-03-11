@@ -8,19 +8,18 @@ from prettytable import PrettyTable
 
 def sameLastName(inputs):
     males = {}
-    # use family ids as key, add all men to list
+    # check spouse and child indexes to get all family ids of the male members
     for i in inputs:
         if i[2] == "M":
+            lastName = (i[1].split(" "))[1]
             if i[8] != "NA":
                 famId = i[8].replace("'", "").replace("{", "").replace("}", "")
-                lastName = (i[1].split(" "))[1]
                 if famId not in males:
                     males[famId] = []
                 if lastName not in males[famId]:
                     males[famId].append(lastName)
             elif i[7] != "NA":
                 famId = i[7].replace("'", "").replace("{", "").replace("}", "")
-                lastName = (i[1].split(" "))[1]
                 if famId not in males:
                     males[famId] = []
                 if lastName not in males[famId]:
@@ -28,10 +27,8 @@ def sameLastName(inputs):
 
     # if there are different names, then the set should be greater than 1
     for i in males:
-        if len(list(set(males[i]))) == 1:
-            males[i] = True
-        else:
-            males[i] = False
+        males[i] = True if len(list(set(males[i]))) == 1 else False
+
     allSameName = []
     errors = []
     for i in inputs:
@@ -48,6 +45,7 @@ def sameLastName(inputs):
                 errors.append("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last name")
             else:
                 allSameName.append(i)
+                
     return allSameName, errors
 
 def table(lists):
