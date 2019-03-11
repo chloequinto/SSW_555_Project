@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us18
 from package.userStories import us07, us32
 
 valid = {
@@ -260,6 +260,7 @@ def main():
         us16.main(allLists[0])
         us29.deaths(allLists[0]) 
         us32.main(allLists[0])
+        us18.main(allLists[1])
         print("\n")
 if __name__ == "__main__":
     main()
