@@ -54,10 +54,10 @@ def siblingsCantMarry(input, marriage_pairs, children_list):
                         errors.append("ERROR: FAMILY: US18: " + str(j) + " Siblings should not marry.")
                         problem = True
 
-if problem == True:
-    for i in errors:
-        print(str(i))
-    return errors
+    if problem == True:
+        for i in errors:
+            print(str(i))
+        return errors
 
 
 def main(input):
