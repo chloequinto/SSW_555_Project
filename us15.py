@@ -2,17 +2,12 @@
 US - 15: Fewer than 15 siblings 
 '''
 def checkFewerThan15(input):
-    problem = False
-    errors = []
-    for i in input: 
-        if len(i) >= 21: 
-            problem = True
-            
-            errors.append("ERROR: FAMILY: US15: " + i[0] + " has more than 15 siblings.")
-    if problem == True: 
-        for i in errors: 
-            print(str(i))
-    return errors
+    res = []
+    print("ERROR: FAMILY: US15: " +  str(any(len(i) > 21 for i in input if True)) + " a family has more than 15 siblings")
+    res.append("ERROR: FAMILY: US15: " +  str(any(len(i) > 21 for i in input if True)) + " a family has more than 15 siblings")
+    return res
+
+ 
 
 def main(lists): 
     checkFewerThan15(lists)

@@ -68,7 +68,7 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us03.birthBeforeDeath(output[0]), ["ERROR: INDIVIDUAL: US03: I4 has a death date before their date of birth."])
         inputGed1.close()
     
-    def testUS32(self): #US32
+    def testUS32(self): 
         inputGed = open("Sprint1.ged", "r")
         inputGed1 = open("input_8.ged", "r")
         output = readGed.fam(inputGed)
@@ -76,7 +76,7 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us32.checkMultipleBirths(output[0]),us07res)
         self.assertEqual(us32.checkMultipleBirths(output1[0]),us07res1)
 
-    def testUS07(self): #US07 
+    def testUS07(self): 
         inputGed = open("Sprint1.ged", "r")
         inputGed1 = open("input_8.ged", "r")
         output = readGed.fam(inputGed)
@@ -182,7 +182,7 @@ class TestResults(unittest.TestCase):
     def testUS15(self): 
         inputGed = open("Sprint2.ged", "r")
         output = readGed.fam(inputGed) 
-        self.assertEqual(us15.checkFewerThan15(output[1]), ["ERROR: FAMILY: US15: F3 has more than 15 siblings."])     
+        self.assertEqual(us15.checkFewerThan15(output[1]), ["ERROR: FAMILY: US15: True a family has more than 15 siblings"])     
 
     
 if __name__ == '__main__':   
