@@ -20,7 +20,7 @@ def return_marriages(input):
             fams.append(i[5])
             marriage_pairs.append(fams)
 
-return marriage_pairs #returns pair of HusbID, WifeID
+    return marriage_pairs #returns pair of HusbID, WifeID
 
 def return_children(input):
     problem = False
@@ -34,7 +34,7 @@ def return_children(input):
             fams.append(i[7:])
             children_list.append(fams)
 
-return children_list #returns famID and list of children
+    return children_list #returns famID and list of children
 
 def siblingsCantMarry(input, marriage_pairs, children_list):
     errors = []
