@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18
 from package.userStories import us07, us32
 
 valid = {
