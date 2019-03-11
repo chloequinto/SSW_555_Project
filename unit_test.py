@@ -1,7 +1,7 @@
 '''
 All Unit Tests 
 '''
-import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14
+import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14, us15
 import unittest
 import readGed
 from package.userStories import us07,us32
@@ -177,7 +177,12 @@ class TestResults(unittest.TestCase):
     def testUS26(self):
         inputGed = open("Sprint2.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertEqual(us22.uniqueIDs(output), (['I21'], []))        
+        self.assertEqual(us22.uniqueIDs(output), (['I21'], []))  
+
+    def testUS15(self): 
+        inputGed = open("Sprint2.ged", "r")
+        output = readGed.fam(inputGed) 
+        self.assertEqual(us15.checkFewerThan15(output[1]), ["ERROR: FAMILY: US15: F3 has more than 15 siblings."])     
 
     
 if __name__ == '__main__':   
