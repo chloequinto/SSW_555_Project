@@ -42,17 +42,15 @@ def siblingsCantMarry(input, marriage_pairs, children_list):
     wife_id = []
     problem = False
     #k[1] is an array of children
-    for i in input:
-        for j in marriage_pairs:
-            for k in children_list:
-                #if j[0:] in k[0:]: #if married pair in children
-                #if marriage_pairs[0:] in children_list[1:]:
-                #if any(match in marriage_pairs for match in children_list):
-                #if j[0:] != "NA":
-                if j[0] in k[1]:
-                    if j[1] in k[1]:
-                        errors.append("ERROR: FAMILY: US18: " + str(j) + " Siblings should not marry.")
-                        problem = True
+    for j in marriage_pairs:
+        for k in children_list:
+            #if j[0:] in k[0:]: #if married pair in children
+            #if marriage_pairs[0:] in children_list[1:]:
+            #if any(match in marriage_pairs for match in children_list):
+            #if j[0:] != "NA":
+            if j[0] in k[1] and j[1] in k[1]:
+                    errors.append("ERROR: FAMILY: US18: " + str(j) + " Siblings should not marry.")
+                    problem = True
 
     if problem == True:
         for i in errors:
