@@ -280,6 +280,7 @@ def main():
             for i in recentBirthList:
                 print("NOTIFICATION: INDIVIDUAL: US35: "+ i + ": Birthday " + individual[i].birthDate + " was born in the last 30 days")
         us32.main(allLists[0])
+        us18.main(allLists[1])
         print("\n")
 if __name__ == "__main__":
     main()
