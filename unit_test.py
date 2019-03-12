@@ -1,7 +1,7 @@
 '''
 All Unit Tests 
 '''
-import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14, us15
+import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14, us15, us18, us30
 import unittest
 import readGed
 from package.userStories import us07,us32
@@ -183,6 +183,21 @@ class TestResults(unittest.TestCase):
         inputGed = open("Sprint2.ged", "r")
         output = readGed.fam(inputGed) 
         self.assertEqual(us15.checkFewerThan15(output[1]), ["ERROR: FAMILY: US15: True a family has more than 15 siblings"])     
+    
+    def testUS18(self): 
+        inputGed = open("Sprint2.ged", "r")
+        output = readGed.fam(inputGed) 
+        self.assertEqual(us18.main(output[1]), ["ERROR: FAMILY: US18: ['I8', 'I7'] Siblings should not marry."]) 
+    
+    def testUS30(self):
+        inputGed = open("Sprint1.ged", "r")
+        inputGed1 = open("input_6.ged", "r")
+        output = readGed.fam(inputGed)
+        output1 = readGed.fam(inputGed1)
+        self.assertEqual(us30.checkForLivingMarried(output1[0]), ['ERROR: INDIVIDUAL: US30: I1 Chloe /Quinto/ is living and married', 'ERROR: INDIVIDUAL: US30: I2 Rafael /Quinto/ is living and married', 'ERROR: INDIVIDUAL: US30: I3 Maria /Quinto/ is living and married', 'ERROR: INDIVIDUAL: US30: I5 Thompson /L/ is living and married', 'ERROR: INDIVIDUAL: US30: I8 Grandpa /Loresco/ is living and married'])
+        inputGed.close()
+        self.assertEqual(us30.checkForLivingMarried(output[0]), ['ERROR: INDIVIDUAL: US30: I1 Edward /Rogers/ is living and married', 'ERROR: INDIVIDUAL: US30: I3 Emily /Rogers/ is living and married', 'ERROR: INDIVIDUAL: US30: I5 Marcia /Rogers/ is living and married', 'ERROR: INDIVIDUAL: US30: I6 Tim /Jones/ is living and married'])
+        inputGed1.close()
 
     
 if __name__ == '__main__':   
