@@ -105,19 +105,19 @@ class TestResults(unittest.TestCase):
         output = readGed.fam(inputGed)
         self.assertEqual(us06.main(output[0], output[1]), ["ERROR: INDIVIDUAL: US06: I4: Divorce date occurs after their date of death."])
 
-    def testmarriageBeforeDivorce(self):
+    def testUS04(self):
         inputGed = open("Sprint1.ged", "r")
         output = readGed.fam(inputGed)
         self.assertEqual(us04.marriageBeforeDivorce(output[1]), ['ERROR: FAMILY: US04: F1: Divorce date occurs before their marriage.'])
         inputGed.close()
         
-    def testmarriageBeforeDeath(self):
+    def testUS05(self):
         inputGed = open("Sprint1.ged", "r")
         output = readGed.fam(inputGed)
         self.assertEqual(us05.main(output[0], output[1]), ["ERROR: INDIVIDUAL: US05: I4: Marriage date occurs after their date of death."])
         inputGed.close()
 
-    def test_dateBeforeCurrent(self):
+    def testUS01(self):
         inputGed = open("inputForTest_MW.ged", "r")
         individual = us01.parseGed(inputGed)
         for i in individual:
@@ -127,18 +127,18 @@ class TestResults(unittest.TestCase):
             self.assertTrue(us01.DivorceBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Divorce date " + individual[i].divorceDate + " occurs in the future")
     
     
-    def test_birthBeforeMarriage(self):
+    def testUS02(self):
         inputGed = open("inputForTest_MW.ged", "r")
         individual = us02.parseGed(inputGed)
         for indi in individual:
             self.assertTrue(us02.BirthBeforeMarriage(individual[indi]),msg="ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
 
-    def testRecentBirth(self):
+    def testUS35(self):
         inputGed = open("inputForTest_MW.ged", "r")
         individual = us35.parseGed(inputGed)
         self.assertEqual(us35.RecentBirths(individual),['I1'])
 
-    def testGenderForRole(self):
+    def testUS21(self):
         inputGed = open("inputForTest_MW.ged", "r")
         family = us21.parseGed(inputGed)
         for i in family:

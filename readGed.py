@@ -232,12 +232,7 @@ def main():
     else:
         allLists = fam(inputGed)
         table(allLists)
-        us32.checkMultipleBirths(inputGed)
-        if us07.checkForLessThan150(inputGed) != True: 
-            print("\nERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150")
-        value = us32.checkMultipleBirths(inputGed)
-        if value != []: 
-            print('ERROR: FAMILY: US32: ' + value )
+        
         individual = us01.main()
         for indi in individual:
             us01Test_Birth = us01.BirthBeforeCurrent(indi)
@@ -265,23 +260,24 @@ def main():
         us14.main(allLists[0], allLists[1])
         us15.main(allLists[1])
         us16.main(allLists[0])
-        us29.deaths(allLists[0])
-        us26.corrEntries(allLists)
-        us22.uniqueIDs(allLists)
-        us31.checkForLivingSingle(allLists[0])
+        us18.main(allLists[1])
         
         family = us21.main()
         for i in family:
             if us21.CheckGenderForRole(i) != True:
                 print("ERROR: FAMILY: US21: " + family[i].ID + ": gender was wrong")
+        
+        us22.uniqueIDs(allLists)
+        us26.corrEntries(allLists)
+        us29.deaths(allLists[0])
+        us30.checkForLivingMarried(allLists[0])
+        us31.checkForLivingSingle(allLists[0])
+        us32.main(allLists[0])
 
         recentBirthList = us35.RecentBirths(individual)
         if len(recentBirthList) > 0:
             for i in recentBirthList:
                 print("NOTIFICATION: INDIVIDUAL: US35: "+ i + ": Birthday " + individual[i].birthDate + " was born in the last 30 days")
-        us32.main(allLists[0])
-        us18.main(allLists[1])
-        us30.checkForLivingMarried(allLists[0])
         print("\n")
 if __name__ == "__main__":
     main()

@@ -37,8 +37,6 @@ Families
 | F4 | 2040-09-07 |     NA     |     I8     |   Juju /Jones/  |    I7   |  Sharla /Jones/  |                                       {}                                      |
 | F5 | 2041-07-16 |     NA     |     I9     |  Reggie /Jones/ |   I10   | Mariah /Rogers/  |                                       {}                                      |
 +----+------------+------------+------------+-----------------+---------+------------------+-------------------------------------------------------------------------------+
-
-ERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150
 ERROR: INDIVIDUAL: US01: I1: Birthday 2032-06-10 occurs in the future
 ERROR: INDIVIDUAL: US02: I1: Birthday 2032-06-10 occurs before marriage 2005-11-01
 ERROR: INDIVIDUAL: US01: I4: Birthday 2032-06-10 occurs in the future
@@ -66,11 +64,21 @@ ERROR: FAMILY: US14: F4 MORE THAN 5 SIBLINGS HAVE MULTIPLE BIRTHDAYS ON YEAR 201
 ERROR: FAMILY: US15: True a family has more than 15 siblings
 ERROR: INDIVIDUAL: US16: Edward /Rogers/ does not have the same last name
 ERROR: INDIVIDUAL: US16: Buddy /Tony/ does not have the same last name
-NOTE: US29: Individual I2 is dead.
-NOTE: US29: Individual I4 is dead.
+ERROR: FAMILY: US18: ['I8', 'I7'] Siblings should not marry.
+ERROR: FAMILY: US21: F4: gender was wrong
+ERROR: INDIVIDUAL: US22: I21 is a duplicate key.
 ERROR: FAMILY: US26: Family F2 does not have the correct corresponding entries
 ERROR: FAMILY: US26: Family F3 does not have the correct corresponding entries
-ERROR: INDIVIDUAL: US22: I21 is a duplicate key.
+NOTE: US29: Individual I2 is dead.
+NOTE: US29: Individual I4 is dead.
+ERROR: INDIVIDUAL: US30: I1 Edward /Rogers/ is living and married
+ERROR: INDIVIDUAL: US30: I3 Emily /Rogers/ is living and married
+ERROR: INDIVIDUAL: US30: I5 Marcia /Rogers/ is living and married
+ERROR: INDIVIDUAL: US30: I6 Tim /Jones/ is living and married
+ERROR: INDIVIDUAL: US30: I7 Sharla /Jones/ is living and married
+ERROR: INDIVIDUAL: US30: I8 Juju /Jones/ is living and married
+ERROR: INDIVIDUAL: US30: I9 Reggie /Jones/ is living and married
+ERROR: INDIVIDUAL: US30: I10 Mariah /Rogers/ is living and married
 ERROR: INDIVIDUAL: US31: I11 Ryan /Jones/ is living and single
 ERROR: INDIVIDUAL: US31: I12 Fred /Jones/ is living and single
 ERROR: INDIVIDUAL: US31: I13 Mary /Jones/ is living and single
@@ -83,8 +91,6 @@ ERROR: INDIVIDUAL: US31: I19 Mike /Jones/ is living and single
 ERROR: INDIVIDUAL: US31: I20 James /Jones/ is living and single
 ERROR: INDIVIDUAL: US31: I21 Nailah /Jones/ is living and single
 ERROR: INDIVIDUAL: US31: I21 Leanne /Jones/ is living and single
-ERROR: FAMILY: US21: F4: gender was wrong
-NOTIFICATION: INDIVIDUAL: US35: I9: Birthday 2019-03-06 was born in the last 30 days
 ERROR: INDIVIDUAL: US32: I1 has the same birthdays as someone else on ['2032-06-10', '2018-06-01']
 ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['2032-06-10', '2018-06-01']
 ERROR: INDIVIDUAL: US32: I11 has the same birthdays as someone else on ['2032-06-10', '2018-06-01']
@@ -93,14 +99,6 @@ ERROR: INDIVIDUAL: US32: I13 has the same birthdays as someone else on ['2032-06
 ERROR: INDIVIDUAL: US32: I14 has the same birthdays as someone else on ['2032-06-10', '2018-06-01']
 ERROR: INDIVIDUAL: US32: I15 has the same birthdays as someone else on ['2032-06-10', '2018-06-01']
 ERROR: INDIVIDUAL: US32: I16 has the same birthdays as someone else on ['2032-06-10', '2018-06-01']
-ERROR: FAMILY: US18: ['I8', 'I7'] Siblings should not marry.
-ERROR: INDIVIDUAL: US30: I1 Edward /Rogers/ is living and married
-ERROR: INDIVIDUAL: US30: I3 Emily /Rogers/ is living and married
-ERROR: INDIVIDUAL: US30: I5 Marcia /Rogers/ is living and married
-ERROR: INDIVIDUAL: US30: I6 Tim /Jones/ is living and married
-ERROR: INDIVIDUAL: US30: I7 Sharla /Jones/ is living and married
-ERROR: INDIVIDUAL: US30: I8 Juju /Jones/ is living and married
-ERROR: INDIVIDUAL: US30: I9 Reggie /Jones/ is living and married
-ERROR: INDIVIDUAL: US30: I10 Mariah /Rogers/ is living and married
+NOTIFICATION: INDIVIDUAL: US35: I9: Birthday 2019-03-06 was born in the last 30 days
 
 
