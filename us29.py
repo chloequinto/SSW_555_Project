@@ -10,7 +10,7 @@ def deaths(input):
     deaths = []
     for i in input:
         if i[6] != "NA":
-            print("Individual " + i[0] + " is dead.")
+            print("NOTE: US29: Individual " + i[0] + " is dead.")
             deaths.append(i)
     
     return deaths

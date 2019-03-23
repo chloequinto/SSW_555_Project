@@ -1,4 +1,3 @@
-# User Story 7 
 
 import re
 from datetime import datetime

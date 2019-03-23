@@ -1,7 +1,7 @@
 '''
 All Unit Tests 
 '''
-import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02
+import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14, us15, us18, us30
 import unittest
 import readGed
 from package.userStories import us07,us32
@@ -68,7 +68,7 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us03.birthBeforeDeath(output[0]), ["ERROR: INDIVIDUAL: US03: I4: Death date occurs before their date of birth."])
         inputGed1.close()
     
-    def testUS32(self): #US32
+    def testUS32(self): 
         inputGed = open("Sprint1.ged", "r")
         inputGed1 = open("input_8.ged", "r")
         output = readGed.fam(inputGed)
@@ -76,7 +76,7 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us32.checkMultipleBirths(output[0]),us07res)
         self.assertEqual(us32.checkMultipleBirths(output1[0]),us07res1)
 
-    def testUS07(self): #US07 
+    def testUS07(self): 
         inputGed = open("Sprint1.ged", "r")
         inputGed1 = open("input_8.ged", "r")
         output = readGed.fam(inputGed)
@@ -105,19 +105,19 @@ class TestResults(unittest.TestCase):
         output = readGed.fam(inputGed)
         self.assertEqual(us06.main(output[0], output[1]), ["ERROR: INDIVIDUAL: US06: I4: Divorce date occurs after their date of death."])
 
-    def testUS04(self):
+    def testmarriageBeforeDivorce(self):
         inputGed = open("Sprint1.ged", "r")
         output = readGed.fam(inputGed)
         self.assertEqual(us04.marriageBeforeDivorce(output[1]), ['ERROR: FAMILY: US04: F1: Divorce date occurs before their marriage.'])
         inputGed.close()
         
-    def testUS05(self):
+    def testmarriageBeforeDeath(self):
         inputGed = open("Sprint1.ged", "r")
         output = readGed.fam(inputGed)
         self.assertEqual(us05.main(output[0], output[1]), ["ERROR: INDIVIDUAL: US05: I4: Marriage date occurs after their date of death."])
         inputGed.close()
 
-    def testUS01(self):
+    def test_dateBeforeCurrent(self):
         inputGed = open("inputForTest_MW.ged", "r")
         individual = us01.parseGed(inputGed)
         for i in individual:
@@ -127,16 +127,80 @@ class TestResults(unittest.TestCase):
             self.assertTrue(us01.DivorceBeforeCurrent(i),msg="ERROR: INDIVIDUAL: US01: "+ individual[i].ID + ": Divorce date " + individual[i].divorceDate + " occurs in the future")
     
     
-    def testUS02(self):
+    def test_birthBeforeMarriage(self):
         inputGed = open("inputForTest_MW.ged", "r")
         individual = us02.parseGed(inputGed)
         for indi in individual:
             self.assertTrue(us02.BirthBeforeMarriage(individual[indi]),msg="ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
 
+    def testRecentBirth(self):
+        inputGed = open("inputForTest_MW.ged", "r")
+        individual = us35.parseGed(inputGed)
+        self.assertEqual(us35.RecentBirths(individual),['I1'])
+
+    def testGenderForRole(self):
+        inputGed = open("inputForTest_MW.ged", "r")
+        family = us21.parseGed(inputGed)
+        for i in family:
+            self.assertTrue(us21.CheckGenderForRole(
+                i), msg="ERROR: FAMILY: US21: " + family[i].ID + ": gender was wrong")
+    def testUS31(self):
+        inputGed = open("Sprint1.ged", "r")
+        inputGed1 = open("input_6.ged", "r")
+        output = readGed.fam(inputGed)
+        output1 = readGed.fam(inputGed1)
+        self.assertEqual(us31.checkForLivingSingle(output1[0]), ['ERROR: INDIVIDUAL: US31: I4 Rocky /Quinto/ is living and single', 'ERROR: INDIVIDUAL: US31: I11 John /Quinto/ is living and single'])
+        inputGed.close()
+        self.assertEqual(us31.checkForLivingSingle(output[0]), [])
+        inputGed1.close()
+
+    def testUS10(self):
+        inputGed = open("Sprint1.ged", "r")
+        inputGed1 = open("input_6.ged", "r")
+        output = readGed.fam(inputGed)
+        output1 = readGed.fam(inputGed1)
+        self.assertEqual(us10.main(output[0], output[1]), ['ERROR: INDIVIDUAL: US10: I1 marriage date occurs before they are 15', 'ERROR: INDIVIDUAL: US10: I4 marriage date occurs before they are 15', 'ERROR: INDIVIDUAL: US10: I5 marriage date occurs before they are 15', 'ERROR: INDIVIDUAL: US10: I6 marriage date occurs before they are 15'])
+        inputGed1.close()
+        
+    def testUS14(self):
+        inputGed = open("Sprint2.ged", "r")
+        output = readGed.fam(inputGed)
+        self.assertEqual(us14.main(output[0], output[1]), ["ERROR: FAMILY: US14: F4 MORE THAN 5 SIBLINGS HAVE MULTIPLE BIRTHDAYS ON YEAR 2018"])
+       
+        
+
+    def testUS22(self):
+        inputGed = open("Sprint2.ged", "r")
+        output = readGed.fam(inputGed)
+        self.assertEqual(us26.corrEntries(output), ["ERROR: FAMILY: US26: Family F2 does not have the correct corresponding entries","ERROR: FAMILY: US26: Family F3 does not have the correct corresponding entries"])      
+    
+    def testUS26(self):
+        inputGed = open("Sprint2.ged", "r")
+        output = readGed.fam(inputGed)
+        self.assertEqual(us22.uniqueIDs(output), (['I21'], []))  
+
+    def testUS15(self): 
+        inputGed = open("Sprint2.ged", "r")
+        output = readGed.fam(inputGed) 
+        self.assertEqual(us15.checkFewerThan15(output[1]), ["ERROR: FAMILY: US15: True a family has more than 15 siblings"])     
+    
+    def testUS18(self): 
+        inputGed = open("Sprint2.ged", "r")
+        output = readGed.fam(inputGed) 
+        self.assertEqual(us18.main(output[1]), ["ERROR: FAMILY: US18: ['I8', 'I7'] Siblings should not marry."]) 
+    
+    def testUS30(self):
+        inputGed = open("Sprint1.ged", "r")
+        inputGed1 = open("input_6.ged", "r")
+        output = readGed.fam(inputGed)
+        output1 = readGed.fam(inputGed1)
+        self.assertEqual(us30.checkForLivingMarried(output1[0]), ['ERROR: INDIVIDUAL: US30: I1 Chloe /Quinto/ is living and married', 'ERROR: INDIVIDUAL: US30: I2 Rafael /Quinto/ is living and married', 'ERROR: INDIVIDUAL: US30: I3 Maria /Quinto/ is living and married', 'ERROR: INDIVIDUAL: US30: I5 Thompson /L/ is living and married', 'ERROR: INDIVIDUAL: US30: I8 Grandpa /Loresco/ is living and married'])
+        inputGed.close()
+        self.assertEqual(us30.checkForLivingMarried(output[0]), ['ERROR: INDIVIDUAL: US30: I1 Edward /Rogers/ is living and married', 'ERROR: INDIVIDUAL: US30: I3 Emily /Rogers/ is living and married', 'ERROR: INDIVIDUAL: US30: I5 Marcia /Rogers/ is living and married', 'ERROR: INDIVIDUAL: US30: I6 Tim /Jones/ is living and married'])
+        inputGed1.close()
 
     
 if __name__ == '__main__':   
 
 
     unittest.main() 
-    

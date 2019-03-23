@@ -1,9 +1,6 @@
 '''
 User Story 32
-List Multiple Births 
-
 '''
-
 import collections
 
 
@@ -24,5 +21,3 @@ def checkMultipleBirths(lists):
 
 def main(lists): 
     checkMultipleBirths(lists)
-
-

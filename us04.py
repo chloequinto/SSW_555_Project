@@ -1,7 +1,6 @@
 '''
 User Story 04
 Marriage before divorce
-
 '''
 from prettytable import PrettyTable
 from datetime import datetime

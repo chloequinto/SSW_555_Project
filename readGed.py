@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18, us30
 from package.userStories import us07, us32
 
 valid = {
@@ -47,6 +47,8 @@ def fam(inputGed):
             if is_married_date != "True": 
                 fam_data.insert(1, "NA")
                 fam_data.insert(2, "NA") #divorced
+            elif is_married_date == "True" and is_divorced == "False":
+                    fam_data.insert(2, "NA") #Married but not divorced
             is_married_date = "False"
             is_divorced = "False"
             fam_list.append(fam_data)
@@ -85,6 +87,8 @@ def fam(inputGed):
                 if is_married_date != "True": 
                     fam_data.insert(1, "NA")
                     fam_data.insert(2, "NA") #divorced
+                elif is_married_date == "True" and is_divorced == "False":
+                    fam_data.insert(2, "NA") #Married but not divorced
                 is_married_date = "False"
                 is_divorced = "False"
                 fam_list.append(fam_data)
@@ -140,7 +144,7 @@ def fam(inputGed):
             elif line[1] == "WIFE": 
                 fam_data.append(line[2])
             elif line[1] == "CHIL":
-                fam_data.append("'" + line[2] + "'")
+                fam_data.append("" + line[2] + "")
 
         elif line[0] == str(2):
             if line[1] == "DATE":
@@ -222,7 +226,7 @@ def table(lists):
 
 def main():
     try:
-        inputGed = open("Sprint1.ged", "r")
+        inputGed = open("Sprint2.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
@@ -257,9 +261,27 @@ def main():
         us05.main(allLists[0], allLists[1])
         us06.main(allLists[0], allLists[1])  
         us07.main(allLists[0])
+        us10.main(allLists[0], allLists[1])
+        us14.main(allLists[0], allLists[1])
+        us15.main(allLists[1])
         us16.main(allLists[0])
-        us29.deaths(allLists[0]) 
+        us29.deaths(allLists[0])
+        us26.corrEntries(allLists)
+        us22.uniqueIDs(allLists)
+        us31.checkForLivingSingle(allLists[0])
+        
+        family = us21.main()
+        for i in family:
+            if us21.CheckGenderForRole(i) != True:
+                print("ERROR: FAMILY: US21: " + family[i].ID + ": gender was wrong")
+
+        recentBirthList = us35.RecentBirths(individual)
+        if len(recentBirthList) > 0:
+            for i in recentBirthList:
+                print("NOTIFICATION: INDIVIDUAL: US35: "+ i + ": Birthday " + individual[i].birthDate + " was born in the last 30 days")
         us32.main(allLists[0])
+        us18.main(allLists[1])
+        us30.checkForLivingMarried(allLists[0])
         print("\n")
 if __name__ == "__main__":
     main()

@@ -1,24 +1,42 @@
 
 Individuals
-+----+------------------+--------+------------+-----+-------+------------+--------+--------+
-| ID |       Name       | Gender |  Birthday  | Age | Alive |   Death    | Child  | Spouse |
-+----+------------------+--------+------------+-----+-------+------------+--------+--------+
-| I1 | Edward /Rogers/  |   M    | 2032-06-10 | -13 |  True |     NA     | {'F1'} | {'F2'} |
-| I2 |   Buddy /Tony/   |   M    | 1845-11-06 | 110 | False | 1955-04-03 |   NA   | {'F2'} |
-| I3 |  Emily /Rogers/  |   F    | 1840-05-09 | 179 |  True |     NA     |   NA   | {'F2'} |
-| I4 | Rachael /Rogers/ |   F    | 2032-06-10 | -19 | False | 2013-02-10 | {'F2'} | {'F3'} |
-| I5 | Marcia /Rogers/  |   F    | 2008-06-10 |  11 |  True |     NA     |   NA   | {'F1'} |
-| I6 |   Tim /Jones/    |   M    | 2002-09-23 |  17 |  True |     NA     |   NA   | {'F3'} |
-+----+------------------+--------+------------+-----+-------+------------+--------+--------+
++-----+------------------+--------+------------+-----+-------+------------+--------+--------+
+|  ID |       Name       | Gender |  Birthday  | Age | Alive |   Death    | Child  | Spouse |
++-----+------------------+--------+------------+-----+-------+------------+--------+--------+
+|  I1 | Edward /Rogers/  |   M    | 2032-06-10 | -13 |  True |     NA     | {'F1'} | {'F2'} |
+|  I2 |   Buddy /Tony/   |   M    | 1845-11-06 | 110 | False | 1955-04-03 |   NA   | {'F2'} |
+|  I3 |  Emily /Rogers/  |   F    | 1840-05-09 | 179 |  True |     NA     |   NA   | {'F2'} |
+|  I4 | Rachael /Rogers/ |   F    | 2032-06-10 | -19 | False | 2013-02-10 | {'F2'} | {'F3'} |
+|  I5 | Marcia /Rogers/  |   F    | 2008-06-10 |  11 |  True |     NA     |   NA   | {'F1'} |
+|  I6 |   Tim /Jones/    |   M    | 2002-09-23 |  17 |  True |     NA     |   NA   | {'F3'} |
+|  I7 |  Sharla /Jones/  |   M    | 2015-09-28 |  4  |  True |     NA     | {'F4'} | {'F3'} |
+|  I8 |   Juju /Jones/   |   F    | 2016-03-11 |  3  |  True |     NA     | {'F4'} | {'F3'} |
+|  I9 |  Reggie /Jones/  |   M    | 2019-03-06 |  0  |  True |     NA     | {'F5'} | {'F3'} |
+| I10 | Mariah /Rogers/  |   F    | 2017-12-01 |  2  |  True |     NA     | {'F5'} | {'F1'} |
+| I11 |   Ryan /Jones/   |   M    | 2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
+| I12 |   Fred /Jones/   |   M    | 2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
+| I13 |   Mary /Jones/   |   F    | 2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
+| I14 |  Ashley /Jones/  |   F    | 2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
+| I15 |   Dan /Jones/    |   M    | 2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
+| I16 |  Ethan /Jones/   |   M    | 2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
+| I17 |  Brenda /Jones/  |   F    | 2019-10-10 |  0  |  True |     NA     | {'F3'} |   NA   |
+| I18 | McKayla /Jones/  |   F    | 2020-07-27 |  -1 |  True |     NA     | {'F3'} |   NA   |
+| I19 |   Mike /Jones/   |   M    | 2021-04-23 |  -2 |  True |     NA     | {'F3'} |   NA   |
+| I20 |  James /Jones/   |   M    | 2022-02-22 |  -3 |  True |     NA     | {'F3'} |   NA   |
+| I21 |  Nailah /Jones/  |   F    | 2023-05-17 |  -4 |  True |     NA     | {'F3'} |   NA   |
+| I21 |  Leanne /Jones/  |   F    | 2024-08-21 |  -5 |  True |     NA     | {'F3'} |   NA   |
++-----+------------------+--------+------------+-----+-------+------------+--------+--------+
 
 Families
-+----+------------+------------+------------+-----------------+---------+------------------+--------------+
-| ID |  Married   |  Divorced  | Husband ID |   Husband Name  | Wife ID |    Wife Name     |   Children   |
-+----+------------+------------+------------+-----------------+---------+------------------+--------------+
-| F1 | 2005-11-01 | 2004-03-09 |     I1     | Edward /Rogers/ |    I5   | Marcia /Rogers/  |      {}      |
-| F2 |     NA     |     NA     |     I2     |   Buddy /Tony/  |    I3   |  Emily /Rogers/  | {'I1', 'I4'} |
-| F3 | 2010-07-07 | 2018-10-31 |     I6     |   Tim /Jones/   |    I4   | Rachael /Rogers/ |      {}      |
-+----+------------+------------+------------+-----------------+---------+------------------+--------------+
++----+------------+------------+------------+-----------------+---------+------------------+-------------------------------------------------------------------------------+
+| ID |  Married   |  Divorced  | Husband ID |   Husband Name  | Wife ID |    Wife Name     |                                    Children                                   |
++----+------------+------------+------------+-----------------+---------+------------------+-------------------------------------------------------------------------------+
+| F1 | 2005-11-01 | 2004-03-09 |     I1     | Edward /Rogers/ |    I5   | Marcia /Rogers/  |                                     {I10}                                     |
+| F2 |     NA     |     NA     |     I2     |   Buddy /Tony/  |    I3   |  Emily /Rogers/  |                                    {I1, I4}                                   |
+| F3 | 2010-07-07 | 2018-10-31 |     I6     |   Tim /Jones/   |    I4   | Rachael /Rogers/ | {I7, I8, I9, I11, I12, I13, I14, I15, I16, I17, I18, I19, I20, I21, I22, I23} |
+| F4 | 2040-09-07 |     NA     |     I8     |   Juju /Jones/  |    I7   |  Sharla /Jones/  |                                       {}                                      |
+| F5 | 2041-07-16 |     NA     |     I9     |  Reggie /Jones/ |   I10   | Mariah /Rogers/  |                                       {}                                      |
++----+------------+------------+------------+-----------------+---------+------------------+-------------------------------------------------------------------------------+
 
 ERROR: INDIVIDUAL: US07: Current Age > 150 or Death - Birth  > 150
 ERROR: INDIVIDUAL: US01: I1: Birthday 2032-06-10 occurs in the future
@@ -26,16 +44,63 @@ ERROR: INDIVIDUAL: US02: I1: Birthday 2032-06-10 occurs before marriage 2005-11-
 ERROR: INDIVIDUAL: US01: I4: Birthday 2032-06-10 occurs in the future
 ERROR: INDIVIDUAL: US02: I4: Birthday 2032-06-10 occurs before marriage 2010-07-07
 ERROR: INDIVIDUAL: US02: I5: Birthday 2008-06-10 occurs before marriage 2005-11-01
+ERROR: INDIVIDUAL: US01: I7: Marriage date 2040-09-07 occurs in the future
+ERROR: INDIVIDUAL: US01: I8: Marriage date 2040-09-07 occurs in the future
+ERROR: INDIVIDUAL: US01: I9: Marriage date 2041-07-16 occurs in the future
+ERROR: INDIVIDUAL: US01: I10: Marriage date 2041-07-16 occurs in the future
+ERROR: INDIVIDUAL: US01: I17: Birthday 2019-10-10 occurs in the future
+ERROR: INDIVIDUAL: US01: I18: Birthday 2020-07-27 occurs in the future
+ERROR: INDIVIDUAL: US01: I19: Birthday 2021-04-23 occurs in the future
+ERROR: INDIVIDUAL: US01: I20: Birthday 2022-02-22 occurs in the future
+ERROR: INDIVIDUAL: US01: I21: Birthday 2024-08-21 occurs in the future
 ERROR: INDIVIDUAL: US03: I4: Death date occurs before their date of birth.
 ERROR: FAMILY: US04: F1: Divorce date occurs before their marriage.
 ERROR: INDIVIDUAL: US05: I4: Marriage date occurs after their date of death.
 ERROR: INDIVIDUAL: US06: I4: Divorce date occurs after their date of death.
 ERROR: INDIVIDUAL: US07: I3 is older than 150
+ERROR: INDIVIDUAL: US10: I1 marriage date occurs before they are 15
+ERROR: INDIVIDUAL: US10: I4 marriage date occurs before they are 15
+ERROR: INDIVIDUAL: US10: I5 marriage date occurs before they are 15
+ERROR: INDIVIDUAL: US10: I6 marriage date occurs before they are 15
+ERROR: FAMILY: US14: F4 MORE THAN 5 SIBLINGS HAVE MULTIPLE BIRTHDAYS ON YEAR 2018
+ERROR: FAMILY: US15: True a family has more than 15 siblings
 ERROR: INDIVIDUAL: US16: Edward /Rogers/ does not have the same last name
 ERROR: INDIVIDUAL: US16: Buddy /Tony/ does not have the same last name
-Individual I2 is dead.
-Individual I4 is dead.
-ERROR: INDIVIDUAL: US32: I1 has the same birthdays as someone else on ['2032-06-10']
-ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['2032-06-10']
+NOTE: US29: Individual I2 is dead.
+NOTE: US29: Individual I4 is dead.
+ERROR: FAMILY: US26: Family F2 does not have the correct corresponding entries
+ERROR: FAMILY: US26: Family F3 does not have the correct corresponding entries
+ERROR: INDIVIDUAL: US22: I21 is a duplicate key.
+ERROR: INDIVIDUAL: US31: I11 Ryan /Jones/ is living and single
+ERROR: INDIVIDUAL: US31: I12 Fred /Jones/ is living and single
+ERROR: INDIVIDUAL: US31: I13 Mary /Jones/ is living and single
+ERROR: INDIVIDUAL: US31: I14 Ashley /Jones/ is living and single
+ERROR: INDIVIDUAL: US31: I15 Dan /Jones/ is living and single
+ERROR: INDIVIDUAL: US31: I16 Ethan /Jones/ is living and single
+ERROR: INDIVIDUAL: US31: I17 Brenda /Jones/ is living and single
+ERROR: INDIVIDUAL: US31: I18 McKayla /Jones/ is living and single
+ERROR: INDIVIDUAL: US31: I19 Mike /Jones/ is living and single
+ERROR: INDIVIDUAL: US31: I20 James /Jones/ is living and single
+ERROR: INDIVIDUAL: US31: I21 Nailah /Jones/ is living and single
+ERROR: INDIVIDUAL: US31: I21 Leanne /Jones/ is living and single
+ERROR: FAMILY: US21: F4: gender was wrong
+NOTIFICATION: INDIVIDUAL: US35: I9: Birthday 2019-03-06 was born in the last 30 days
+ERROR: INDIVIDUAL: US32: I1 has the same birthdays as someone else on ['2032-06-10', '2018-06-01']
+ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['2032-06-10', '2018-06-01']
+ERROR: INDIVIDUAL: US32: I11 has the same birthdays as someone else on ['2032-06-10', '2018-06-01']
+ERROR: INDIVIDUAL: US32: I12 has the same birthdays as someone else on ['2032-06-10', '2018-06-01']
+ERROR: INDIVIDUAL: US32: I13 has the same birthdays as someone else on ['2032-06-10', '2018-06-01']
+ERROR: INDIVIDUAL: US32: I14 has the same birthdays as someone else on ['2032-06-10', '2018-06-01']
+ERROR: INDIVIDUAL: US32: I15 has the same birthdays as someone else on ['2032-06-10', '2018-06-01']
+ERROR: INDIVIDUAL: US32: I16 has the same birthdays as someone else on ['2032-06-10', '2018-06-01']
+ERROR: FAMILY: US18: ['I8', 'I7'] Siblings should not marry.
+ERROR: INDIVIDUAL: US30: I1 Edward /Rogers/ is living and married
+ERROR: INDIVIDUAL: US30: I3 Emily /Rogers/ is living and married
+ERROR: INDIVIDUAL: US30: I5 Marcia /Rogers/ is living and married
+ERROR: INDIVIDUAL: US30: I6 Tim /Jones/ is living and married
+ERROR: INDIVIDUAL: US30: I7 Sharla /Jones/ is living and married
+ERROR: INDIVIDUAL: US30: I8 Juju /Jones/ is living and married
+ERROR: INDIVIDUAL: US30: I9 Reggie /Jones/ is living and married
+ERROR: INDIVIDUAL: US30: I10 Mariah /Rogers/ is living and married
 
 
