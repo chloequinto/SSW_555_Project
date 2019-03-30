@@ -198,7 +198,7 @@ class TestResults(unittest.TestCase):
         inputGed1.close()
 
     def testUS42(self):
-        inputGed = open("Sprint2.ged", "r")
+        inputGed = open("inputRZ1.ged", "r")
         output = readGed.fam(inputGed)
         self.assertTrue(us42.filterDates(output))
     
