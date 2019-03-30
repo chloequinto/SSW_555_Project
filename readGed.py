@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18, us30, us42
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18, us30, us33, us42
 from package.userStories import us07, us32
 
 valid = {
@@ -226,7 +226,7 @@ def table(lists):
 
 def main():
     try:
-        inputGed = open("Sprint2.ged", "r")
+        inputGed = open("Orphan.ged", "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
@@ -273,6 +273,7 @@ def main():
         us30.checkForLivingMarried(allLists[0])
         us31.checkForLivingSingle(allLists[0])
         us32.main(allLists[0])
+        us33.checkForOrphan(allLists[0], allLists[1])
 
         # recentBirthList = us35.RecentBirths(individual)
         # if len(recentBirthList) > 0:
