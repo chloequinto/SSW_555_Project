@@ -1,0 +1,2 @@
+def main(): 
+    print("NOTE: DATES ARE FIXED TO INCLUDE PARTIALS")

@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18, us30, us33, us42
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18, us30, us33, us42, us41
 from package.userStories import us07, us32
 
 valid = {
@@ -75,8 +75,8 @@ def fam(inputGed):
                     else:
                         if has_spouse != "True":
                             indi_data.append("NA")
-
                 indi_list.append(indi_data)
+            
                 indi_data = []
                 ID_tag = line[1]
                 indi_data.append(line[1])
@@ -94,7 +94,7 @@ def fam(inputGed):
                 fam_list.append(fam_data)
                 fam_data = []
                 fam_data.append(line[1])
-            elif line[2] == "INDI" and new_individual == 0:
+            elif line[2] == "INDI" and new_individual == 0: #newly seen indiv
                 ID_tag = line[1]
                 indi_data.append(line[1])
                 new_individual = 1
@@ -148,9 +148,28 @@ def fam(inputGed):
 
         elif line[0] == str(2):
             if line[1] == "DATE":
+  
                 dates = (line[2]).split()
                 if date_tag == "BIRT":
+                    '''
+                    Assumes only error is: 
+                    1. Only contains the year i.e. 2 DATE 2032 so it inserts date and month
+                    2. Only contains the year and month i.e. 2 DATE NOV 1845 so it inserts date
+                    The default for these are day: 01 and month: JAN 
+                    '''
+                    if len(dates) == 1: #if it only contains the year 
+                        print("Original: " + str(dates))
+                        dates.insert(0, '1')
+                        dates.insert(1, 'JAN')
+                        print("Revised: " + str(dates))
+                    
+                    if len(dates) == 2: #if it only contains month and year 
+                        print("Original: " + str(dates))
+                        dates.insert(0, '1')
+                        print("Revised: " + str(dates))
+                    
                     dates[1] = monthWordToInt[dates[1]]
+                    
                     if (int(dates[0]) < 10):
                         dates[0] = "0" + dates[0]
                     temp = dates[2]
@@ -163,6 +182,23 @@ def fam(inputGed):
                     alive = "True"
                 elif date_tag == "DEAT":
                     alive = "False"
+                    '''
+                    Assumes only error is: 
+                    1. Only contains the year i.e. 2 DATE 2032 so it inserts date and month
+                    2. Only contains the year and month i.e. 2 DATE NOV 1845 so it inserts date
+                    The default for these are day: 01 and month: JAN 
+                    '''
+                    if len(dates) == 1: #if it only contains the year 
+                        print("Original: " + str(dates))
+                        dates.insert(0, '1')
+                        dates.insert(1, 'JAN')
+                        print("Revised: " + str(dates))
+                    
+                    if len(dates) == 2: #if it only contains month and year 
+                        print("Original: " + str(dates))
+                        dates.insert(0, '1')
+                        print("Revised: " + str(dates))
+                    
                     dates[1] = monthWordToInt[dates[1]]
                     if (int(dates[0]) < 10):
                         dates[0] = "0" + dates[0]
@@ -196,8 +232,6 @@ def fam(inputGed):
             i.insert(4, names[i[3]])
         if i[5] in names: 
             i.insert(6, names[i[5]])
-    #for i in fam_list: 
-        #print(i)
     return (indi_list, fam_list)
 
 
@@ -216,17 +250,18 @@ def table(lists):
                      'Husband Name', 'Wife ID', 'Wife Name', 'Children']
 
     print("\nFamilies")
-
     for j in lists[1]:
         children = "NA"
         if (len(j[6:]) > 0):
             children = "{" + ", ".join(j[7:]) + "}"
+        
         y.add_row([j[0], j[1], j[2], j[3], j[4], j[5], j[6], children])
     print(y)
 
 def main():
     try:
-        inputGed = open("Orphan.ged", "r")
+        myFile = "Orphan.ged"
+        inputGed = open(myFile, "r")
     except FileNotFoundError:
         print("Cannot open file")
     else:
@@ -252,10 +287,11 @@ def main():
         #         print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
         
         us03.main(allLists[0])
-        # us04.main(allLists[1])
-        # us05.main(allLists[0], allLists[1])
-        # us06.main(allLists[0], allLists[1])  
+        us04.main(allLists[1])
+        us05.main(allLists[0], allLists[1])
+        us06.main(allLists[0], allLists[1])  
         us07.main(allLists[0])
+        
         us10.main(allLists[0], allLists[1])
         us14.main(allLists[0], allLists[1])
         us15.main(allLists[1])
@@ -279,7 +315,11 @@ def main():
         # if len(recentBirthList) > 0:
         #     for i in recentBirthList:
         #         print("NOTIFICATION: INDIVIDUAL: US35: "+ i + ": Birthday " + individual[i].birthDate + " was born in the last 30 days")
-        
+        # input2 = open(myFile, "r")
+        # us40.main(input2)
+        # input2.close()
+        # us40.main()
+        us41.main()
         us42.filterDates(allLists)
         print("\n")
 if __name__ == "__main__":
