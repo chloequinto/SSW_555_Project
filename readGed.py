@@ -319,8 +319,9 @@ def main():
         # us40.main(input2)
         # input2.close()
         # us40.main()
-        us41.main()
-        us42.filterDates(allLists)
+        # print(us41.main())
+        print(us41.main())
+        # us42.filterDates(allLists)
         print("\n")
 if __name__ == "__main__":
     main()

@@ -1,7 +1,7 @@
 '''
 All Unit Tests 
 '''
-import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14, us15, us18, us30, us42, us33
+import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14, us15, us18, us30, us42, us33, us41
 import unittest
 import readGed
 from package.userStories import us07,us32
@@ -138,6 +138,7 @@ class TestResults(unittest.TestCase):
         individual = us35.parseGed(inputGed)
         self.assertEqual(us35.RecentBirths(individual),[]) #error
 
+
     def testUS21(self):
         inputGed = open("inputForTest_MW.ged", "r")
         family = us21.parseGed(inputGed)
@@ -206,6 +207,10 @@ class TestResults(unittest.TestCase):
         inputGed = open("Orphan.ged", "r")
         output = readGed.fam(inputGed)
         self.assertTrue(us33.checkForOrphan(output[0], output[1]), ["NOTE: US33: Individual I24 is an orphan"])
+    
+    def testUS41(self): 
+        self.assertEqual(us41.main(), "NOTE: DATES ARE FIXED TO INCLUDE PARTIALS")
+ 
     
 if __name__ == '__main__':   
 
