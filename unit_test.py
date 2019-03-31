@@ -136,7 +136,7 @@ class TestResults(unittest.TestCase):
     def testUS35(self):
         inputGed = open("inputForTest_MW.ged", "r")
         individual = us35.parseGed(inputGed)
-        self.assertEqual(us35.RecentBirths(individual),['I1'])
+        self.assertEqual(us35.RecentBirths(individual),[]) #error
 
     def testUS21(self):
         inputGed = open("inputForTest_MW.ged", "r")
