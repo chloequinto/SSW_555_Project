@@ -132,9 +132,7 @@ class Family(object):
 
 
 def checkDateNoLaterThanToday(date1, date2):
-    dateTime1 = datetime.strptime(str(date1), "%Y-%m-%d")
-    dateTime2 = datetime.strptime(str(date2), "%Y-%m-%d")
-    return dateTime1.date() <= dateTime2.date()
+    return date1 <= date2
 
 
 def BirthBeforeCurrent(indi):
