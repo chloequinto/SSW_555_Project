@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18, us30, us33, us42, us41
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18, us30, us33, us42, us41, us08
 from package.userStories import us07, us32
 
 valid = {
@@ -268,23 +268,23 @@ def main():
         allLists = fam(inputGed)
         table(allLists)
         
-        # individual = us01.main()
-        # for indi in individual:
-        #     us01Test_Birth = us01.BirthBeforeCurrent(indi)
-        #     if us01Test_Birth !=  True:
-        #         print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs in the future")
-        #     us01Test_Death = us01.DeathBeforeCurrent(indi)
-        #     if us01Test_Death !=  True:
-        #         print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Death date " + individual[indi].deathDate + " occurs in the future")
-        #     us01Test_Marriage = us01.MarriageBeforeCurrent(indi)
-        #     if us01Test_Marriage !=  True:
-        #         print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Marriage date " + individual[indi].marriageDate + " occurs in the future")
-        #     us01Test_Divorce = us01.DivorceBeforeCurrent(indi)
-        #     if us01Test_Divorce !=  True:
-        #         print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Divorce date " + individual[indi].divorceDate + " occurs in the future")
-        #     us02Test = us02.BirthBeforeMarriage(individual[indi])
-        #     if us02Test != True:
-        #         print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
+        individual = us01.main()
+        for indi in individual:
+            us01Test_Birth = us01.BirthBeforeCurrent(indi)
+            if us01Test_Birth !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs in the future")
+            us01Test_Death = us01.DeathBeforeCurrent(indi)
+            if us01Test_Death !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Death date " + individual[indi].deathDate + " occurs in the future")
+            us01Test_Marriage = us01.MarriageBeforeCurrent(indi)
+            if us01Test_Marriage !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Marriage date " + individual[indi].marriageDate + " occurs in the future")
+            us01Test_Divorce = us01.DivorceBeforeCurrent(indi)
+            if us01Test_Divorce !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Divorce date " + individual[indi].divorceDate + " occurs in the future")
+            us02Test = us02.BirthBeforeMarriage(individual[indi])
+            if us02Test != True:
+                print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
         
         us03.main(allLists[0])
         us04.main(allLists[1])
@@ -311,10 +311,10 @@ def main():
         us32.main(allLists[0])
         us33.checkForOrphan(allLists[0], allLists[1])
 
-        # recentBirthList = us35.RecentBirths(individual)
-        # if len(recentBirthList) > 0:
-        #     for i in recentBirthList:
-        #         print("NOTIFICATION: INDIVIDUAL: US35: "+ i + ": Birthday " + individual[i].birthDate + " was born in the last 30 days")
+        recentBirthList = us35.RecentBirths(individual)
+        if len(recentBirthList) > 0:
+            for i in recentBirthList:
+                print("NOTIFICATION: INDIVIDUAL: US35: "+ i + ": Birthday " + individual[i].birthDate + " was born in the last 30 days")
         # input2 = open(myFile, "r")
         # us40.main(input2)
         # input2.close()
@@ -322,6 +322,13 @@ def main():
         # print(us41.main())
         print(us41.main())
         # us42.filterDates(allLists)
+
+        familyInfo = us08.main()
+        for index in familyInfo:
+            for child in familyInfo[index].children:
+                if us08.BirthBeforeMarriageOfParents(index, child) != True:
+                    print("ERROR: FAMILY: US08: " + familyInfo[index].ID + ":" + child  + ": Children born before marriage of parents or more than 9 months after their divorce")
+        
         print("\n")
 if __name__ == "__main__":
     main()

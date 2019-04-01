@@ -1,7 +1,7 @@
 '''
 All Unit Tests 
 '''
-import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14, us15, us18, us30, us42, us33, us41
+import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14, us15, us18, us30, us42, us33, us41, us08
 import unittest
 import readGed
 from package.userStories import us07,us32
@@ -136,7 +136,7 @@ class TestResults(unittest.TestCase):
     def testUS35(self):
         inputGed = open("inputForTest_MW.ged", "r")
         individual = us35.parseGed(inputGed)
-        self.assertEqual(us35.RecentBirths(individual),[]) #error
+        self.assertEqual(us35.RecentBirths(individual),['I1'])
 
 
     def testUS21(self):
@@ -145,6 +145,7 @@ class TestResults(unittest.TestCase):
         for i in family:
             self.assertTrue(us21.CheckGenderForRole(
                 i), msg="ERROR: FAMILY: US21: " + family[i].ID + ": gender was wrong")
+
     def testUS31(self):
         inputGed = open("Sprint1.ged", "r")
         inputGed1 = open("input_6.ged", "r")
@@ -210,8 +211,17 @@ class TestResults(unittest.TestCase):
     
     def testUS41(self): 
         self.assertEqual(us41.main(), "NOTE: DATES ARE FIXED TO INCLUDE PARTIALS")
- 
     
+    def testUS08(self):
+        inputGed = open("inputForTest_MW.ged", "r")
+        family = us08.parseGed(inputGed)
+        for index in family:
+            for child in family[index].children:
+                if us08.BirthBeforeMarriageOfParents(index, child) != True:
+                    self.assertTrue("ERROR: FAMILY: US08: " + family[index].ID + ":" + child  + ": Children born before marriage of parents or more than 9 months after their divorce")
+        
+            
+
 if __name__ == '__main__':   
 
 
