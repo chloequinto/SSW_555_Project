@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18, us30, us33, us42, us41, us08
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18, us30, us33, us42, us41, us08, us09
 from package.userStories import us07, us32
 
 valid = {
@@ -329,6 +329,13 @@ def main():
                 if us08.BirthBeforeMarriageOfParents(index, child) != True:
                     print("ERROR: FAMILY: US08: " + familyInfo[index].ID + ":" + child  + ": Children born before marriage of parents or more than 9 months after their divorce")
         
+        
+        for index in familyInfo:
+            for child in familyInfo[index].children:
+                if us08.BirthBeforeMarriageOfParents(index, child) != True:
+                    print("ERROR: FAMILY: US09: " + familyInfo[index].ID + ":" + child  + ": Children born after death of mother or after 9 months after death of father")
+        
+
         print("\n")
 if __name__ == "__main__":
     main()

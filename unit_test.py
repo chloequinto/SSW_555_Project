@@ -1,7 +1,7 @@
 '''
 All Unit Tests 
 '''
-import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14, us15, us18, us30, us42, us33, us41, us08
+import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14, us15, us18, us30, us42, us33, us41, us08, us09
 import unittest
 import readGed
 from package.userStories import us07,us32
@@ -219,6 +219,14 @@ class TestResults(unittest.TestCase):
             for child in family[index].children:
                 if us08.BirthBeforeMarriageOfParents(index, child) != True:
                     self.assertTrue("ERROR: FAMILY: US08: " + family[index].ID + ":" + child  + ": Children born before marriage of parents or more than 9 months after their divorce")
+        
+    def testUS09(self):
+        inputGed = open("inputForTest_MW.ged", "r")
+        family = us09.parseGed(inputGed)
+        for index in family:
+            for child in family[index].children:
+                if us08.BirthBeforeMarriageOfParents(index, child) != True:
+                    self.assertTrue("ERROR: FAMILY: US09: " + family[index].ID + ":" + child  + ": Children born after death of mother or after 9 months after death of father")
         
             
 
