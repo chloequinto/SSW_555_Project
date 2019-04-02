@@ -1,7 +1,7 @@
 '''
 All Unit Tests 
 '''
-import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14, us15, us18, us30, us42, us33, us41, us08, us09
+import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14, us15, us18, us30, us42, us33, us41, us08, us09, us40
 import unittest
 import readGed
 from package.userStories import us07,us32
@@ -76,13 +76,13 @@ class TestResults(unittest.TestCase):
         self.assertEqual(us32.checkMultipleBirths(output[0]),us07res)
         self.assertEqual(us32.checkMultipleBirths(output1[0]),us07res1)
 
-    def testUS07(self): 
+    def testUS07(self):  
         inputGed = open("Sprint1.ged", "r")
         inputGed1 = open("input_8.ged", "r")
         output = readGed.fam(inputGed)
         output1 = readGed.fam(inputGed1)
-        self.assertEqual(us07.checkForLessThan150(output[0]), ["ERROR: INDIVIDUAL: US07: I3 is older than 150"])
-        self.assertEqual(us07.checkForLessThan150(output1[0]), ["ERROR: INDIVIDUAL: US07: I9 death - birth > 150"])
+        self.assertEqual(us07.checkForLessThan150(output[0], output[2]), ["ERROR: INDIVIDUAL: US07: I3 is older than 150. LineNum: 35"])
+        self.assertEqual(us07.checkForLessThan150(output1[0], output1[2]), ["ERROR: INDIVIDUAL: US07: I9 death - birth > 150. LineNum: 95"])
 
     def testUS29(self):
         inputGed = open("inputRZ1.ged", "r")
@@ -211,6 +211,9 @@ class TestResults(unittest.TestCase):
     
     def testUS41(self): 
         self.assertEqual(us41.main(), "NOTE: DATES ARE FIXED TO INCLUDE PARTIALS")
+
+    def testUS40(self): 
+        self.assertEqual(us40.main(), "NOTE: LINE NUMBERS ARE ADDED")
     
     def testUS08(self):
         inputGed = open("inputForTest_MW.ged", "r")

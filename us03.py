@@ -7,6 +7,7 @@ from datetime import datetime
 import re
 import readGed
 
+
                 
 def birthBeforeDeath(input):
     problem = False

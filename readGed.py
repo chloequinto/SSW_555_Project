@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18, us30, us33, us42, us41, us08, us09
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18, us30, us33, us42, us41, us08, us40, us09
 from package.userStories import us07, us32
 
 valid = {
@@ -269,8 +269,6 @@ def fam(inputGed):
             i.insert(4, names[i[3]])
         if i[5] in names: 
             i.insert(6, names[i[5]])
-    for i in indiv_num_list: 
-        print(i)
     return (indi_list, fam_list, indiv_num_list)
 
 def addLineNum(lists): 
@@ -299,14 +297,17 @@ def table(lists):
         y.add_row([j[0], j[1], j[2], j[3], j[4], j[5], j[6], children])
     print(y)
 
-    z = PrettyTable()
-    z.field_names = ['ID', 'Name', 'Gender', 'Birthday', 'Age',
-                     'Alive', 'Death', 'Child', 'Spouse']
+    '''
+    Please keep below for visibility of the numbers
+    '''
+    # z = PrettyTable()
+    # z.field_names = ['ID', 'Name', 'Gender', 'Birthday', 'Age',
+    #                  'Alive', 'Death', 'Child', 'Spouse']
 
-    for i in lists[0]:
-        z.add_row([i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8] ])
-    print("\nIndividuals")
-    print(z)
+    # for i in lists[0]:
+    #     z.add_row([i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8] ])
+    # print("\nIndividuals")
+    # print(z)
 
 def main():
     try:
@@ -317,11 +318,7 @@ def main():
     else:
         allLists = fam(inputGed)
         table(allLists)
-        input2 = open(myFile, "r")
-        allLists_withNum =  fam(input2)
-        # print(allLists[2])
 
-        # print(allLists[0])
         
         # individual = us01.main()
         # for indi in individual:
@@ -340,7 +337,13 @@ def main():
         #     us02Test = us02.BirthBeforeMarriage(individual[indi])
         #     if us02Test != True:
         #         print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
+        print("----------Notes----------")
+        print(us40.main())
+        print(us41.main())
+        print('----------Errors----------')
+        us07.main(allLists[0], allLists[2])
         
+        print("----------ANOMALIES----------")
         # us03.main(allLists[0])
         # us04.main(allLists[1])
         # us05.main(allLists[0], allLists[1])
@@ -373,9 +376,7 @@ def main():
         # input2 = open(myFile, "r")
         # us40.main(input2)
         # input2.close()
-        # us40.main()
-        # print(us41.main())
-        # print(us41.main())
+       
         # us42.filterDates(allLists)
 
         # familyInfo = us08.main()
