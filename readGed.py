@@ -36,13 +36,13 @@ def fam(inputGed):
     new_individual = 0
     new_family = 0
     has_spouse = "False"
-    lineNum = 0 
+    # lineNum = 0 
     is_child = "False"
     is_married_date = "False"
     is_divorced = "False"
     birth_year = 0
     for i in inputGed:
-        lineNum += 1 
+        # lineNum += 1 
         i = re.sub('[@]', '', i)
         line = i.strip().split(maxsplit=2)
         if line[0] == str(0) and line[1] == "TRLR": 
@@ -80,7 +80,7 @@ def fam(inputGed):
                 indi_list.append(indi_data)
             
                 indi_data = []
-                indi_data.append(lineNum)
+                # indi_data.append(lineNum)
                 ID_tag = line[1]
                 indi_data.append(line[1])
 
@@ -99,7 +99,7 @@ def fam(inputGed):
                 fam_data.append(line[1])
             elif line[2] == "INDI" and new_individual == 0: #newly seen indiv
                 ID_tag = line[1]
-                indi_data.append(lineNum)
+                # indi_data.append(lineNum)
                 indi_data.append(line[1])
                 new_individual = 1
             elif line[2] == "FAM" and new_family == 0:
@@ -162,15 +162,15 @@ def fam(inputGed):
                     The default for these are day: 01 and month: JAN 
                     '''
                     if len(dates) == 1: #if it only contains the year 
-                        print("Original: " + str(dates))
+                        # print("Original: " + str(dates))
                         dates.insert(0, '1')
                         dates.insert(1, 'JAN')
-                        print("Revised: " + str(dates))
+                        # print("Revised: " + str(dates))
                     
                     if len(dates) == 2: #if it only contains month and year 
-                        print("Original: " + str(dates))
+                        # print("Original: " + str(dates))
                         dates.insert(0, '1')
-                        print("Revised: " + str(dates))
+                        # print("Revised: " + str(dates))
                     
                     dates[1] = monthWordToInt[dates[1]]
                     
@@ -240,6 +240,8 @@ def fam(inputGed):
         print(i)
     return (indi_list, fam_list)
 
+def addLineNum(lists): 
+    print(lists)
 
 def table(lists): 
     x = PrettyTable()
@@ -272,7 +274,13 @@ def main():
         print("Cannot open file")
     else:
         allLists = fam(inputGed)
-        # table(allLists)
+        table(allLists)
+        input2 = open(myFile, "r")
+        allLists_withNum =  fam(input2)
+        print('----------')
+        for i in allLists[0]: 
+            print(i)
+        # print(allLists[0])
         
         # individual = us01.main()
         # for indi in individual:
