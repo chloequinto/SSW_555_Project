@@ -329,11 +329,11 @@ def main():
                 if us08.BirthBeforeMarriageOfParents(index, child) != True:
                     print("ERROR: FAMILY: US08: " + familyInfo[index].ID + ":" + child  + ": Children born before marriage of parents or more than 9 months after their divorce")
         
-        
-        for index in familyInfo:
-            for child in familyInfo[index].children:
-                if us08.BirthBeforeMarriageOfParents(index, child) != True:
-                    print("ERROR: FAMILY: US09: " + familyInfo[index].ID + ":" + child  + ": Children born after death of mother or after 9 months after death of father")
+        familyInfo1 = us09.main()
+        for index in familyInfo1:
+            for child in familyInfo1[index].children:
+                if us09.BirthBeforeDeathOfParents(index, child) != True:
+                    print("ERROR: FAMILY: US09: " + familyInfo1[index].ID + ":" + child  + ": Children born after death of mother or after 9 months after death of father")
         
 
         print("\n")

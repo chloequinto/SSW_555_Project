@@ -96,9 +96,10 @@ def formatDate(dates):
 
 
 class Individual(object):
-    def __init__(self, ID='NA', birthDate='NA', marriageDate='NA',divorceDate='NA', childIdentity='NA', sex='NA'):
+    def __init__(self, ID='NA', birthDate='NA', deathDate = 'NA', marriageDate='NA',divorceDate='NA', childIdentity='NA', sex='NA'):
         self.ID = ID
         self.birthDate = birthDate
+        self.deathDate = deathDate
         self.marriageDate = marriageDate
         self.divorceDate = divorceDate
         self.childIdentity = childIdentity
@@ -167,16 +168,18 @@ def checkDate(date1, date2):
 
 
 def BirthBeforeDeathOfParents(fam,indi):
+    
     m = family[fam].wife
     d = family[fam].husband
-    if individual[m].deathDate != 'NA':
-        checkDate(individual[indi].birthDate, individual[m].deathDate)
-    elif individual[d].deathDate != 'NA':
-        death = datetime.strptime(individual[d].deathDate, "%Y-%m-%d")
-        birthDate = datetime.strptime(individual[indi].birthDate, "%Y-%m-%d")
-        diffDate = birthDate - death
-        if diffDate.days > 273:
-            return False
+    if indi in individual:
+        if individual[m].deathDate != 'NA':
+            checkDate(individual[indi].birthDate, individual[m].deathDate)
+        elif individual[d].deathDate != 'NA':
+            death = datetime.strptime(individual[d].deathDate, "%Y-%m-%d")
+            birthDate = datetime.strptime(individual[indi].birthDate, "%Y-%m-%d")
+            diffDate = birthDate - death
+            if diffDate.days > 273:
+                return False
     return True
                 
     
