@@ -30,19 +30,21 @@ monthWordToInt = {
 def fam(inputGed):
     names = {}
     indi_list = []
-    fam_list = []
     indi_data = []
+    fam_list = []
     fam_data = []
+    indiv_num = []
+    indiv_num_list = []
     new_individual = 0
     new_family = 0
     has_spouse = "False"
-    # lineNum = 0 
+    lineNum = 0 
     is_child = "False"
     is_married_date = "False"
     is_divorced = "False"
     birth_year = 0
     for i in inputGed:
-        # lineNum += 1 
+        lineNum += 1 
         i = re.sub('[@]', '', i)
         line = i.strip().split(maxsplit=2)
         if line[0] == str(0) and line[1] == "TRLR": 
@@ -57,10 +59,15 @@ def fam(inputGed):
             fam_data = []
 
         if len(line) > 2 and line[0] == str(0):
-            if line[2] == "INDI" and new_individual == 1:
-                if alive == "False":
+            if line[2] == "INDI" and new_individual == 1: #new individual 
+                if alive == "False": 
                     indi_data.insert(5, "False")
+                    temp = indiv_num[6]
+                    indiv_num.insert(7, "")
+                    indiv_num[6] = "False"
+                    indiv_num[7] = temp
                     if is_child != "True":
+                        # indiv_num.append("NA")
                         indi_data[7] = "NA"
                         if has_spouse != "True":
                             indi_data[8] = "NA"
@@ -68,20 +75,28 @@ def fam(inputGed):
                         if has_spouse != "True":
                             indi_data.append("NA")
                 elif alive != "False":
+                    indiv_num.append("True")
+                    indiv_num.append("NA")
                     indi_data.insert(5, "True")
                     indi_data.insert(6, "NA")
                     if is_child != "True":
                         indi_data[7] = "NA"
+                        # indiv_num.append("NA")
                         if has_spouse != "True":
                             indi_data.append("NA")
                     else:
                         if has_spouse != "True":
+                    
                             indi_data.append("NA")
                 indi_list.append(indi_data)
-            
+                indiv_num_list.append(indiv_num)
+                indiv_num  = []
                 indi_data = []
-                # indi_data.append(lineNum)
+
+                indiv_num.append(lineNum)
+            
                 ID_tag = line[1]
+                indiv_num.append(line[1])
                 indi_data.append(line[1])
 
                 has_spouse = "False"
@@ -99,29 +114,37 @@ def fam(inputGed):
                 fam_data.append(line[1])
             elif line[2] == "INDI" and new_individual == 0: #newly seen indiv
                 ID_tag = line[1]
+                indiv_num.append(lineNum)
+                indiv_num.append(line[1])
                 # indi_data.append(lineNum)
                 indi_data.append(line[1])
                 new_individual = 1
             elif line[2] == "FAM" and new_family == 0:
                 if alive == "False":
                     indi_data.insert(5, "False")
+        
                     if is_child != "True":
+                        # indiv_num.append("NeA")
                         indi_data[7] = "NA"
                         if has_spouse != "True":
                             indi_data[8] = "NA"
                     else:
                         if has_spouse != "True":
                             indi_data.append("NA")
-                elif alive != "False":
+                elif alive != "False": #if they're dead 
+                    indiv_num.append("True")
+                    indiv_num.append("NA")
                     indi_data.insert(5, "True")
                     indi_data.insert(6, "NA")
-                    if is_child != "True":
+                    if is_child != "True": #for the last one 
+                        # indiv_num.append("NA")
                         indi_data[7] = "NA"
                         if has_spouse != "True":
                             indi_data.append("NA")
                     else:
                         if has_spouse != "True":
                             indi_data.append("NA")
+                indiv_num_list.append(indiv_num)
                 indi_list.append(indi_data)
                 fam_data.append(line[1])
                 new_family = 1
@@ -130,18 +153,23 @@ def fam(inputGed):
             if line[1] == "NAME":
                 NAME_tag = line[2]
                 names[ID_tag] = NAME_tag
+                indiv_num.append(line[2])
                 indi_data.append(line[2])
             elif line[1] == "SEX":
+                indiv_num.append(line[2])
                 indi_data.append(line[2])
             elif line[1] in ["BIRT", "DEAT", "MARR", "DIV"]:
                 date_tag = line[1]
             elif line[1] == "FAMC":
                 is_child = "True"
                 indi_data.insert(6, "{'" + line[2] + "'}")
+                indiv_num.append("{'" + line[2] + "'}")
             elif line[1] == "FAMS":
                 has_spouse = "True"
                 indi_data.append("{'" + line[2] + "'}")
                 indi_data.insert(7, "{'" + line[2] + "'}")
+                indiv_num.append("{'" + line[2] + "'}")
+                indiv_num.append( "{'" + line[2] + "'}")
             elif line[1] == "HUSB":
                 is_married = "True"
                 fam_data.append(line[2])
@@ -179,10 +207,14 @@ def fam(inputGed):
                     temp = dates[2]
                     dates[2] = dates[0]
                     dates[0] = temp
+                    
                     indi_data.append("-".join(dates))
+                    indiv_num.append("-".join(dates))
                     current = datetime.now()
                     birth_year = int(dates[0])
                     indi_data.append(current.year - birth_year)
+                    indiv_num.append(current.year - birth_year)
+
                     alive = "True"
                 elif date_tag == "DEAT":
                     alive = "False"
@@ -211,6 +243,7 @@ def fam(inputGed):
                     temp = dates[2]
                     dates[2] = dates[0]
                     dates[0] = temp
+                    indiv_num.append("-".join(dates))
                     indi_data.insert(5, "-".join(dates))
                 elif date_tag == "MARR": 
                     dates[1] = monthWordToInt[dates[1]]
@@ -236,9 +269,9 @@ def fam(inputGed):
             i.insert(4, names[i[3]])
         if i[5] in names: 
             i.insert(6, names[i[5]])
-    for i in indi_list: 
+    for i in indiv_num_list: 
         print(i)
-    return (indi_list, fam_list)
+    return (indi_list, fam_list, indiv_num_list)
 
 def addLineNum(lists): 
     print(lists)
@@ -266,6 +299,15 @@ def table(lists):
         y.add_row([j[0], j[1], j[2], j[3], j[4], j[5], j[6], children])
     print(y)
 
+    z = PrettyTable()
+    z.field_names = ['ID', 'Name', 'Gender', 'Birthday', 'Age',
+                     'Alive', 'Death', 'Child', 'Spouse']
+
+    for i in lists[0]:
+        z.add_row([i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8] ])
+    print("\nIndividuals")
+    print(z)
+
 def main():
     try:
         myFile = "Orphan.ged"
@@ -277,9 +319,8 @@ def main():
         table(allLists)
         input2 = open(myFile, "r")
         allLists_withNum =  fam(input2)
-        print('----------')
-        for i in allLists[0]: 
-            print(i)
+        # print(allLists[2])
+
         # print(allLists[0])
         
         # individual = us01.main()
