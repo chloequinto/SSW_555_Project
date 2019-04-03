@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18, us30, us33, us42, us41, us08, us40, us09
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18, us30, us33, us42, us41, us08, us40, us09, us36
 from package.userStories import us07, us32
 
 valid = {
@@ -24,14 +24,14 @@ monthWordToInt = {
     "NOV": "11",
     "DEC": "12",
 }
-
-
 # Function to parse through and store families and individuals
 def fam(inputGed):
     names = {}
     indi_list = []
     indi_data = []
     fam_list = []
+    fam_num = []
+    fam_num_list = []
     fam_data = []
     indiv_num = []
     indiv_num_list = []
@@ -51,11 +51,18 @@ def fam(inputGed):
             if is_married_date != "True": 
                 fam_data.insert(1, "NA")
                 fam_data.insert(2, "NA") #divorced
+                # fam_num.insert(2, "NA")
+                # fam_num.insert(3, "NA")
             elif is_married_date == "True" and is_divorced == "False":
+                    fam_num.insert(3, "NA")
                     fam_data.insert(2, "NA") #Married but not divorced
             is_married_date = "False"
             is_divorced = "False"
+
             fam_list.append(fam_data)
+            fam_num_list.append(fam_num)
+
+            fam_num = []
             fam_data = []
 
         if len(line) > 2 and line[0] == str(0):
@@ -105,12 +112,20 @@ def fam(inputGed):
                 if is_married_date != "True": 
                     fam_data.insert(1, "NA")
                     fam_data.insert(2, "NA") #divorced
+                    # fam_num.insert(2, "NA")
+                    # fam_num.insert(3, "NA")
                 elif is_married_date == "True" and is_divorced == "False":
+                    # fam_num.insert(3, "NA")
                     fam_data.insert(2, "NA") #Married but not divorced
                 is_married_date = "False"
                 is_divorced = "False"
                 fam_list.append(fam_data)
+                fam_num_list.append(fam_num)
+
+                fam_num = []
                 fam_data = []
+                fam_num.append(lineNum)
+                fam_num.append(line[1])
                 fam_data.append(line[1])
             elif line[2] == "INDI" and new_individual == 0: #newly seen indiv
                 ID_tag = line[1]
@@ -119,6 +134,7 @@ def fam(inputGed):
                 # indi_data.append(lineNum)
                 indi_data.append(line[1])
                 new_individual = 1
+            # Newly Seen Fam
             elif line[2] == "FAM" and new_family == 0:
                 if alive == "False":
                     indi_data.insert(5, "False")
@@ -146,6 +162,9 @@ def fam(inputGed):
                             indi_data.append("NA")
                 indiv_num_list.append(indiv_num)
                 indi_list.append(indi_data)
+                fam_num.append(lineNum)
+                fam_num.append(line[1])
+            
                 fam_data.append(line[1])
                 new_family = 1
 
@@ -172,10 +191,13 @@ def fam(inputGed):
                 indiv_num.append( "{'" + line[2] + "'}")
             elif line[1] == "HUSB":
                 is_married = "True"
+                # fam_num.append(line[2])
                 fam_data.append(line[2])
             elif line[1] == "WIFE": 
+                # fam_num.append(line[2])
                 fam_data.append(line[2])
             elif line[1] == "CHIL":
+                # fam_num.append("" + line[2] + "")
                 fam_data.append("" + line[2] + "")
 
         elif line[0] == str(2):
@@ -252,6 +274,7 @@ def fam(inputGed):
                     temp = dates[2]
                     dates[2] = dates[0]
                     dates[0] = temp
+                    # fam_num.insert(2, "-".join(dates))
                     fam_data.insert(1, "-".join(dates))
                     is_married_date = "True"
                 elif date_tag == "DIV": 
@@ -262,6 +285,7 @@ def fam(inputGed):
                     dates[2] = dates[0]
                     dates[0] = temp
                     fam_data.insert(2, "-".join(dates))
+                    # fam_num.insert(3, "-".join(dates))
                     is_divorced = "True"
 
     for i in fam_list: 
@@ -269,10 +293,14 @@ def fam(inputGed):
             i.insert(4, names[i[3]])
         if i[5] in names: 
             i.insert(6, names[i[5]])
-    return (indi_list, fam_list, indiv_num_list)
 
-def addLineNum(lists): 
-    print(lists)
+    # print("-------- Indiv New List -------")
+    # for i in indiv_num_list: 
+    #     print(i)
+    # print("--------Fam New List ---------")
+    # for i in fam_num_list: 
+    #     print(i)s
+    return (indi_list, fam_list, indiv_num_list, fam_num_list)
 
 def table(lists): 
     x = PrettyTable()
@@ -372,7 +400,7 @@ def main():
         # us31.checkForLivingSingle(allLists[0])
         # us32.main(allLists[0])
         # us33.checkForOrphan(allLists[0], allLists[1])
-
+        # us36.main(allLists[2]
         # recentBirthList = us35.RecentBirths(individual)
         # if len(recentBirthList) > 0:
         #     for i in recentBirthList:
