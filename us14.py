@@ -7,7 +7,7 @@ family = []
 sibs  = [] 
 bdays = {}
 
-def checkForMoreThan5Sibs(indiv, fam): 
+def checkForMoreThan5Sibs(indiv, fam, fam2): 
         global family, sibs, bdays
         full = []
         num = 0
@@ -20,13 +20,14 @@ def checkForMoreThan5Sibs(indiv, fam):
                                 days.append(int(bdays.get(j).split("-")[0]))
                 full.append(days)
                 days = []
+
         for i in full: 
                 num += 1 #count which family 
                 for b in i: 
                         count = i.count(b)
                         if count > 5: 
-                                print("ERROR: FAMILY: US14: "+ str(family[num]) + " MORE THAN 5 SIBLINGS HAVE MULTIPLE BIRTHDAYS ON YEAR " + str(b))
-                                res.append("ERROR: FAMILY: US14: "+ str(family[num]) + " MORE THAN 5 SIBLINGS HAVE MULTIPLE BIRTHDAYS ON YEAR " + str(b))
+                                print("ERROR: FAMILY: US14: "+ str(family[num]) +  " more than 5 siblings have multiple birthdays on year " + str(b) + " line " + str(fam2[num][0]))
+                                res.append("ERROR: FAMILY: US14: "+ str(family[num]) + " more than 5 siblings have multiple birthdays on year " + str(b) + " line " + str(fam2[num][0]))
                                 break
              
         return res
@@ -39,5 +40,5 @@ def formats(indiv, fam):
                 sibs.append(i[7:])
                 family.append(i[0])
 
-def main(lists1, list2): 
-        return checkForMoreThan5Sibs(lists1, list2)
+def main(lists1, list2, list3): 
+        return checkForMoreThan5Sibs(lists1, list2, list3)

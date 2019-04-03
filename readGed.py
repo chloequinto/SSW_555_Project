@@ -371,15 +371,18 @@ def main():
         print(us41.main())
         us29.deaths(allLists[0], allLists[2])
         print()
-        print('----------Errors----------')
+        print('----------Individual Errors----------')
         print()
         us07.main(allLists[0], allLists[2])
         us16.sameLastName(allLists[0], allLists[2])
         us22.uniqueIDs(allLists)
-        us26.corrEntries(allLists)
         us32.main(allLists[2])
         print()
-        print("----------ANOMALIES----------")
+        print("------------Family Errors------------")
+        print()
+        us14.main(allLists[0], allLists[1], allLists[3])
+        us26.corrEntries(allLists)
+        us15.main(allLists[1], allLists[2])
         print()
         # us03.main(allLists[0])
         # us04.main(allLists[1])
@@ -388,8 +391,8 @@ def main():
         # us07.main(allLists[0])
         
         # us10.main(allLists[0], allLists[1])
-        # us14.main(allLists[0], allLists[1])
-        # us15.main(allLists[1])
+ 
+        
         # us18.main(allLists[1])
         
         # family = us21.main()

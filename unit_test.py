@@ -44,14 +44,14 @@ name2 = (
     ]
 )
 
-us07res = (
-    ["ERROR: INDIVIDUAL: US32: I1 has the same birthdays as someone else on ['2032-06-10'] line: 14",
-    "ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['2032-06-10'] line: 44"]
+us32res = (
+    ["ERROR: INDIVIDUAL: US32: I1 has the same birthdays as someone else on ['2032-06-10'] line 14",
+    "ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['2032-06-10'] line 44"]
 )
 
-us07res1 = (
-    ["ERROR: INDIVIDUAL: US32: I3 has the same birthdays as someone else on ['1995-06-28'] line: 35",
-    "ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['1995-06-28'] line: 45"]
+us32res1 = (
+    ["ERROR: INDIVIDUAL: US32: I3 has the same birthdays as someone else on ['1995-06-28'] line 35",
+    "ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['1995-06-28'] line 45"]
 )
 
 class TestResults(unittest.TestCase): 
@@ -73,16 +73,16 @@ class TestResults(unittest.TestCase):
         inputGed1 = open("input_8.ged", "r")
         output = readGed.fam(inputGed)
         output1 = readGed.fam(inputGed1)
-        self.assertEqual(us32.checkMultipleBirths(output[2]),us07res)
-        self.assertEqual(us32.checkMultipleBirths(output1[2]),us07res1)
+        self.assertEqual(us32.checkMultipleBirths(output[2]),us32res)
+        self.assertEqual(us32.checkMultipleBirths(output1[2]),us32res1)
 
     def testUS07(self):  
         inputGed = open("Sprint1.ged", "r")
         inputGed1 = open("input_8.ged", "r")
         output = readGed.fam(inputGed)
         output1 = readGed.fam(inputGed1)
-        self.assertEqual(us07.checkForLessThan150(output[0], output[2]), ["ERROR: INDIVIDUAL: US07: I3 is older than 150. LineNum: 35"])
-        self.assertEqual(us07.checkForLessThan150(output1[0], output1[2]), ["ERROR: INDIVIDUAL: US07: I9 death - birth > 150. LineNum: 95"])
+        self.assertEqual(us07.checkForLessThan150(output[0], output[2]), ["ERROR: INDIVIDUAL: US07: I3 is older than 150 line 35"])
+        self.assertEqual(us07.checkForLessThan150(output1[0], output1[2]), ["ERROR: INDIVIDUAL: US07: I9 death - birth > 150 line 95"])
 
     def testUS29(self):
         inputGed = open("inputRZ1.ged", "r")
@@ -167,7 +167,7 @@ class TestResults(unittest.TestCase):
     def testUS14(self):
         inputGed = open("Sprint2.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertEqual(us14.main(output[0], output[1]), ["ERROR: FAMILY: US14: F4 MORE THAN 5 SIBLINGS HAVE MULTIPLE BIRTHDAYS ON YEAR 2018"])
+        self.assertEqual(us14.main(output[0], output[1], output[3]), ["ERROR: FAMILY: US14: F4 more than 5 siblings have multiple birthdays on year 2018 line 261"])
 
     def testUS22(self):
         inputGed = open("Sprint2.ged", "r")
@@ -182,7 +182,7 @@ class TestResults(unittest.TestCase):
     def testUS15(self): 
         inputGed = open("Sprint2.ged", "r")
         output = readGed.fam(inputGed) 
-        self.assertEqual(us15.checkFewerThan15(output[1]), ["ERROR: FAMILY: US15: True a family has more than 15 siblings"])     
+        self.assertEqual(us15.checkFewerThan15(output[1], output[2]), ["ERROR: FAMILY: US15: True I3 family has more than 15 siblings line 35"])     
     
     def testUS18(self): 
         inputGed = open("Sprint2.ged", "r")
@@ -210,10 +210,10 @@ class TestResults(unittest.TestCase):
         self.assertTrue(us33.checkForOrphan(output[0], output[1]), ["NOTE: US33: Individual I24 is an orphan"])
     
     def testUS41(self): 
-        self.assertEqual(us41.main(), "NOTE: DATES ARE FIXED TO INCLUDE PARTIALS")
+        self.assertEqual(us41.main(), "NOTE: US41: DATES ARE FIXED TO INCLUDE PARTIALS")
 
     def testUS40(self): 
-        self.assertEqual(us40.main(), "NOTE: LINE NUMBERS ARE ADDED")
+        self.assertEqual(us40.main(), "NOTE: US40: LINE NUMBERS ARE ADDED")
     
     def testUS08(self):
         inputGed = open("inputForTest_MW.ged", "r")

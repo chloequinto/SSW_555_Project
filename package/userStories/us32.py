@@ -22,9 +22,9 @@ def checkMultipleBirths(lists):
             whole.append(person)
             person = []
     for x, i in enumerate(whole): 
-        print("ERROR: INDIVIDUAL: US32: " + str(i[0]) + " has the same birthdays as someone else on " + str(date) + " line: " + str(i[1]))
+        print("ERROR: INDIVIDUAL: US32: " + str(i[0]) + " has the same birthdays as someone else on " + str(date) + " line " + str(i[1]))
 
-        res.append("ERROR: INDIVIDUAL: US32: " + str(i[0]) + " has the same birthdays as someone else on " + str(date) + " line: " + str(i[1])) 
+        res.append("ERROR: INDIVIDUAL: US32: " + str(i[0]) + " has the same birthdays as someone else on " + str(date) + " line " + str(i[1])) 
     
     return res
 
