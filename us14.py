@@ -28,7 +28,7 @@ def checkForMoreThan5Sibs(indiv, fam):
                                 print("ERROR: FAMILY: US14: "+ str(family[num]) + " MORE THAN 5 SIBLINGS HAVE MULTIPLE BIRTHDAYS ON YEAR " + str(b))
                                 res.append("ERROR: FAMILY: US14: "+ str(family[num]) + " MORE THAN 5 SIBLINGS HAVE MULTIPLE BIRTHDAYS ON YEAR " + str(b))
                                 break
-                              
+             
         return res
 
 def formats(indiv, fam): 

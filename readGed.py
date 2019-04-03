@@ -377,6 +377,7 @@ def main():
         us16.sameLastName(allLists[0], allLists[2])
         us22.uniqueIDs(allLists)
         us26.corrEntries(allLists)
+        us32.main(allLists[2])
         print()
         print("----------ANOMALIES----------")
         print()
@@ -398,7 +399,7 @@ def main():
         
         # us30.checkForLivingMarried(allLists[0])
         # us31.checkForLivingSingle(allLists[0])
-        # us32.main(allLists[0])
+        
         # us33.checkForOrphan(allLists[0], allLists[1])
         # us36.main(allLists[2]
         # recentBirthList = us35.RecentBirths(individual)

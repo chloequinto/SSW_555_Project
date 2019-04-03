@@ -45,13 +45,13 @@ name2 = (
 )
 
 us07res = (
-    ["ERROR: INDIVIDUAL: US32: I1 has the same birthdays as someone else on ['2032-06-10']",
-    "ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['2032-06-10']"]
+    ["ERROR: INDIVIDUAL: US32: I1 has the same birthdays as someone else on ['2032-06-10'] line: 14",
+    "ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['2032-06-10'] line: 44"]
 )
 
 us07res1 = (
-    ["ERROR: INDIVIDUAL: US32: I3 has the same birthdays as someone else on ['1995-06-28']",
-    "ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['1995-06-28']"]
+    ["ERROR: INDIVIDUAL: US32: I3 has the same birthdays as someone else on ['1995-06-28'] line: 35",
+    "ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['1995-06-28'] line: 45"]
 )
 
 class TestResults(unittest.TestCase): 
@@ -73,8 +73,8 @@ class TestResults(unittest.TestCase):
         inputGed1 = open("input_8.ged", "r")
         output = readGed.fam(inputGed)
         output1 = readGed.fam(inputGed1)
-        self.assertEqual(us32.checkMultipleBirths(output[0]),us07res)
-        self.assertEqual(us32.checkMultipleBirths(output1[0]),us07res1)
+        self.assertEqual(us32.checkMultipleBirths(output[2]),us07res)
+        self.assertEqual(us32.checkMultipleBirths(output1[2]),us07res1)
 
     def testUS07(self):  
         inputGed = open("Sprint1.ged", "r")
