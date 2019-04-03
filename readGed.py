@@ -311,7 +311,7 @@ def table(lists):
 
 def main():
     try:
-        myFile = "Orphan.ged"
+        myFile = "Sprint2.ged"
         inputGed = open(myFile, "r")
     except FileNotFoundError:
         print("Cannot open file")
@@ -338,12 +338,20 @@ def main():
         #     if us02Test != True:
         #         print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
         print("----------Notes----------")
+        print()
         print(us40.main())
         print(us41.main())
+        us29.deaths(allLists[0], allLists[2])
+        print()
         print('----------Errors----------')
+        print()
         us07.main(allLists[0], allLists[2])
-        
+        us16.sameLastName(allLists[0], allLists[2])
+        us22.uniqueIDs(allLists)
+        # us26.corrEntries(allLists)
+        print()
         print("----------ANOMALIES----------")
+        print()
         # us03.main(allLists[0])
         # us04.main(allLists[1])
         # us05.main(allLists[0], allLists[1])
@@ -353,7 +361,6 @@ def main():
         # us10.main(allLists[0], allLists[1])
         # us14.main(allLists[0], allLists[1])
         # us15.main(allLists[1])
-        # us16.main(allLists[0])
         # us18.main(allLists[1])
         
         # family = us21.main()
@@ -361,9 +368,6 @@ def main():
         #     if us21.CheckGenderForRole(i) != True:
         #         print("ERROR: FAMILY: US21: " + family[i].ID + ": gender was wrong")
         
-        # us22.uniqueIDs(allLists)
-        # us26.corrEntries(allLists)
-        # us29.deaths(allLists[0])
         # us30.checkForLivingMarried(allLists[0])
         # us31.checkForLivingSingle(allLists[0])
         # us32.main(allLists[0])

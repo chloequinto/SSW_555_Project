@@ -39,8 +39,8 @@ name2 = (
         ['I8', 'Michael /Smith/', 'M', '1975-03-20', 44, 'True', 'NA', "{'F4'}", 'NA'],
     ],
     [
-        "ERROR: INDIVIDUAL: US16: Bob /Smiath/ does not have the same last name",
-        "ERROR: INDIVIDUAL: US16: Brian /Smith/ does not have the same last name"
+        "ERROR: INDIVIDUAL: US16: Bob /Smiath/ does not have the same last name on line 25",
+        "ERROR: INDIVIDUAL: US16: Brian /Smith/ does not have the same last name on line 25"
     ]
 )
 
@@ -89,16 +89,16 @@ class TestResults(unittest.TestCase):
         inputGed1 = open("inputRZ2.ged", "r")
         output = readGed.fam(inputGed)
         output1 = readGed.fam(inputGed1)
-        self.assertEqual(us29.deaths(output[0]), deaths1)
-        self.assertEqual(us29.deaths(output1[0]), deaths2) 
+        self.assertEqual(us29.deaths(output[0], output[2]), deaths1)
+        self.assertEqual(us29.deaths(output1[0], output1[2]), deaths2) 
 
     def testUS16(self): #us16
         inputGed = open("inputRZ1.ged", "r")
         inputGed1 = open("inputRZ2.ged", "r")
         output = readGed.fam(inputGed)
         output1 = readGed.fam(inputGed1)
-        self.assertEqual(us16.sameLastName(output[0]), name1)
-        self.assertEqual(us16.sameLastName(output1[0]), name2)
+        self.assertEqual(us16.sameLastName(output[0], output[2]), name1)
+        self.assertEqual(us16.sameLastName(output1[0], output1[2]), name2)
 
     def testUS06(self):
         inputGed = open("Sprint1.ged", "r")
@@ -172,12 +172,12 @@ class TestResults(unittest.TestCase):
     def testUS22(self):
         inputGed = open("Sprint2.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertEqual(us26.corrEntries(output), ["ERROR: FAMILY: US26: Family F2 does not have the correct corresponding entries","ERROR: FAMILY: US26: Family F3 does not have the correct corresponding entries"])      
+        self.assertEqual(us22.uniqueIDs(output), (['I21'], []))  
     
     def testUS26(self):
-        inputGed = open("Sprint2.ged", "r")
+        inputGed = open("Sprint2.ged", "r")     
         output = readGed.fam(inputGed)
-        self.assertEqual(us22.uniqueIDs(output), (['I21'], []))  
+        self.assertEqual(us26.corrEntries(output), ["ERROR: FAMILY: US26: Family F2 does not have the correct corresponding entries","ERROR: FAMILY: US26: Family F3 does not have the correct corresponding entries"]) 
 
     def testUS15(self): 
         inputGed = open("Sprint2.ged", "r")
