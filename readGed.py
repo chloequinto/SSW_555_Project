@@ -376,7 +376,7 @@ def main():
         us07.main(allLists[0], allLists[2])
         us16.sameLastName(allLists[0], allLists[2])
         us22.uniqueIDs(allLists)
-        # us26.corrEntries(allLists)
+        us26.corrEntries(allLists)
         print()
         print("----------ANOMALIES----------")
         print()

@@ -42,7 +42,7 @@ def corrEntries(everything):
 
     for (key, value), (key1, value1) in zip(indiIdSorted.items(), famIdSorted.items()):
         if value[0][0] != value1[0][0]:
-            errors.append(f"ERROR: FAMILY: US26: Family {key} does not have the correct corresponding entries on line {value[0][1]}")
+            errors.append(f"ERROR: FAMILY: US26: Family {key} does not have the correct corresponding entries on line {value1[0][1]}")
             print(f"ERROR: FAMILY: US26: Family {key} does not have the correct corresponding entries on line {value1[0][1]}")
     
     return errors

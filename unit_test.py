@@ -177,7 +177,7 @@ class TestResults(unittest.TestCase):
     def testUS26(self):
         inputGed = open("Sprint2.ged", "r")     
         output = readGed.fam(inputGed)
-        self.assertEqual(us26.corrEntries(output), ["ERROR: FAMILY: US26: Family F2 does not have the correct corresponding entries","ERROR: FAMILY: US26: Family F3 does not have the correct corresponding entries"]) 
+        self.assertEqual(us26.corrEntries(output), ["ERROR: FAMILY: US26: Family F2 does not have the correct corresponding entries on line 231","ERROR: FAMILY: US26: Family F3 does not have the correct corresponding entries on line 237", "ERROR: FAMILY: US26: Family F4 does not have the correct corresponding entries on line 261"]) 
 
     def testUS15(self): 
         inputGed = open("Sprint2.ged", "r")
