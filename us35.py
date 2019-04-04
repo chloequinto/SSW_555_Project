@@ -137,9 +137,11 @@ def RecentBirths(individual):
         if individual[indi].birthDate != 'NA':
             birthdate = individual[indi].birthDate
             today = date.today().strftime("%Y-%m-%d")
-            
-            birthDate = datetime.strptime(birthdate, "%Y-%m-%d")
             todayDate = datetime.strptime(today, "%Y-%m-%d")
+            try:
+                birthDate = datetime.strptime(birthdate, "%Y-%m-%d")
+            except ValueError:
+                birthDate = todayDate - timedelta(days=1)
             diffDate = (todayDate - birthDate)
             
             if diffDate.days < 30 and diffDate.days > 0:

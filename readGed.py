@@ -348,44 +348,54 @@ def main():
         table(allLists)
 
         
-        # individual = us01.main()
-        # for indi in individual:
-        #     us01Test_Birth = us01.BirthBeforeCurrent(indi)
-        #     if us01Test_Birth !=  True:
-        #         print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs in the future")
-        #     us01Test_Death = us01.DeathBeforeCurrent(indi)
-        #     if us01Test_Death !=  True:
-        #         print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Death date " + individual[indi].deathDate + " occurs in the future")
-        #     us01Test_Marriage = us01.MarriageBeforeCurrent(indi)
-        #     if us01Test_Marriage !=  True:
-        #         print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Marriage date " + individual[indi].marriageDate + " occurs in the future")
-        #     us01Test_Divorce = us01.DivorceBeforeCurrent(indi)
-        #     if us01Test_Divorce !=  True:
-        #         print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Divorce date " + individual[indi].divorceDate + " occurs in the future")
-        #     us02Test = us02.BirthBeforeMarriage(individual[indi])
-        #     if us02Test != True:
-        #         print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
+        individual = us01.main()
         print("----------Notes----------")
         print()
+
         print(us40.main())
         print(us41.main())
         us29.deaths(allLists[0], allLists[2])
+        recentBirthList = us35.RecentBirths(individual)
+        if len(recentBirthList) > 0:
+            for i in recentBirthList:
+                print("NOTIFICATION: INDIVIDUAL: US35: "+ i + ": Birthday " + individual[i].birthDate + " was born in the last 30 days")
+        
         print()
         print('----------Individual Errors----------')
         print()
+
+        for indi in individual:
+            us01Test_Birth = us01.BirthBeforeCurrent(indi)
+            if us01Test_Birth !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs in the future")
+            us01Test_Death = us01.DeathBeforeCurrent(indi)
+            if us01Test_Death !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Death date " + individual[indi].deathDate + " occurs in the future")
+            us01Test_Marriage = us01.MarriageBeforeCurrent(indi)
+            if us01Test_Marriage !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Marriage date " + individual[indi].marriageDate + " occurs in the future")
+            us01Test_Divorce = us01.DivorceBeforeCurrent(indi)
+            if us01Test_Divorce !=  True:
+                print("ERROR: INDIVIDUAL: US01: "+ individual[indi].ID + ": Divorce date " + individual[indi].divorceDate + " occurs in the future")
+            us02Test = us02.BirthBeforeMarriage(individual[indi])
+            if us02Test != True:
+                print("ERROR: INDIVIDUAL: US02: "+ individual[indi].ID + ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
+        
         us07.main(allLists[0], allLists[2])
         us16.sameLastName(allLists[0], allLists[2])
         us22.uniqueIDs(allLists)
         us32.main(allLists[2])
+
         print()
         print("------------Family Errors------------")
         print()
+        
         us14.main(allLists[0], allLists[1], allLists[3])
         us26.corrEntries(allLists)
         us15.main(allLists[1], allLists[2])
         print()
-        # us03.main(allLists[0])
-        # us04.main(allLists[1])
+        us03.main(allLists[0])
+        us04.main(allLists[1])
         # us05.main(allLists[0], allLists[1])
         # us06.main(allLists[0], allLists[1])  
         # us07.main(allLists[0])
@@ -405,15 +415,11 @@ def main():
         
         # us33.checkForOrphan(allLists[0], allLists[1])
         # us36.main(allLists[2]
-        # recentBirthList = us35.RecentBirths(individual)
-        # if len(recentBirthList) > 0:
-        #     for i in recentBirthList:
-        #         print("NOTIFICATION: INDIVIDUAL: US35: "+ i + ": Birthday " + individual[i].birthDate + " was born in the last 30 days")
         # input2 = open(myFile, "r")
         # us40.main(input2)
         # input2.close()
        
-        # us42.filterDates(allLists)
+        us42.filterDates(allLists)
 
         # familyInfo = us08.main()
         # for index in familyInfo:

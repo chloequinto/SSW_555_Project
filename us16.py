@@ -38,11 +38,11 @@ def sameLastName(inputs, lineNo):
         if i[2] == "M":
             
             if spouse in males and not males[spouse]:
-                print("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last name on line " + str(x[0]))
-                errors.append("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last name on line " + str(x[0]))
+                print(f"ERROR: INDIVIDUAL: US16: {i[1]} does not have the same last name on line {x[0]}")
+                errors.append(f"ERROR: INDIVIDUAL: US16: {i[1]} does not have the same last name on line {x[0]}")
             elif child in males and not males[child]:
-                print("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last name on line " + str(x[0]))
-                errors.append("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last name on line " + str(x[0]))
+                print(f"ERROR: INDIVIDUAL: US16: {i[1]} does not have the same last name on line {x[0]}")
+                errors.append(f"ERROR: INDIVIDUAL: US16: {i[1]} does not have the same last name on line {x[0]}")
             else:
                 allSameName.append(i)
                 
