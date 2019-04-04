@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18, us30, us33, us42, us41, us08, us40, us09, us36
+import us29, us16, us01, us02, us03, us06, us22, us10, us04, us05, us21, us31, us35, us26, us14, us15, us18, us30, us33, us42, us41, us08, us40, us09, us36, us28
 from package.userStories import us07, us32
 
 valid = {
@@ -349,12 +349,14 @@ def main():
 
         
         individual = us01.main()
+        print()
         print("----------Notes----------")
         print()
 
+        us28.orderSiblings(allLists)
+        us29.deaths(allLists[0], allLists[2])
         print(us40.main())
         print(us41.main())
-        us29.deaths(allLists[0], allLists[2])
         recentBirthList = us35.RecentBirths(individual)
         if len(recentBirthList) > 0:
             for i in recentBirthList:
@@ -383,7 +385,6 @@ def main():
         
         us07.main(allLists[0], allLists[2])
         us16.sameLastName(allLists[0], allLists[2])
-        us22.uniqueIDs(allLists)
         us32.main(allLists[2])
 
         print()
@@ -393,9 +394,15 @@ def main():
         us14.main(allLists[0], allLists[1], allLists[3])
         us26.corrEntries(allLists)
         us15.main(allLists[1], allLists[2])
-        print()
         us03.main(allLists[0])
         us04.main(allLists[1])
+
+        print()
+        print("------------Individual and Family Errors------------")
+        print()
+       
+        us22.uniqueIDs(allLists)
+        us42.filterDates(allLists)
         # us05.main(allLists[0], allLists[1])
         # us06.main(allLists[0], allLists[1])  
         # us07.main(allLists[0])
@@ -418,8 +425,6 @@ def main():
         # input2 = open(myFile, "r")
         # us40.main(input2)
         # input2.close()
-       
-        us42.filterDates(allLists)
 
         # familyInfo = us08.main()
         # for index in familyInfo:
