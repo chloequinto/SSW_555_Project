@@ -339,7 +339,7 @@ def table(lists):
 
 def main():
     try:
-        myFile = "Sprint2.ged"
+        myFile = "input_6.ged"
         inputGed = open(myFile, "r")
     except FileNotFoundError:
         print("Cannot open file")
@@ -387,6 +387,7 @@ def main():
         us16.sameLastName(allLists[0], allLists[2])
         us32.main(allLists[2])
         us03.main(allLists[0], allLists[2])
+        us31.checkForLivingSingle(allLists[0], allLists[2])
 
         print()
         print("------------Family Errors------------")
@@ -418,7 +419,7 @@ def main():
         #         print("ERROR: FAMILY: US21: " + family[i].ID + ": gender was wrong")
         
         # us30.checkForLivingMarried(allLists[0])
-        # us31.checkForLivingSingle(allLists[0])
+        
         
         # us33.checkForOrphan(allLists[0], allLists[1])
         # us36.main(allLists[2]

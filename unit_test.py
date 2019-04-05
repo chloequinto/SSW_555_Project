@@ -62,7 +62,9 @@ class TestResults(unittest.TestCase):
         inputGed = open("Sprint2.ged", "r")
         inputGed1 = open("input_6.ged", "r")
         output = readGed.fam(inputGed)
+
         inputGed.close()
+
         self.assertEqual(us03.birthBeforeDeath(output[0], output[2]), ["ERROR: INDIVIDUAL: US03: I4 on line: 44: Death date occurs before their date of birth."])
         inputGed1.close()
     
@@ -149,9 +151,9 @@ class TestResults(unittest.TestCase):
         inputGed1 = open("input_6.ged", "r")
         output = readGed.fam(inputGed)
         output1 = readGed.fam(inputGed1)
-        self.assertEqual(us31.checkForLivingSingle(output1[0]), ['ERROR: INDIVIDUAL: US31: I4 Rocky /Quinto/ is living and single', 'ERROR: INDIVIDUAL: US31: I11 John /Quinto/ is living and single'])
+        self.assertEqual(us31.checkForLivingSingle(output1[0], output1[2]), ['ERROR: INDIVIDUAL: US31: I4 Rocky /Quinto/ on line: 45 is living and single', 'ERROR: INDIVIDUAL: US31: I11 John /Quinto/ on line: 117 is living and single'])
         inputGed.close()
-        self.assertEqual(us31.checkForLivingSingle(output[0]), [])
+        self.assertEqual(us31.checkForLivingSingle(output[0], output[2]), [])
         inputGed1.close()
 
     def testUS10(self):
