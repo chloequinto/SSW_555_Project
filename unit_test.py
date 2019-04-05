@@ -103,7 +103,7 @@ class TestResults(unittest.TestCase):
     def testUS06(self):
         inputGed = open("Sprint1.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertEqual(us06.main(output[0], output[1]), ["ERROR: INDIVIDUAL: US06: I4: Divorce date occurs after their date of death."])
+        self.assertEqual(us06.main(output[0], output[1], output[3]), ["ERROR: INDIVIDUAL: US06: I4: Divorce date occurs after their date of death on line 88"])
 
     def testUS04(self):
         inputGed = open("Sprint1.ged", "r")
@@ -157,11 +157,11 @@ class TestResults(unittest.TestCase):
         inputGed1.close()
 
     def testUS10(self):
-        inputGed = open("Sprint1.ged", "r")
+        inputGed = open("Orphan.ged", "r")
         inputGed1 = open("input_6.ged", "r")
         output = readGed.fam(inputGed)
         output1 = readGed.fam(inputGed1)
-        self.assertEqual(us10.main(output[0], output[1]), ['ERROR: INDIVIDUAL: US10: I1 marriage date occurs before they are 15', 'ERROR: INDIVIDUAL: US10: I4 marriage date occurs before they are 15', 'ERROR: INDIVIDUAL: US10: I5 marriage date occurs before they are 15', 'ERROR: INDIVIDUAL: US10: I6 marriage date occurs before they are 15'])
+        self.assertEqual(us10.main(output[0], output[1], output[3]), ['ERROR: INDIVIDUAL: US10: I1 marriage date occurs before they are 15 on line 245', 'ERROR: INDIVIDUAL: US10: I4 marriage date occurs before they are 15 on line 260', 'ERROR: INDIVIDUAL: US10: I5 marriage date occurs before they are 15 on line 245', 'ERROR: INDIVIDUAL: US10: I6 marriage date occurs before they are 15 on line 260'])
         inputGed1.close()
         
     def testUS14(self):

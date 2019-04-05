@@ -339,7 +339,7 @@ def table(lists):
 
 def main():
     try:
-        myFile = "input_6.ged"
+        myFile = "Orphan.ged"
         inputGed = open(myFile, "r")
     except FileNotFoundError:
         print("Cannot open file")
@@ -405,10 +405,10 @@ def main():
         us22.uniqueIDs(allLists)
         us42.filterDates(allLists)
         # us05.main(allLists[0], allLists[1])
-        # us06.main(allLists[0], allLists[1])  
+        us06.main(allLists[0], allLists[1], allLists[3])  
         # us07.main(allLists[0])
         
-        # us10.main(allLists[0], allLists[1])
+        us10.main(allLists[0], allLists[1], allLists[3])
  
         
         # us18.main(allLists[1])
