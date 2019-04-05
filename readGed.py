@@ -386,6 +386,7 @@ def main():
         us07.main(allLists[0], allLists[2])
         us16.sameLastName(allLists[0], allLists[2])
         us32.main(allLists[2])
+        us03.main(allLists[0], allLists[2])
 
         print()
         print("------------Family Errors------------")
@@ -394,7 +395,6 @@ def main():
         us14.main(allLists[0], allLists[1], allLists[3])
         us26.corrEntries(allLists)
         us15.main(allLists[1], allLists[2])
-        us03.main(allLists[0])
         us04.main(allLists[1])
 
         print()

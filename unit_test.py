@@ -59,13 +59,11 @@ class TestResults(unittest.TestCase):
     maxDiff = None #check for full errors
     
     def testUS03(self):
-        inputGed = open("Sprint1.ged", "r")
+        inputGed = open("Sprint2.ged", "r")
         inputGed1 = open("input_6.ged", "r")
         output = readGed.fam(inputGed)
-        output1 = readGed.fam(inputGed1)
-        self.assertEqual(us03.birthBeforeDeath(output1[0]), ["ERROR: INDIVIDUAL: US03: I10: Death date occurs before their date of birth."])
         inputGed.close()
-        self.assertEqual(us03.birthBeforeDeath(output[0]), ["ERROR: INDIVIDUAL: US03: I4: Death date occurs before their date of birth."])
+        self.assertEqual(us03.birthBeforeDeath(output[0], output[2]), ["ERROR: INDIVIDUAL: US03: I4 on line: 44: Death date occurs before their date of birth."])
         inputGed1.close()
     
     def testUS32(self): 
