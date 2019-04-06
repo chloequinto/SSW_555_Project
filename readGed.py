@@ -421,7 +421,7 @@ def main():
         # us30.checkForLivingMarried(allLists[0])
         
         
-        # us33.checkForOrphan(allLists[0], allLists[1])
+        us33.checkForOrphan(allLists[0], allLists[1], allLists[2])
         # us36.main(allLists[2]
         # input2 = open(myFile, "r")
         # us40.main(input2)

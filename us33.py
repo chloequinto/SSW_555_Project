@@ -3,14 +3,14 @@ US31 - List Orphans
 '''
 import readGed
 
-def checkForOrphan(inputIndi, inputFam):
+def checkForOrphan(inputIndi, inputFam, newFam):
     orphans = []
     Families = []
     MomID = "Null"
     DadID = "Null"
     MotherDeceased = False
     FatherDeceased = False
-    for i in inputIndi:  
+    for i, b in zip(inputIndi, newFam):  
         if i[7] != "NA":
             Families.append(i[7][2] + i[7][3])
 
@@ -28,10 +28,10 @@ def checkForOrphan(inputIndi, inputFam):
         if MotherDeceased == True and FatherDeceased == True:
             fixString = "NOTE: US33: Individual " + i[0] + " is an orphan"
             if fixString not in orphans:
-                print("NOTE: US33: Individual " + i[0] + " is an orphan")
+                print("NOTE: US33: Individual " + i[0] + " is an orphan on line " + str(b[0]))
                 orphans.append("NOTE: US33: Individual " + i[0] + " is an orphan")
     return orphans
 
-def main(inputIndi, inputFam):
-    checkForOrphan(inputIndi, inputFam)
+def main(inputIndi, inputFam, newFam):
+    checkForOrphan(inputIndi, inputFam, newFam)
     

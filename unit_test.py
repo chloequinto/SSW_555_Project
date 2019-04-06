@@ -207,7 +207,7 @@ class TestResults(unittest.TestCase):
     def testUS33(self):
         inputGed = open("Orphan.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertTrue(us33.checkForOrphan(output[0], output[1]), ["NOTE: US33: Individual I24 is an orphan"])
+        self.assertTrue(us33.checkForOrphan(output[0], output[1], output[2]), ["NOTE: US33: Individual I24 is an orphan on line 236"])
     
     def testUS41(self): 
         self.assertEqual(us41.main(), "NOTE: US41: DATES ARE FIXED TO INCLUDE PARTIALS")
