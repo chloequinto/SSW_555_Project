@@ -1,7 +1,7 @@
 '''
 All Unit Tests 
 '''
-import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14, us15, us18, us30, us42, us33, us41, us08, us09, us40, us28
+import us03, us16, us29, us06, us04, us05, us22, us15, us26, us35, us01, us02, us21, us31, us10, us26, us14, us15, us18, us30, us42, us33, us41, us08, us09, us40, us28, us12
 import unittest
 import readGed
 from package.userStories import us07,us32
@@ -235,6 +235,11 @@ class TestResults(unittest.TestCase):
         inputGed = open("Sprint2.ged", "r")
         output = readGed.fam(inputGed)
         self.assertEqual(us28.orderSiblings(output), {'F1': [['I1', -13, 14]], 'F2': [['I4', -19, 44]], 'F4': [['I7', 4, 74], ['I8', 3, 84]], 'F5': [['I10', 2, 104], ['I9', 0, 94]], 'F3': [['I11', 1, 114], ['I12', 1, 123], ['I13', 1, 132], ['I14', 1, 141], ['I15', 1, 150], ['I16', 1, 159], ['I17', 0, 168], ['I18', -1, 177], ['I19', -2, 186], ['I20', -3, 195], ['I21', -5, 213]]})
+
+    def testUS12(self):   
+        inputGed = open("Sprint1.ged", "r")
+        output = readGed.fam(inputGed)
+        self.assertEqual(us12.checkForOldParents(output[0], output[1], output[2]), ["Error: US12: Individual: I1's father is too old on line: 14", "Error: US12: Individual: I1's mother is too old on line: 14", "Error: US12: Individual: I4's father is too old on line: 44", "Error: US12: Individual: I4's mother is too old on line: 44"]) 
 
 
 if __name__ == '__main__':   
