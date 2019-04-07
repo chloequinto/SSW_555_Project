@@ -29,6 +29,8 @@ import us09
 import us40
 import us28
 import us12
+import us36
+import us38
 import unittest
 import readGed
 from package.userStories import us07, us32
@@ -311,7 +313,21 @@ class TestResults(unittest.TestCase):
         output = readGed.fam(inputGed)
         self.assertEqual(us28.orderSiblings(output), {'F1': [['I1', -13, 14]], 'F2': [['I4', -19, 44]], 'F4': [['I7', 4, 74], ['I8', 3, 84]], 'F5': [['I10', 2, 104], ['I9', 0, 94]], 'F3': [
                          ['I11', 1, 114], ['I12', 1, 123], ['I13', 1, 132], ['I14', 1, 141], ['I15', 1, 150], ['I16', 1, 159], ['I17', 0, 168], ['I18', -1, 177], ['I19', -2, 186], ['I20', -3, 195], ['I21', -5, 213]]})
+'''
+    def testUS36(self):
+        inputGed = open("Sprint1.ged", "r")
+        output = readGed.fam(inputGed)
+        self.assertEqual(us36.main(allLists[2])), [
+                         "ERROR: INDIVIDUAL: US36: Line: I4: "])
+        inputGed.close()
 
+    def testUS38(self):
+        inputGed = open("Sprint1.ged", "r")
+        output = readGed.fam(inputGed)
+        self.assertEqual(us38.main(allLists[2])), [
+                         "ERROR: INDIVIDUAL: US38: Line: I4: "])
+        inputGed.close()
+'''
     def testUS12(self):
         inputGed = open("Sprint1.ged", "r")
         output = readGed.fam(inputGed)
