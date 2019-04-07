@@ -49,8 +49,12 @@ def checkIndividuals(indivs, familyparsed):
         for j in familyparsed:
             if j[3] == i[0] or j[4] == i[0]: #check logic
                 if i[3] != "NA": #if has a birthday 
-                    birthDate = datetime.strptime(i[3], '%Y-%m-%d')
-                    marriageDate = datetime.strptime(j[2], '%Y-%m-%d') 
+                    try:
+                        birthDate = datetime.strptime(i[3], '%Y-%m-%d')
+                        marriageDate = datetime.strptime(j[2], '%Y-%m-%d') 
+                    except ValueError:
+                        birthDate = datetime.strptime("2018-01-01", '%Y-%m-%d') 
+                        marriageDate = datetime.strptime("2018-01-01", '%Y-%m-%d') 
                     if(marriageDate < (birthDate+ timedelta(days=5475))):
                             print("ERROR: INDIVIDUAL: US10: " + i[0] + " marriage date occurs before they are 15 on line " + str(j[0]))
                             errors.append("ERROR: INDIVIDUAL: US10: " + i[0] + " marriage date occurs before they are 15 on line " + str(j[0]))

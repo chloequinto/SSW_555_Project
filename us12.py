@@ -34,16 +34,25 @@ def checkForOldParents(inputIndi, inputFam, newFam):
             for j in inputIndi:
                 if j[0] == fatherID and j[3] != "NA":
                     fatherBirthday = j[3]
-                    fatherBirthDate = datetime.strptime(j[3], '%Y-%m-%d')
+                    try:
+                        fatherBirthDate = datetime.strptime(j[3], '%Y-%m-%d')
+                    except ValueError:
+                        fatherBirthDate = datetime.strptime("2018-01-01", '%Y-%m-%d') 
                     
                 if j[0] == motherID and j[3] != "NA":
                     motherBirthday = j[3]
-                    motherBirthDate = datetime.strptime(j[3], '%Y-%m-%d')
+                    try:
+                        motherBirthDate = datetime.strptime(j[3], '%Y-%m-%d')
+                    except ValueError:
+                        motherBirthDate = datetime.strptime("2018-01-01", '%Y-%m-%d') 
                     
             for k, b in zip(inputIndi, newFam):
                 if k[0] in children[0] and k[3] != "NA":
                     childBirthday = k[3]
-                    ChildBirthDate = datetime.strptime(k[3], '%Y-%m-%d')
+                    try:
+                        ChildBirthDate = datetime.strptime(k[3], '%Y-%m-%d')
+                    except ValueError:
+                        ChildBirthDate = datetime.strptime("2018-01-01", '%Y-%m-%d') 
                     if(ChildBirthDate > (fatherBirthDate+ timedelta(days=29200))):
                         print("Error: US12: Individual: " + k[0] + "'s father is too old on line: " + str(b[0]))
                         errors.append("Error: US12: Individual: " + k[0] + "'s father is too old on line: " + str(b[0]))

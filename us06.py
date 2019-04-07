@@ -33,8 +33,12 @@ def checkFams(input, indivs):
         for j in indivs:
             if j[3] == i[0] or j[4] == i[0]: #checks 
                 if i[6] != "NA": #if dead 
-                    deathDate = datetime.strptime(i[6], '%Y-%m-%d')
-                    divDate = datetime.strptime(j[2], '%Y-%m-%d') 
+                    try:
+                        deathDate = datetime.strptime(i[6], '%Y-%m-%d')
+                        divDate = datetime.strptime(j[2], '%Y-%m-%d') 
+                    except ValueError:
+                        deathDate = datetime.strptime("2018-01-01", '%Y-%m-%d') 
+                        divDate = datetime.strptime("2018-01-01", '%Y-%m-%d') 
                     if divDate > deathDate:
                         errors.append("ERROR: INDIVIDUAL: US06: " + i[0] + ": Divorce date occurs after their date of death on line " + str(j[0]))
                         problem = True
