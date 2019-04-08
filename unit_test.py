@@ -292,7 +292,7 @@ class TestResults(unittest.TestCase):
     def testUS12(self):
         inputGed = open("data/Sprint1.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertEqual(us12.checkForOldParents(output[0], output[1], output[2]), ["Error: US12: Individual: I1's father is too old on line: 14", "Error: US12: Individual: I1's mother is too old on line: 14", "Error: US12: Individual: I4's father is too old on line: 44", "Error: US12: Individual: I4's mother is too old on line: 44"])
+        self.assertEqual(us12.checkForOldParents(output[0], output[1], output[2]), ["ERROR: US12: Individual: I1's father is too old on line: 14", "ERROR: US12: Individual: I1's mother is too old on line: 14", "ERROR: US12: Individual: I4's father is too old on line: 44", "ERROR: US12: Individual: I4's mother is too old on line: 44"])
 
 
 if __name__ == '__main__':

@@ -52,12 +52,12 @@ def checkForOldParents(inputIndi, inputFam, newFam):
                     except ValueError:
                         ChildBirthDate = datetime.strptime("2018-01-01", '%Y-%m-%d') 
                     if(ChildBirthDate > (fatherBirthDate+ timedelta(days=29200))):
-                        print("Error: US12: Individual: " + k[0] + "'s father is too old on line: " + str(b[0]))
-                        errors.append("Error: US12: Individual: " + k[0] + "'s father is too old on line: " + str(b[0]))
+                        print("ERROR: US12: Individual: " + k[0] + "'s father is too old on line: " + str(b[0]))
+                        errors.append("ERROR: US12: Individual: " + k[0] + "'s father is too old on line: " + str(b[0]))
                         Error = True
                     if(ChildBirthDate > (motherBirthDate+ timedelta(days=21900))):
-                        print("Error: US12: Individual: " + k[0] + "'s mother is too old on line: " + str(b[0]))
-                        errors.append("Error: US12: Individual: " + k[0] + "'s mother is too old on line: " + str(b[0]))
+                        print("ERROR: US12: Individual: " + k[0] + "'s mother is too old on line: " + str(b[0]))
+                        errors.append("ERROR: US12: Individual: " + k[0] + "'s mother is too old on line: " + str(b[0]))
                         Error = True
     return errors
 
