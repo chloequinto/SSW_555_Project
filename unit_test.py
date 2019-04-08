@@ -282,12 +282,12 @@ class TestResults(unittest.TestCase):
     def testUS36(self):
         inputGed = open("Sprint2.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertEqual(us36.main(output), ["NOTE: INDIVIDUAL: US36: Line: 24 ID: I2: Death has occurred within the past 30 days"])
+        self.assertEqual(us36.main(output), None)
 
     def testUS38(self):
-        inputGed = open("Sprint1.ged", "r")
+        inputGed = open("Sprint2.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertEqual(us38.main(output), ["ERROR: INDIVIDUAL: US38: Line: I4: "])
+        self.assertEqual(us38.main(output[0], output[2]), None)
         inputGed.close()
 
     def testUS12(self):

@@ -331,6 +331,7 @@ def main():
         us28.orderSiblings(allLists)
         us29.deaths(allLists[0], allLists[2])
         us30.checkForLivingMarried(allLists)
+        us38.main(allLists[0], allLists[2])
         recentBirthList = us35.RecentBirths(individual)
         if len(recentBirthList) > 0:
             for i in recentBirthList:
@@ -369,19 +370,12 @@ def main():
         us03.main(allLists[0], allLists[2])
         us06.main(allLists[0], allLists[1], allLists[3])
         us07.main(allLists[0], allLists[2])
-
-        for index in family:
-            for child in family[index].children:
-                if child in individual:
-                    if us09.BirthBeforeDeathOfParents(family[index], individual[child], individual) != True:
-                        print("ERROR: FAMILY: US09: " + family[index].ID + " : " + child +
-                              ": Children born after death of mother or after 9 months after death of father on line " + str(family[index].lineNum))
-        
         us10.main(allLists[0], allLists[1], allLists[3])
         us16.sameLastName(allLists[0], allLists[2])
         us31.checkForLivingSingle(allLists[0], allLists[2])
         us32.main(allLists[2])
         us33.checkForOrphan(allLists[0], allLists[1], allLists[2])
+
 
         print()
         print("------------Family Errors------------")
@@ -407,6 +401,12 @@ def main():
                       family[i].ID + ": gender was wrong on line " + str(family[i].lineNum))
         
         us26.corrEntries(allLists)
+        for index in family:
+            for child in family[index].children:
+                if child in individual:
+                    if us09.BirthBeforeDeathOfParents(family[index], individual[child], individual) != True:
+                        print("ERROR: FAMILY: US09: " + family[index].ID + " : " + child +
+                              ": Children born after death of mother or after 9 months after death of father on line " + str(family[index].lineNum))
 
         print()
         print("------------Individual & Family Errors------------")
