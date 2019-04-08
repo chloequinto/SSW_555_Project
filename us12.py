@@ -9,11 +9,7 @@ US31 - Parents not too old
 # store wife birthday
 # iterate through children and compare birthdays
 
-from prettytable import PrettyTable
-from datetime import datetime
-from datetime import timedelta
-import readGed
-import re
+from datetime import datetime, timedelta
 
 def checkForOldParents(inputIndi, inputFam, newFam):
     children = []

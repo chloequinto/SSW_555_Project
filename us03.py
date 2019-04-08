@@ -2,10 +2,7 @@
 User Story 03
 Birth before death
 '''
-from prettytable import PrettyTable
 from datetime import datetime
-import re
-import readGed
 
 
                 

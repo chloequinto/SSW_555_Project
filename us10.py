@@ -3,11 +3,7 @@ User Story 10:
 Marriage after 14
 '''
 
-from prettytable import PrettyTable
-from datetime import datetime
-from datetime import timedelta
-import readGed
-import re
+from datetime import datetime, timedelta
 
 monthWordToInt = {
     "JAN": "01",
@@ -25,10 +21,9 @@ monthWordToInt = {
 }
 
 def marriageAfter14FamParse(input, newFam):
-    problem = False
     fams = []
     indivs = []
-    errors = []
+    
     for i, b in zip(input, newFam): 
         if i[2] != "NA":
             fams = []
@@ -44,7 +39,6 @@ def marriageAfter14FamParse(input, newFam):
 
 def checkIndividuals(indivs, familyparsed):
     errors = []
-    problem = False
     for i in indivs:
         for j in familyparsed:
             if j[3] == i[0] or j[4] == i[0]: #check logic
@@ -58,13 +52,9 @@ def checkIndividuals(indivs, familyparsed):
                     if(marriageDate < (birthDate+ timedelta(days=5475))):
                             print("ERROR: INDIVIDUAL: US10: " + i[0] + " marriage date occurs before they are 15 on line " + str(j[0]))
                             errors.append("ERROR: INDIVIDUAL: US10: " + i[0] + " marriage date occurs before they are 15 on line " + str(j[0]))
-                            problem = True
 
-    if problem: 
-        return errors
+    return errors
                     
 
 def main(individualTable, familyTable, newFam):
     return checkIndividuals(individualTable, marriageAfter14FamParse(familyTable, newFam))
-
-

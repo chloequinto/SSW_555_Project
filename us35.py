@@ -3,8 +3,7 @@ User Story 35
 List recent births
 
 '''
-from datetime import date
-from datetime import datetime, timedelta
+from datetime import date, datetime
 import us01
 
 

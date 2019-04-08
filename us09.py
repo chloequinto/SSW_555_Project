@@ -4,8 +4,7 @@ Birth before death of parents
 
 '''
 
-from datetime import date
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 import us01
 
 

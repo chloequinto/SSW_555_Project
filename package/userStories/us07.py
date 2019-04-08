@@ -1,8 +1,6 @@
-
 import re
 from datetime import datetime
 import us40
-
 
 
 def checkForLessThan150(lists, listNum): 

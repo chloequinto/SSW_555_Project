@@ -4,8 +4,6 @@ All male members of family must have the same name
 
 '''
 
-from prettytable import PrettyTable
-
 def sameLastName(inputs, lineNo):
     males = {}
     # check spouse and child indexes to get all family ids of the male members

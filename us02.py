@@ -3,9 +3,6 @@ User Story 02
 Birth before marriage
 
 '''
-
-from datetime import date
-from datetime import datetime
 import us01
 
 

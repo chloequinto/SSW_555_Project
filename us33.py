@@ -34,4 +34,3 @@ def checkForOrphan(inputIndi, inputFam, newFam):
 
 def main(inputIndi, inputFam, newFam):
     checkForOrphan(inputIndi, inputFam, newFam)
-    

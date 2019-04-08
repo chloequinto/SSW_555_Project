@@ -2,17 +2,13 @@
 User Story 05
 Marriage before death
 '''
-from prettytable import PrettyTable
 from datetime import datetime
-import re
-import readGed
 
                 
 def indivDeaths(input):
-    problem = False
     fams = []
     indivs = []
-    errors = []
+    
     for i in input: 
         if i[2] != "NA":
             fams = []
@@ -21,29 +17,32 @@ def indivDeaths(input):
             fams.append(i[3])
             fams.append(i[5])
             indivs.append(fams)
-            
-    # print(indivs)        
+                  
     return indivs
 
-def checkFams(input, indivs):
+def checkFams(input, indivs, famNums):
     errors = []
-    problem = False
+    
     for i in input:
-        for j in indivs:
+        for j, k in zip(indivs, famNums):
             if j[2] == i[0] or j[3] == i[0]: #checks 
-                if i[6] != "NA": #if dead 
-                    deathDate = datetime.strptime(i[6], '%Y-%m-%d')
-                    marriageDate = datetime.strptime(j[1], '%Y-%m-%d') 
-                    if marriageDate > deathDate:
-                        errors.append("ERROR: INDIVIDUAL: US05: " + i[0] + ": Marriage date occurs after their date of death.")
-                    problem = True
+                if i[6] != "NA": #if dead
+                    try:
+                        deathDate = datetime.strptime(i[6], '%Y-%m-%d')
+                    except ValueError:
+                        deathDate = datetime.strptime("2020-04-01", '%Y-%m-%d')
 
-    if problem == True: 
-        for i in errors: 
-            print(str(i))
+                    try:
+                        marriageDate = datetime.strptime(j[1], '%Y-%m-%d')
+                    except ValueError:
+                        marriageDate = datetime.strptime("2020-04-01", '%Y-%m-%d')
+                    
+                    if marriageDate > deathDate:
+                        print(f"ERROR: INDIVIDUAL: US05: {i[0]}: Marriage date occurs after their date of death on line {k[0]}.")
+                        errors.append(f"ERROR: INDIVIDUAL: US05: {i[0]}: Marriage date occurs after their date of death on line {k[0]}.")
+                        
     return errors
 
 
-def main(inputindi, inputfam):
-    #indivDeaths(tables[1])
-    return checkFams(inputindi, indivDeaths(inputfam))
+def main(inputindi, inputfam, famNums):
+    return checkFams(inputindi, indivDeaths(inputfam), famNums)

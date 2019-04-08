@@ -1,36 +1,8 @@
 '''
 All Unit Tests 
 '''
-import us03
-import us16
-import us29
-import us06
-import us04
-import us05
-import us22
-import us15
-import us26
-import us35
-import us01
-import us02
-import us21
-import us31
-import us10
-import us26
-import us14
-import us15
-import us18
-import us30
-import us42
-import us33
-import us41
-import us08
-import us09
-import us40
-import us28
-import us12
-import us36
-import us38
+
+import us01, us02, us03, us04, us05, us06, us08, us09, us10, us12, us14, us15, us16, us18, us21, us22, us26, us28, us29, us30, us31, us33, us35, us36, us38, us40, us41, us42
 import unittest
 import readGed
 from package.userStories import us07, us32
@@ -166,8 +138,8 @@ class TestResults(unittest.TestCase):
     def testUS05(self):
         inputGed = open("Sprint1.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertEqual(us05.main(output[0], output[1]), [
-                         "ERROR: INDIVIDUAL: US05: I4: Marriage date occurs after their date of death."])
+        self.assertEqual(us05.main(output[0], output[1], output[3]), [
+                         "ERROR: INDIVIDUAL: US05: I4: Marriage date occurs after their date of death on line 82."])
         inputGed.close()
 
     def testUS01(self):
@@ -220,12 +192,8 @@ class TestResults(unittest.TestCase):
 
     def testUS10(self):
         inputGed = open("Orphan.ged", "r")
-        inputGed1 = open("input_6.ged", "r")
         output = readGed.fam(inputGed)
-        output1 = readGed.fam(inputGed1)
-        self.assertEqual(us10.main(output[0], output[1], output[3]), ['ERROR: INDIVIDUAL: US10: I1 marriage date occurs before they are 15 on line 245', 'ERROR: INDIVIDUAL: US10: I4 marriage date occurs before they are 15 on line 260',
-                                                                      'ERROR: INDIVIDUAL: US10: I5 marriage date occurs before they are 15 on line 245', 'ERROR: INDIVIDUAL: US10: I6 marriage date occurs before they are 15 on line 260'])
-        inputGed1.close()
+        self.assertEqual(us10.main(output[0], output[1], output[3]), ['ERROR: INDIVIDUAL: US10: I1 marriage date occurs before they are 15 on line 245', 'ERROR: INDIVIDUAL: US10: I4 marriage date occurs before they are 15 on line 260', 'ERROR: INDIVIDUAL: US10: I5 marriage date occurs before they are 15 on line 245', 'ERROR: INDIVIDUAL: US10: I6 marriage date occurs before they are 15 on line 260'])
 
     def testUS14(self):
         inputGed = open("Sprint2.ged", "r")
@@ -241,8 +209,7 @@ class TestResults(unittest.TestCase):
     def testUS26(self):
         inputGed = open("Sprint2.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertEqual(us26.corrEntries(output), ["ERROR: FAMILY: US26: Family F2 does not have the correct corresponding entries on line 231",
-                                                    "ERROR: FAMILY: US26: Family F3 does not have the correct corresponding entries on line 237", "ERROR: FAMILY: US26: Family F4 does not have the correct corresponding entries on line 261"])
+        self.assertEqual(us26.corrEntries(output), ["ERROR: FAMILY: US26: Family F2 does not have the correct corresponding entries on line 231", "ERROR: FAMILY: US26: Family F3 does not have the correct corresponding entries on line 237", "ERROR: FAMILY: US26: Family F4 does not have the correct corresponding entries on line 261"])
 
     def testUS15(self):
         inputGed = open("Sprint2.ged", "r")
@@ -253,19 +220,18 @@ class TestResults(unittest.TestCase):
     def testUS18(self):
         inputGed = open("Sprint2.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertEqual(us18.main(output[1]), [
-                         "ERROR: FAMILY: US18: ['I8', 'I7'] Siblings should not marry."])
+        self.assertEqual(us18.main(output), [
+                         "ERROR: FAMILY: US18: ['I8', 'I7'] Siblings should not marry on line 237."])
 
     def testUS30(self):
         inputGed = open("Sprint1.ged", "r")
         inputGed1 = open("input_6.ged", "r")
         output = readGed.fam(inputGed)
         output1 = readGed.fam(inputGed1)
-        self.assertEqual(us30.checkForLivingMarried(output1[0]), ['ERROR: INDIVIDUAL: US30: I1 Chloe /Quinto/ is living and married', 'ERROR: INDIVIDUAL: US30: I2 Rafael /Quinto/ is living and married',
-                                                                  'ERROR: INDIVIDUAL: US30: I3 Maria /Quinto/ is living and married', 'ERROR: INDIVIDUAL: US30: I5 Thompson /L/ is living and married', 'ERROR: INDIVIDUAL: US30: I8 Grandpa /Loresco/ is living and married'])
         inputGed.close()
-        self.assertEqual(us30.checkForLivingMarried(output[0]), ['ERROR: INDIVIDUAL: US30: I1 Edward /Rogers/ is living and married', 'ERROR: INDIVIDUAL: US30: I3 Emily /Rogers/ is living and married',
-                                                                 'ERROR: INDIVIDUAL: US30: I5 Marcia /Rogers/ is living and married', 'ERROR: INDIVIDUAL: US30: I6 Tim /Jones/ is living and married'])
+        self.assertEqual(us30.checkForLivingMarried(output), ['NOTE: INDIVIDUAL: US30: I1 Edward /Rogers/ is living and married on line 14', 'NOTE: INDIVIDUAL: US30: I3 Emily /Rogers/ is living and married on line 35', 'NOTE: INDIVIDUAL: US30: I5 Marcia /Rogers/ is living and married on line 56', 'NOTE: INDIVIDUAL: US30: I6 Tim /Jones/ is living and married on line 65'])
+
+        self.assertEqual(us30.checkForLivingMarried(output1), ['NOTE: INDIVIDUAL: US30: I1 Chloe /Quinto/ is living and married on line 15', 'NOTE: INDIVIDUAL: US30: I2 Rafael /Quinto/ is living and married on line 25', 'NOTE: INDIVIDUAL: US30: I3 Maria /Quinto/ is living and married on line 35', 'NOTE: INDIVIDUAL: US30: I5 Thompson /L/ is living and married on line 54', 'NOTE: INDIVIDUAL: US30: I8 Grandpa /Loresco/ is living and married on line 86'])
         inputGed1.close()
 
     def testUS42(self):
@@ -311,28 +277,23 @@ class TestResults(unittest.TestCase):
     def testUS28(self):
         inputGed = open("Sprint2.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertEqual(us28.orderSiblings(output), {'F1': [['I1', -13, 14]], 'F2': [['I4', -19, 44]], 'F4': [['I7', 4, 74], ['I8', 3, 84]], 'F5': [['I10', 2, 104], ['I9', 0, 94]], 'F3': [
-                         ['I11', 1, 114], ['I12', 1, 123], ['I13', 1, 132], ['I14', 1, 141], ['I15', 1, 150], ['I16', 1, 159], ['I17', 0, 168], ['I18', -1, 177], ['I19', -2, 186], ['I20', -3, 195], ['I21', -5, 213]]})
-'''
+        self.assertEqual(us28.orderSiblings(output), {'F1': [['I1', -13, 14]], 'F2': [['I4', -19, 44]], 'F4': [['I7', 4, 74], ['I8', 3, 84]], 'F5': [['I10', 2, 104], ['I9', 0, 94]], 'F3': [['I11', 1, 114], ['I12', 1, 123], ['I13', 1, 132], ['I14', 1, 141], ['I15', 1, 150], ['I16', 1, 159], ['I17', 0, 168], ['I18', -1, 177], ['I19', -2, 186], ['I20', -3, 195], ['I21', -5, 213]]})
+
     def testUS36(self):
-        inputGed = open("Sprint1.ged", "r")
+        inputGed = open("Sprint2.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertEqual(us36.main(allLists[2])), [
-                         "ERROR: INDIVIDUAL: US36: Line: I4: "])
-        inputGed.close()
+        self.assertEqual(us36.main(output), ["NOTE: INDIVIDUAL: US36: Line: 24 ID: I2: Death has occurred within the past 30 days"])
 
     def testUS38(self):
         inputGed = open("Sprint1.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertEqual(us38.main(allLists[2])), [
-                         "ERROR: INDIVIDUAL: US38: Line: I4: "])
+        self.assertEqual(us38.main(output), ["ERROR: INDIVIDUAL: US38: Line: I4: "])
         inputGed.close()
-'''
+
     def testUS12(self):
         inputGed = open("Sprint1.ged", "r")
         output = readGed.fam(inputGed)
-        self.assertEqual(us12.checkForOldParents(output[0], output[1], output[2]), ["Error: US12: Individual: I1's father is too old on line: 14",
-                                                                                    "Error: US12: Individual: I1's mother is too old on line: 14", "Error: US12: Individual: I4's father is too old on line: 44", "Error: US12: Individual: I4's mother is too old on line: 44"])
+        self.assertEqual(us12.checkForOldParents(output[0], output[1], output[2]), ["Error: US12: Individual: I1's father is too old on line: 14", "Error: US12: Individual: I1's mother is too old on line: 14", "Error: US12: Individual: I4's father is too old on line: 44", "Error: US12: Individual: I4's mother is too old on line: 44"])
 
 
 if __name__ == '__main__':
