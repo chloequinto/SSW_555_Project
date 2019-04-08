@@ -1,0 +1,2 @@
+def main(): 
+    return "NOTE: US41: DATES ARE FIXED TO INCLUDE PARTIALS"
