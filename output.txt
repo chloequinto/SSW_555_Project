@@ -1,71 +1,199 @@
 
 Individuals
-+-----+------------------+--------+------------+-----+-------+------------+--------+--------+
-|  ID |       Name       | Gender |  Birthday  | Age | Alive |   Death    | Child  | Spouse |
-+-----+------------------+--------+------------+-----+-------+------------+--------+--------+
-|  I1 | Edward /Rogers/  |   M    | 2032-06-10 | -13 |  True |     NA     | {'F1'} | {'F2'} |
-|  I2 |   Buddy /Tony/   |   M    | 1845-11-06 | 110 | False | 1955-04-03 |   NA   | {'F2'} |
-|  I3 |  Emily /Rogers/  |   F    | 1840-05-09 | 179 |  True |     NA     |   NA   | {'F2'} |
-|  I4 | Rachael /Rogers/ |   F    | 2032-06-10 | -19 | False | 2013-02-10 | {'F2'} | {'F3'} |
-|  I5 | Marcia /Rogers/  |   F    | 2008-06-10 |  11 |  True |     NA     |   NA   | {'F1'} |
-|  I6 |   Tim /Jones/    |   M    | 2002-09-23 |  17 |  True |     NA     |   NA   | {'F3'} |
-|  I7 |  Sharla /Jones/  |   M    | 2015-09-28 |  4  |  True |     NA     | {'F4'} | {'F3'} |
-|  I8 |   Juju /Jones/   |   F    | 2016-03-11 |  3  |  True |     NA     | {'F4'} | {'F3'} |
-|  I9 |  Reggie /Jones/  |   M    | 2019-03-06 |  0  |  True |     NA     | {'F5'} | {'F3'} |
-| I10 | Mariah /Rogers/  |   F    | 2017-12-01 |  2  |  True |     NA     | {'F5'} | {'F1'} |
-| I11 |   Ryan /Jones/   |   M    | 2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
-| I12 |   Fred /Jones/   |   M    | 2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
-| I13 |   Mary /Jones/   |   F    | 2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
-| I14 |  Ashley /Jones/  |   F    | 2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
-| I15 |   Dan /Jones/    |   M    | 2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
-| I16 |  Ethan /Jones/   |   M    | 2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
-| I17 |  Brenda /Jones/  |   F    | 2019-10-10 |  0  |  True |     NA     | {'F3'} |   NA   |
-| I18 | McKayla /Jones/  |   F    | 2020-07-27 |  -1 |  True |     NA     | {'F3'} |   NA   |
-| I19 |   Mike /Jones/   |   M    | 2021-04-23 |  -2 |  True |     NA     | {'F3'} |   NA   |
-| I20 |  James /Jones/   |   M    | 2022-02-22 |  -3 |  True |     NA     | {'F3'} |   NA   |
-| I21 |  Nailah /Jones/  |   F    | 2023-05-17 |  -4 |  True |     NA     | {'F3'} |   NA   |
-| I21 |  Leanne /Jones/  |   F    | 2024-08-21 |  -5 |  True |     NA     | {'F3'} |   NA   |
-+-----+------------------+--------+------------+-----+-------+------------+--------+--------+
++-----+------------------+--------+-------------+-----+-------+------------+--------+--------+
+|  ID |       Name       | Gender |   Birthday  | Age | Alive |   Death    | Child  | Spouse |
++-----+------------------+--------+-------------+-----+-------+------------+--------+--------+
+|  I1 | Edward /Rogers/  |   M    |  2032-06-10 | -13 |  True |     NA     | {'F1'} | {'F2'} |
+|  I2 |   Buddy /Tony/   |   M    |  1845-11-06 | 110 | False | 1955-04-03 |   NA   | {'F2'} |
+|  I3 |  Emily /Rogers/  |   F    |  1840-05-09 | 179 |  True |     NA     |   NA   | {'F2'} |
+|  I4 | Rachael /Rogers/ |   F    |  2032-06-10 | -19 | False | 2013-02-10 | {'F2'} | {'F3'} |
+|  I5 | Marcia /Rogers/  |   F    |  2008-06-10 |  11 |  True |     NA     |   NA   | {'F1'} |
+|  I6 |   Tim /Jones/    |   M    |  2002-09-23 |  17 |  True |     NA     |   NA   | {'F3'} |
+|  I7 |  Sharla /Jones/  |   M    |  2015-04-21 |  4  |  True |     NA     | {'F4'} | {'F3'} |
+|  I8 |   Juju /Jones/   |   F    |  2016-03-11 |  3  |  True |     NA     | {'F4'} | {'F3'} |
+|  I9 |  Reggie /Jones/  |   M    |  2019-03-06 |  0  |  True |     NA     | {'F5'} | {'F3'} |
+| I10 | Mariah /Rogers/  |   F    |  2017-12-01 |  2  |  True |     NA     | {'F5'} | {'F1'} |
+| I11 |   Ryan /Jones/   |   M    |  2018-06-01 |  1  |  True |     NA     | {'F6'} | {'F3'} |
+| I12 |   Fred /Jones/   |   M    |  2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
+| I13 |   Mary /Jones/   |   F    |  2018-06-01 |  1  | False | 2019-04-07 | {'F3'} |   NA   |
+| I14 |  Ashley /Jones/  |   F    |  2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
+| I15 |   Dan /Jones/    |   M    |  2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
+| I16 |  Ethan /Jones/   |   M    |  2018-06-01 |  1  |  True |     NA     | {'F3'} |   NA   |
+| I17 |  Brenda /Jones/  |   F    |  2019-10-10 |  0  |  True |     NA     | {'F3'} |   NA   |
+| I18 | McKayla /Jones/  |   F    |  2020-07-27 |  -1 |  True |     NA     | {'F3'} |   NA   |
+| I19 |   Mike /Jones/   |   M    |  2021-04-23 |  -2 |  True |     NA     | {'F3'} |   NA   |
+| I20 |  James /Jones/   |   M    |  1999-11-08 |  19 | False | 2018-04-07 | {'F3'} | {'F7'} |
+| I21 |  Nailah /Jones/  |   F    | 2023-05-170 |  -4 |  True |     NA     | {'F3'} |   NA   |
+| I23 |  Leanne /Jones/  |   F    |  2024-08-21 |  -5 |  True |     NA     | {'F3'} |   NA   |
+| I23 |  Wendy /Jones/   |   F    |  1999-03-16 |  19 | False | 2018-10-07 |   NA   | {'F7'} |
+| I24 |   Kim /Jones/    |   F    |  2019-04-29 |  0  |  True |     NA     | {'F7'} |   NA   |
+| I25 | Jessica /Jones/  |   F    |  2018-08-26 |  1  |  True |     NA     |   NA   | {'F6'} |
+| I26 |  Randy /Jones/   |   M    |  2019-04-07 |  0  |  True |     NA     | {'F6'} |   NA   |
+| I27 |  Kylie /Jones/   |   F    |  2090-11-05 | -71 |  True |     NA     | {'F6'} |   NA   |
++-----+------------------+--------+-------------+-----+-------+------------+--------+--------+
 
 Families
-+----+------------+-------------+------------+-----------------+---------+------------------+-------------------------------------------------------------------------------+
-| ID |  Married   |   Divorced  | Husband ID |   Husband Name  | Wife ID |    Wife Name     |                                    Children                                   |
-+----+------------+-------------+------------+-----------------+---------+------------------+-------------------------------------------------------------------------------+
-| F1 | 2005-11-01 |  2004-03-09 |     I1     | Edward /Rogers/ |    I5   | Marcia /Rogers/  |                                     {I10}                                     |
-| F2 |     NA     |      NA     |     I2     |   Buddy /Tony/  |    I3   |  Emily /Rogers/  |                                    {I1, I4}                                   |
-| F3 | 2010-07-07 | 2018-10-100 |     I6     |   Tim /Jones/   |    I4   | Rachael /Rogers/ | {I7, I8, I9, I11, I12, I13, I14, I15, I16, I17, I18, I19, I20, I21, I22, I23} |
-| F4 | 2040-09-07 |      NA     |     I8     |   Juju /Jones/  |    I7   |  Sharla /Jones/  |                                       {}                                      |
-| F5 | 2041-07-16 |      NA     |     I9     |  Reggie /Jones/ |   I10   | Mariah /Rogers/  |                                       {}                                      |
-+----+------------+-------------+------------+-----------------+---------+------------------+-------------------------------------------------------------------------------+
++----+------------+------------+------------+-----------------+---------+------------------+--------------------------------------------------------------------------+
+| ID |  Married   |  Divorced  | Husband ID |   Husband Name  | Wife ID |    Wife Name     |                                 Children                                 |
++----+------------+------------+------------+-----------------+---------+------------------+--------------------------------------------------------------------------+
+| F1 | 2005-11-01 | 2004-03-09 |     I1     | Edward /Rogers/ |    I5   | Marcia /Rogers/  |                                  {I10}                                   |
+| F2 |     NA     |     NA     |     I2     |   Buddy /Tony/  |    I3   |  Emily /Rogers/  |                                 {I1, I4}                                 |
+| F3 | 2010-07-07 | 2018-10-31 |     I6     |   Tim /Jones/   |    I4   | Rachael /Rogers/ | {I7, I8, I9, I11, I12, I13, I14, I15, I16, I17, I18, I19, I20, I21, I22} |
+| F4 | 2040-09-07 |     NA     |     I8     |   Juju /Jones/  |    I7   |  Sharla /Jones/  |                                    {}                                    |
+| F5 | 2041-07-16 |     NA     |     I9     |  Reggie /Jones/ |   I10   | Mariah /Rogers/  |                                    {}                                    |
+| F6 |     NA     |     NA     |    I11     |   Ryan /Jones/  |   I25   | Jessica /Jones/  |                                {I26, I27}                                |
+| F7 | 2019-05-20 |     NA     |    I20     |  James /Jones/  |   I23   |  Wendy /Jones/   |                                  {I24}                                   |
++----+------------+------------+------------+-----------------+---------+------------------+--------------------------------------------------------------------------+
+
 ----------Notes----------
 
-NOTE: US40: LINE NUMBERS ARE ADDED
-NOTE: US41: DATES ARE FIXED TO INCLUDE PARTIALS
+NOTE: INDIVIDUAL: US28: Order Siblings by age
+    Siblings by age for family F4:
+        I7: Age 4 on line 74
+        I8: Age 3 on line 84
+    Siblings by age for family F5:
+        I10: Age 2 on line 104
+        I9: Age 0 on line 94
+    Siblings by age for family F6:
+        I11: Age 1 on line 114
+        I26: Age 0 on line 257
+        I27: Age -71 on line 266
+    Siblings by age for family F3:
+        I20: Age 19 on line 198
+        I12: Age 1 on line 124
+        I13: Age 1 on line 133
+        I14: Age 1 on line 144
+        I15: Age 1 on line 153
+        I16: Age 1 on line 162
+        I17: Age 0 on line 171
+        I18: Age -1 on line 180
+        I19: Age -2 on line 189
+        I21: Age -4 on line 210
+        I23: Age -5 on line 219
 NOTE: US29: Individual I2 on line 24 is dead.
 NOTE: US29: Individual I4 on line 44 is dead.
+NOTE: US29: Individual I13 on line 133 is dead.
+NOTE: US29: Individual I20 on line 198 is dead.
+NOTE: US29: Individual I23 on line 228 is dead.
+NOTE: INDIVIDUAL: US30: I1 Edward /Rogers/ is living and married on line 14
+NOTE: INDIVIDUAL: US30: I3 Emily /Rogers/ is living and married on line 35
+NOTE: INDIVIDUAL: US30: I5 Marcia /Rogers/ is living and married on line 56
+NOTE: INDIVIDUAL: US30: I6 Tim /Jones/ is living and married on line 65
+NOTE: INDIVIDUAL: US30: I7 Sharla /Jones/ is living and married on line 74
+NOTE: INDIVIDUAL: US30: I8 Juju /Jones/ is living and married on line 84
+NOTE: INDIVIDUAL: US30: I9 Reggie /Jones/ is living and married on line 94
+NOTE: INDIVIDUAL: US30: I10 Mariah /Rogers/ is living and married on line 104
+NOTE: INDIVIDUAL: US30: I11 Ryan /Jones/ is living and married on line 114
+NOTE: INDIVIDUAL: US30: I25 Jessica /Jones/ is living and married on line 248
+NOTE: INDIVIDUAL: US38: Line: 14 ID: Edward /Rogers/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 35 ID: Emily /Rogers/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 56 ID: Marcia /Rogers/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 65 ID: Tim /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 74 ID: Sharla /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 84 ID: Juju /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 94 ID: Reggie /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 104 ID: Mariah /Rogers/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 114 ID: Ryan /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 124 ID: Fred /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 144 ID: Ashley /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 153 ID: Dan /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 162 ID: Ethan /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 171 ID: Brenda /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 180 ID: McKayla /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 189 ID: Mike /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 210 ID: Nailah /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 219 ID: Leanne /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 239 ID: Kim /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 248 ID: Jessica /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 257 ID: Randy /Jones/: Birthday occurring within the next 30 days.
+NOTE: INDIVIDUAL: US38: Line: 266 ID: Kylie /Jones/: Birthday occurring within the next 30 days.
+NOTIFICATION: INDIVIDUAL: US35: I26: Birthday 2019-04-07 was born in the last 30 days on line 257
+NOTE: INDIVIDUAL: US36: Line: 133 ID: I13: Death has occurred within the past 30 days
+NOTE: US40: LINE NUMBERS ARE ADDED
+NOTE: US41: DATES ARE FIXED TO INCLUDE PARTIALS
+NOTE: US33: Individual I27 is an orphan on line 266
 
 ----------Individual Errors----------
 
+ERROR: INDIVIDUAL: US01: I1: Birthday 2032-06-10 occurs in the future on line 14
+ERROR: INDIVIDUAL: US02: I1: Birthday 2032-06-10 occurs before marriage 2005-11-01 on line 14
+ERROR: INDIVIDUAL: US01: I4: Birthday 2032-06-10 occurs in the future on line 44
+ERROR: INDIVIDUAL: US02: I4: Birthday 2032-06-10 occurs before marriage 2010-07-07 on line 44
+ERROR: INDIVIDUAL: US02: I5: Birthday 2008-06-10 occurs before marriage 2005-11-01 on line 56
+ERROR: INDIVIDUAL: US01: I7: Marriage date 2040-09-07 occurs in the future on line 74
+ERROR: INDIVIDUAL: US01: I8: Marriage date 2040-09-07 occurs in the future on line 84
+ERROR: INDIVIDUAL: US01: I9: Marriage date 2041-07-16 occurs in the future on line 94
+ERROR: INDIVIDUAL: US01: I10: Marriage date 2041-07-16 occurs in the future on line 104
+ERROR: INDIVIDUAL: US01: I17: Birthday 2019-10-10 occurs in the future on line 171
+ERROR: INDIVIDUAL: US01: I18: Birthday 2020-07-27 occurs in the future on line 180
+ERROR: INDIVIDUAL: US01: I19: Birthday 2021-04-23 occurs in the future on line 189
+ERROR: INDIVIDUAL: US01: I20: Marriage date 2019-05-20 occurs in the future on line 198
+ERROR: INDIVIDUAL: US01: I23: Marriage date 2019-05-20 occurs in the future on line 228
+ERROR: INDIVIDUAL: US01: I24: Birthday 2019-04-29 occurs in the future on line 239
+ERROR: INDIVIDUAL: US01: I27: Birthday 2090-11-05 occurs in the future on line 266
+ERROR: INDIVIDUAL: US03: I4 on line: 44: Death date occurs before their date of birth.
+ERROR: INDIVIDUAL: US06: I4: Divorce date occurs after their date of death on line 290
 ERROR: INDIVIDUAL: US07: I3 is older than 150 line 35
-ERROR: INDIVIDUAL: US16: Edward /Rogers/ does not have the same last name on line 24
-ERROR: INDIVIDUAL: US16: Buddy /Tony/ does not have the same last name on line 24
-ERROR: INDIVIDUAL: US22: I21 is a duplicate key on line 204
+ERROR: INDIVIDUAL: US10: I1 marriage date occurs before they are 15 on line 275
+ERROR: INDIVIDUAL: US10: I4 marriage date occurs before they are 15 on line 290
+ERROR: INDIVIDUAL: US10: I5 marriage date occurs before they are 15 on line 275
+ERROR: INDIVIDUAL: US10: I6 marriage date occurs before they are 15 on line 290
+Error: US12: Individual: I1's father is too old on line: 14
+Error: US12: Individual: I1's mother is too old on line: 14
+Error: US12: Individual: I4's father is too old on line: 44
+Error: US12: Individual: I4's mother is too old on line: 44
+Error: US12: Individual: I27's mother is too old on line: 266
+ERROR: INDIVIDUAL: US16: Edward /Rogers/ does not have the same last name on line 44
+ERROR: INDIVIDUAL: US16: Buddy /Tony/ does not have the same last name on line 44
+ERROR: INDIVIDUAL: US31: I12  Fred /Jones/ on line: 124 is living and single
+ERROR: INDIVIDUAL: US31: I14  Ashley /Jones/ on line: 144 is living and single
+ERROR: INDIVIDUAL: US31: I15  Dan /Jones/ on line: 153 is living and single
+ERROR: INDIVIDUAL: US31: I16  Ethan /Jones/ on line: 162 is living and single
+ERROR: INDIVIDUAL: US31: I17  Brenda /Jones/ on line: 171 is living and single
+ERROR: INDIVIDUAL: US31: I18  McKayla /Jones/ on line: 180 is living and single
+ERROR: INDIVIDUAL: US31: I19  Mike /Jones/ on line: 189 is living and single
+ERROR: INDIVIDUAL: US31: I21  Nailah /Jones/ on line: 210 is living and single
+ERROR: INDIVIDUAL: US31: I23  Leanne /Jones/ on line: 219 is living and single
+ERROR: INDIVIDUAL: US31: I24  Kim /Jones/ on line: 239 is living and single
+ERROR: INDIVIDUAL: US31: I26  Randy /Jones/ on line: 257 is living and single
+ERROR: INDIVIDUAL: US31: I27  Kylie /Jones/ on line: 266 is living and single
 ERROR: INDIVIDUAL: US32: I1 has the same birthdays as someone else on ['2032-06-10', '2018-06-01'] line 14
 ERROR: INDIVIDUAL: US32: I4 has the same birthdays as someone else on ['2032-06-10', '2018-06-01'] line 44
 ERROR: INDIVIDUAL: US32: I11 has the same birthdays as someone else on ['2032-06-10', '2018-06-01'] line 114
-ERROR: INDIVIDUAL: US32: I12 has the same birthdays as someone else on ['2032-06-10', '2018-06-01'] line 123
-ERROR: INDIVIDUAL: US32: I13 has the same birthdays as someone else on ['2032-06-10', '2018-06-01'] line 132
-ERROR: INDIVIDUAL: US32: I14 has the same birthdays as someone else on ['2032-06-10', '2018-06-01'] line 141
-ERROR: INDIVIDUAL: US32: I15 has the same birthdays as someone else on ['2032-06-10', '2018-06-01'] line 150
-ERROR: INDIVIDUAL: US32: I16 has the same birthdays as someone else on ['2032-06-10', '2018-06-01'] line 159
+ERROR: INDIVIDUAL: US32: I12 has the same birthdays as someone else on ['2032-06-10', '2018-06-01'] line 124
+ERROR: INDIVIDUAL: US32: I13 has the same birthdays as someone else on ['2032-06-10', '2018-06-01'] line 133
+ERROR: INDIVIDUAL: US32: I14 has the same birthdays as someone else on ['2032-06-10', '2018-06-01'] line 144
+ERROR: INDIVIDUAL: US32: I15 has the same birthdays as someone else on ['2032-06-10', '2018-06-01'] line 153
+ERROR: INDIVIDUAL: US32: I16 has the same birthdays as someone else on ['2032-06-10', '2018-06-01'] line 162
 
 ------------Family Errors------------
 
-ERROR: FAMILY: US14: F4 more than 5 siblings have multiple birthdays on year 2018 line 261
-ERROR: FAMILY: US26: Family F2 does not have the correct corresponding entries on line 231
-ERROR: FAMILY: US26: Family F3 does not have the correct corresponding entries on line 237
-ERROR: FAMILY: US26: Family F4 does not have the correct corresponding entries on line 261
+ERROR: FAMILY: US04: F1: Divorce date occurs before their marriage.
+ERROR: FAMILY: US08: F1 : I10: Children born before marriage of parents or more than 9 months after their divorce on line 275
+ERROR: FAMILY: US08: F3 : I17: Children born before marriage of parents or more than 9 months after their divorce on line 290
+ERROR: FAMILY: US08: F3 : I18: Children born before marriage of parents or more than 9 months after their divorce on line 290
+ERROR: FAMILY: US08: F3 : I19: Children born before marriage of parents or more than 9 months after their divorce on line 290
+ERROR: FAMILY: US08: F3 : I20: Children born before marriage of parents or more than 9 months after their divorce on line 290
+ERROR: FAMILY: US08: F7 : I24: Children born before marriage of parents or more than 9 months after their divorce on line 331
+Error: US12: Individual: I1's father is too old on line: 14
+Error: US12: Individual: I1's mother is too old on line: 14
+Error: US12: Individual: I4's father is too old on line: 44
+Error: US12: Individual: I4's mother is too old on line: 44
+Error: US12: Individual: I27's mother is too old on line: 266
+ERROR: FAMILY: US14: F4 more than 5 siblings have multiple birthdays on year 2018 line 313
 ERROR: FAMILY: US15: True I3 family has more than 15 siblings line 35
+ERROR: FAMILY: US18: ['I8', 'I7'] Siblings should not marry on line 290.
+ERROR: FAMILY: US21: F4: gender was wrong on line 313
+ERROR: FAMILY: US26: Family F2 does not have the correct corresponding entries on line 284
+ERROR: FAMILY: US26: Family F3 does not have the correct corresponding entries on line 290
+ERROR: FAMILY: US26: Family F4 does not have the correct corresponding entries on line 313
+ERROR: FAMILY: US09: F2 : I1: Children born after death of mother or after 9 months after death of father on line 284
+ERROR: FAMILY: US09: F2 : I4: Children born after death of mother or after 9 months after death of father on line 284
 
+------------Individual & Family Errors------------
+
+ERROR: INDIVIDUAL: US05: I4: Marriage date occurs after their date of death on line 284.
+ERROR: INDIVIDUAL: US22: I23 is a duplicate key on line 219
+ERROR: INDIVIDUAL: US42: I21 does not have the correct number of digits for their birthday.
 
 
