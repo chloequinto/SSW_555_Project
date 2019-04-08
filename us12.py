@@ -1,7 +1,9 @@
 '''
 US31 - Parents not too old
 '''
-
+from prettytable import PrettyTable
+import re
+import readGed
 # If family has children
 # Store them to a list
 # Get husband and wife id
@@ -57,9 +59,7 @@ def checkForOldParents(inputIndi, inputFam, newFam):
                         print("Error: US12: Individual: " + k[0] + "'s mother is too old on line: " + str(b[0]))
                         errors.append("Error: US12: Individual: " + k[0] + "'s mother is too old on line: " + str(b[0]))
                         Error = True
-            return errors
-
-
+    return errors
 
 
 def main(inputIndi, inputFam, newFam):
