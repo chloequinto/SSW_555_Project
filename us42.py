@@ -21,6 +21,7 @@ def filterDates(inputs):
         if i[3] != "NA":
             if i[0] not in birthDates:
                 birthDates[i[0]] = ""
+            
             birthDates[i[0]] = i[3]
         if i[6] != "NA":
             if i[0] not in deathDates:
@@ -36,7 +37,7 @@ def filterDates(inputs):
             if i[0] not in divorceDates:
                 divorceDates[i[0]] = ""
             divorceDates[i[0]] = i[2]
-
+    # print(birthDates)
     badBirth = rejectBadDates(birthDates, "birthday")
     badMarriage = rejectBadDates(marriageDates, "marriage")
     badDeath = rejectBadDates(deathDates, "death")
@@ -48,8 +49,9 @@ def rejectBadDates(dateDict, column):
     hasBadDates = False
 
     indiOrFam = "INDIVIDUAL" if (column == "birthday" or column == "death") else "FAMILY"
-
+    
     for specificId, date in dateDict.items():
+        # print(date)
         regex = re.compile(r"^([0-9]{4}-[0-9]{2}-[0-9]{2})$")
         if len(date) != 10:
             print(f"ERROR: {indiOrFam}: US42: {specificId} does not have the correct number of digits for their {column}.")
@@ -62,8 +64,11 @@ def rejectBadDates(dateDict, column):
             print(f"ERROR: {indiOrFam}: US42: {specificId} does not have the correct month for their {column}.")
             hasBadDates = True
         # correct number of days in months
+        
         elif int(date[5:7]) in daysW31:
+            # print(date[5:7]+" "+date[8:])
             if int(date[8:]) > 31:
+               
                 print(f"ERROR: {indiOrFam}: US42: {specificId} does not have the correct day for their {column}.")
                 hasBadDates = True
         elif int(date[5:7]) in daysW30:

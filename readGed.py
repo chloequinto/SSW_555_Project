@@ -340,6 +340,7 @@ def main():
         us36.main(allLists)
         print(us40.main())
         print(us41.main())
+        us33.checkForOrphan(allLists[0], allLists[1], allLists[2])
 
         print()
         print('----------Individual Errors----------')
@@ -371,10 +372,11 @@ def main():
         us06.main(allLists[0], allLists[1], allLists[3])
         us07.main(allLists[0], allLists[2])
         us10.main(allLists[0], allLists[1], allLists[3])
+        us12.main(allLists[0], allLists[1], allLists[2])
         us16.sameLastName(allLists[0], allLists[2])
         us31.checkForLivingSingle(allLists[0], allLists[2])
         us32.main(allLists[2])
-        us33.checkForOrphan(allLists[0], allLists[1], allLists[2])
+
 
 
         print()
@@ -414,6 +416,7 @@ def main():
 
         us05.main(allLists[0], allLists[1], allLists[3])
         us22.uniqueIDs(allLists)
+
         us42.filterDates(allLists)
 
 
