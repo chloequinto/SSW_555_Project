@@ -313,7 +313,7 @@ def table(lists):
 
 def main():
     try:
-        myFile = "Sprint2.ged"
+        myFile = "Sprint3.ged"
         inputGed = open(myFile, "r")
     except FileNotFoundError:
         print("Cannot open file")
