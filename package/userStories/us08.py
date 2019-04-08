@@ -5,7 +5,7 @@ Birth before marriage of parents
 '''
 
 from datetime import date, datetime, timedelta
-import us01
+from package.userStories import us01
 
 
 def BirthBeforeMarriageOfParents(fam, indi):

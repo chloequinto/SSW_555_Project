@@ -4,8 +4,7 @@ Dates before current date
 
 '''
 
-from datetime import date
-from datetime import datetime
+from datetime import date, datetime
 from collections import OrderedDict
 
 
@@ -229,6 +228,6 @@ def DivorceBeforeCurrent(indi):
 
 
 def main():
-    inputGed = open("Sprint3.ged", "r")
+    inputGed = open("data/Sprint3.ged", "r")
     result = parseGed(inputGed)
     return result

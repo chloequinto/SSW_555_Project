@@ -1,8 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-import us01, us02, us03, us04, us05, us06, us08, us09, us10, us12, us14, us15, us16, us18, us21, us22, us26, us28, us29, us30, us31, us33, us35, us36, us38, us40, us41, us42
-from package.userStories import us07, us32
+from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us14, us15, us16, us18, us21, us22, us26, us28, us29, us30, us31, us32, us33, us35, us36, us38, us40, us41, us42
 
 valid = {
     "0": ("HEAD", "TRLR", "NOTE"),
@@ -313,7 +312,7 @@ def table(lists):
 
 def main():
     try:
-        myFile = "Sprint3.ged"
+        myFile = "data/Sprint3.ged"
         inputGed = open(myFile, "r")
     except FileNotFoundError:
         print("Cannot open file")

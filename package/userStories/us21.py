@@ -4,7 +4,7 @@ Correct gender for role
 
 '''
 
-import us01
+from package.userStories import us01
 
 
 def CheckGenderForRole(fam, individual):

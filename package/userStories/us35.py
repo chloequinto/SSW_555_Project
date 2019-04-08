@@ -4,7 +4,7 @@ List recent births
 
 '''
 from datetime import date, datetime
-import us01
+from package.userStories import us01
 
 
 def RecentBirths(individual):

@@ -5,7 +5,7 @@ Birth before death of parents
 '''
 
 from datetime import date, datetime, timedelta
-import us01
+from package.userStories import us01
 
 
 def BirthBeforeDeathOfParents(fam, indi, individual):

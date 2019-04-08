@@ -3,7 +3,7 @@ User Story 02
 Birth before marriage
 
 '''
-import us01
+from package.userStories import us01
 
 
 def BirthBeforeMarriage(individual):
