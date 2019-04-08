@@ -1,8 +1,9 @@
 0 HEAD
+1 NOTE {Rakshak Kumar}
 1 SOUR Family Echo
 2 WWW http://www.familyecho.com/
 1 FILE My Family
-1 DATE 2 MAR 2019
+1 DATE 13 FEB 2019
 1 DEST ANSTFILE
 1 GEDC
 2 VERS 5.5.1
@@ -21,8 +22,8 @@
 2 DATE 10 MAY 1998
 1 FAMC @F1@
 0 @I2@ INDI
-1 NAME Rajesh /Kumar/
-2 GIVN Rajesh
+1 NAME Father /Kumar/
+2 GIVN Father
 2 SURN Kumar
 2 _MARNM Kumar
 1 SEX M
@@ -31,8 +32,8 @@
 1 FAMS @F1@
 1 FAMC @F2@
 0 @I3@ INDI
-1 NAME Rekha /Kumar/
-2 GIVN Rekha
+1 NAME Mother /Kumar/
+2 GIVN Mother
 2 SURN Kumar
 2 _MARNM Kumar
 1 SEX F
@@ -41,8 +42,8 @@
 1 FAMS @F1@
 1 FAMC @F3@
 0 @I4@ INDI
-1 NAME Rahul /Kumar/
-2 GIVN Rahul
+1 NAME Bro /Kumar/
+2 GIVN Bro
 2 SURN Kumar
 2 _MARNM Kumar
 1 SEX M
@@ -50,10 +51,10 @@
 2 DATE 30 OCT 2008
 1 FAMC @F1@
 0 @I5@ INDI
-1 NAME Mohan /Bachani/
-2 GIVN Mohan
-2 SURN Bachani
-2 _MARNM Bachani
+1 NAME Grandpa /Kumar/
+2 GIVN Grandpa
+2 SURN Kumar
+2 _MARNM Kumar
 1 SEX M
 1 BIRT
 2 DATE 8 MAR 1942
@@ -61,17 +62,28 @@
 2 DATE 15 APR 1983
 1 FAMS @F3@
 0 @I6@ INDI
-1 NAME Beena /Bachani/
-2 GIVN Beena
-2 SURN Bachani
-2 _MARNM Bachani
+1 NAME Grandma /Kumar/
+2 GIVN Grandma
+2 SURN Kumar
+2 _MARNM Kumar
 1 SEX F
 1 BIRT
 2 DATE 3 APR 1946
 1 FAMS @F3@
 0 @I7@ INDI
-1 NAME Anju /Balani/
-2 GIVN Anju
+1 NAME Uncle /Bachani/
+2 GIVN Uncle
+2 SURN Bachani
+2 _MARNM Bachani
+1 SEX M
+1 BIRT
+2 DATE 6 JUL 1969
+1 DEAT Y
+2 DATE 11 APR 2011
+1 FAMC @F3@
+0 @I8@ INDI
+1 NAME Aunt /Balani/
+2 GIVN Aunt
 2 SURN Balani
 2 _MARNM Balani
 1 SEX F
@@ -79,7 +91,7 @@
 2 DATE 27 MAY 1975
 1 FAMS @F4@
 1 FAMC @F3@
-0 @I8@ INDI
+0 @I9@ INDI
 1 NAME Dinesh /Balani/
 2 GIVN Dinesh
 2 SURN Balani
@@ -88,23 +100,14 @@
 1 BIRT
 2 DATE 18 AUG 1972
 1 FAMS @F4@
-0 @I9@ INDI
-1 NAME Simran /Balani/
-2 GIVN Simran
+0 @I10@ INDI
+1 NAME Cousin /Balani/
+2 GIVN Cousin
 2 SURN Balani
 2 _MARNM Balani
 1 SEX F
 1 BIRT
 2 DATE 29 MAR 2001
-1 FAMC @F4@
-0 @I10@ INDI
-1 NAME Aryan /Balani/
-2 GIVN Aryan
-2 SURN Balani
-2 _MARNM Balani
-1 SEX M
-1 BIRT
-2 DATE 27 OCT 2004
 1 FAMC @F4@
 0 @I11@ INDI
 1 NAME John /Smith/
@@ -126,6 +129,7 @@
 1 BIRT
 2 DATE 3 JUL 1962
 1 FAMS @F5@
+1 FAMS @F6@
 1 FAMC @F2@
 0 @I13@ INDI
 1 NAME Nicole /Kidman/
@@ -136,8 +140,35 @@
 1 BIRT
 2 DATE 20 JUN 1967
 1 DEAT Y
-2 DATE 8 AUG 1977
+2 DATE 8 AUG 1990
+1 FAMS @F6@
+0 @I14@ INDI
+1 NAME Katie /Holmes/
+2 GIVN Katie
+2 SURN Holmes
+2 _MARNM Holmes
+1 SEX F
+1 BIRT
+2 DATE 18 DEC 1978
 1 FAMS @F5@
+0 @I15@ INDI
+1 NAME Suri /Cruise/
+2 GIVN Suri
+2 SURN Cruise
+2 _MARNM Cruise
+1 SEX F
+1 BIRT
+2 DATE 18 APR 2006
+1 FAMC @F5@
+0 @I16@ INDI
+1 NAME Connor /Cruise/
+2 GIVN Connor
+2 SURN Cruise
+2 _MARNM Cruise
+1 SEX M
+1 BIRT
+2 DATE 17 JAN 1995
+1 FAMC @F6@
 0 @F1@ FAM
 1 HUSB @I2@
 1 WIFE @I3@
@@ -155,23 +186,35 @@
 1 HUSB @I5@
 1 WIFE @I6@
 1 CHIL @I3@
-1 CHIL @I7@
+1 CHIL @I15@
+1 CHIL @I16@
 1 MARR
 2 DATE 1 MAY 1965
 1 _CURRENT Y
 0 @F4@ FAM
-1 HUSB @I8@
-1 WIFE @I7@
-1 CHIL @I9@
+1 HUSB @I9@
+1 WIFE @I8@
 1 CHIL @I10@
 1 MARR
 2 DATE 21 JAN 2001
 1 _CURRENT Y
 0 @F5@ FAM
 1 HUSB @I12@
-1 WIFE @I13@
+1 WIFE @I14@
+1 CHIL @I15@
 1 MARR
-2 DATE 24 DEC 1990
+2 DATE 18 NOV 2006
+1 DIV
+2 DATE 17 MAY 2000
+1 _CURRENT Y
+0 @F6@ FAM
+1 HUSB @I12@
+1 WIFE @I13@
+1 CHIL @I16@
+1 MARR
+2 DATE 24 DEC 1995
+1 DIV
+2 DATE 12 JAN 1990
 1 EVEN
 2 TYPE Ending
 1 _CURRENT N

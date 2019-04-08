@@ -1,0 +1,49 @@
+'''
+User Story 05
+Marriage before death
+'''
+from prettytable import PrettyTable
+from datetime import datetime
+import re
+import readGed
+
+                
+def indivDeaths(input):
+    problem = False
+    fams = []
+    indivs = []
+    errors = []
+    for i in input: 
+        if i[2] != "NA":
+            fams = []
+            fams.append(i[0])
+            fams.append(i[2])
+            fams.append(i[3])
+            fams.append(i[5])
+            indivs.append(fams)
+            
+    # print(indivs)        
+    return indivs
+
+def checkFams(input, indivs):
+    errors = []
+    problem = False
+    for i in input:
+        for j in indivs:
+            if j[2] == i[0] or j[3] == i[0]: #checks 
+                if i[6] != "NA": #if dead 
+                    deathDate = datetime.strptime(i[6], '%Y-%m-%d')
+                    marriageDate = datetime.strptime(j[1], '%Y-%m-%d') 
+                    if marriageDate > deathDate:
+                        errors.append("ERROR: INDIVIDUAL: US05: " + i[0] + ": Marriage date occurs after their date of death.")
+                    problem = True
+
+    if problem == True: 
+        for i in errors: 
+            print(str(i))
+    return errors
+
+
+def main(inputindi, inputfam):
+    #indivDeaths(tables[1])
+    return checkFams(inputindi, indivDeaths(inputfam))

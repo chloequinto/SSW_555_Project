@@ -12,3 +12,4 @@ notifications:
 
 script:
   - pytest
+
