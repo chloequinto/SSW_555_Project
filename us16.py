@@ -4,7 +4,9 @@ All male members of family must have the same name
 
 '''
 
-def sameLastName(inputs, lineNo):
+from prettytable import PrettyTable
+
+def sameLastName(inputs):
     males = {}
     # check spouse and child indexes to get all family ids of the male members
     for i in inputs:
@@ -24,7 +26,7 @@ def sameLastName(inputs, lineNo):
                     males[famId].append(lastName)
 
     # if there are different names, then the set should be greater than 1
-    for i, x in zip(males, lineNo):
+    for i in males:
         males[i] = True if len(list(set(males[i]))) == 1 else False
 
     allSameName = []
@@ -36,12 +38,28 @@ def sameLastName(inputs, lineNo):
         if i[2] == "M":
             
             if spouse in males and not males[spouse]:
-                print(f"ERROR: INDIVIDUAL: US16: {i[1]} does not have the same last name on line {x[0]}")
-                errors.append(f"ERROR: INDIVIDUAL: US16: {i[1]} does not have the same last name on line {x[0]}")
+                print("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last name")
+                errors.append("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last name")
             elif child in males and not males[child]:
-                print(f"ERROR: INDIVIDUAL: US16: {i[1]} does not have the same last name on line {x[0]}")
-                errors.append(f"ERROR: INDIVIDUAL: US16: {i[1]} does not have the same last name on line {x[0]}")
+                print("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last name")
+                errors.append("ERROR: INDIVIDUAL: US16: " + i[1] + " does not have the same last name")
             else:
                 allSameName.append(i)
                 
     return allSameName, errors
+
+def table(lists):
+    x = PrettyTable()
+    x.field_names = ['ID', 'Name', 'Gender', 'Birthday', 'Age',
+                     'Alive', 'Death', 'Child', 'Spouse']
+
+    for i in lists[0]:
+        x.add_row([i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8]])
+    # print("\nMale names")
+    # print(x)
+
+    # for i in lists[1]:
+    #     print(i)
+
+def main(lists):
+    sameLastName(lists)

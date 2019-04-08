@@ -5,20 +5,20 @@ Unique IDs for families and individuals
 '''
 def uniqueIDs(input):
     indiIds = {}
-    lineNo = []
 
-    for i, x in zip(input[0], input[2]):
+    for i in input[0]:
         if i[0] not in indiIds:
             indiIds[i[0]] = 0
         indiIds[i[0]] += 1
-        lineNo.append(x[0])
     
     doubleKeyIndi = []
     
-    for (key, value), x in zip(indiIds.items(), lineNo):
+    for key, value in indiIds.items():
         if value > 1:
-            print(f"ERROR: INDIVIDUAL: US22: {key} is a duplicate key on line {x}")
             doubleKeyIndi.append(key)
+    
+    for i in doubleKeyIndi:
+        print(f"ERROR: INDIVIDUAL: US22: {i} is a duplicate key.")
 
     famIds = {}
 
@@ -29,9 +29,11 @@ def uniqueIDs(input):
     
     doubleKeyFam = []
     
-    for (key, value), x in zip(famIds.items(), lineNo):
+    for key, value in famIds.items():
         if value > 1:
-            print(f"ERROR: FAMILY: US22: {key} is a duplicate key on line {x}")
             doubleKeyFam.append(key)
+    
+    for i in doubleKeyFam:
+        print(f"ERROR: FAMILY: US22: {i} is a duplicate key.")
     
     return doubleKeyIndi, doubleKeyFam
