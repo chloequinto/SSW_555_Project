@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us14, us15, us16, us18, us21, us22, us26, us28, us29, us30, us31, us32, us33, us35, us36, us38, us40, us41, us42
+from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us14, us15, us16, us18, us21, us22, us23, us26, us28, us29, us30, us31, us32, us33, us35, us36, us38, us40, us41, us42
 
 valid = {
     "0": ("HEAD", "TRLR", "NOTE"),
@@ -373,6 +373,7 @@ def main():
         us10.main(allLists[0], allLists[1], allLists[3])
         us12.main(allLists[0], allLists[1], allLists[2])
         us16.sameLastName(allLists[0], allLists[2])
+        us23.uniqueNameAndBirthday(allLists[0], allLists[2])
         us31.checkForLivingSingle(allLists[0], allLists[2])
         us32.main(allLists[2])
 
