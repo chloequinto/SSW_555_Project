@@ -2,7 +2,7 @@
 All Unit Tests 
 '''
 
-from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us14, us15, us16, us18, us21, us22, us23, us26, us28, us29, us30, us31, us32, us33, us35, us36, us38, us40, us41, us42
+from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us14, us15, us16, us18, us21, us22, us23, us26, us27, us28, us29, us30, us31, us32, us33, us35, us36, us38, us40, us41, us42
 import unittest
 import readGed
 
@@ -298,6 +298,11 @@ class TestResults(unittest.TestCase):
         inputGed = open("data/UniqueNames.ged", "r")
         output = readGed.fam(inputGed)
         self.assertEqual(us23.uniqueNameAndBirthday(output[0], output[2]), ['ERROR: INDIVIDUAL: US23: I25 does not have a unique name and birthday on line: 245', 'ERROR: INDIVIDUAL: US23: I26 does not have a unique name and birthday on line: 254'])
+
+    def testUS27(self):
+        inputGed = open("data/Sprint3.ged")
+        output = readGed.fam(inputGed)
+        self.assertEqual(us27.listPeopleAndAge(output[0], output[2]), None)
 
 
 if __name__ == '__main__':
