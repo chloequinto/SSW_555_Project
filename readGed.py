@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us14, us15, us16, us18, us21, us22, us23, us26, us27, us28, us29, us30, us31, us32, us33, us35, us36, us38, us40, us41, us42
+from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us14, us15, us16, us18, us21, us22, us23, us26, us27, us28, us29, us30, us31, us32, us33, us34, us35, us36, us38, us40, us41, us42
 
 valid = {
     "0": ("HEAD", "TRLR", "NOTE"),
@@ -447,6 +447,8 @@ def main():
         us05.main(allLists[0], allLists[1], allLists[3])
         print()
         us22.uniqueIDs(allLists)
+        print()
+        us34.largeAgeDifferences(allLists[0], allLists[1], allLists[2])
         print()
         us42.filterDates(allLists)
         print()

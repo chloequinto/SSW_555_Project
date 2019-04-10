@@ -2,7 +2,7 @@
 All Unit Tests 
 '''
 
-from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us14, us15, us16, us18, us21, us22, us23, us26, us27, us28, us29, us30, us31, us32, us33, us35, us36, us38, us40, us41, us42
+from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us14, us15, us16, us18, us21, us22, us23, us26, us27, us28, us29, us30, us31, us32, us33, us34, us35, us36, us38, us40, us41, us42
 import unittest
 import readGed
 
@@ -304,6 +304,10 @@ class TestResults(unittest.TestCase):
         output = readGed.fam(inputGed)
         self.assertEqual(us27.listPeopleAndAge(output[0], output[2]), None)
 
+    def testUS34(self):
+        inputGed = open("data/Sprint3.ged")
+        output = readGed.fam(inputGed)
+        self.assertEqual(us34.largeAgeDifferences(output[0], output[1], output[2]), ['ERROR: INDIVIDUAL: US34: Individual I5 was over twice as old as spouse I1 at their time of marriage on line: ', 'ERROR: INDIVIDUAL: US34: Individual I6 was over twice as old as spouse I4 at their time of marriage on line: '])
 
 if __name__ == '__main__':
     unittest.main()
