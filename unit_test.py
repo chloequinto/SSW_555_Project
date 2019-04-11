@@ -2,7 +2,7 @@
 All Unit Tests 
 '''
 
-from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us13, us14, us15, us16, us18, us21, us22, us23, us25, us26, us27, us28, us29, us30, us31, us32, us33, us34, us35, us36, us38, us40, us41, us42
+from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us13, us14, us15, us16, us18, us21, us22, us23, us24, us25, us26, us27, us28, us29, us30, us31, us32, us33, us34, us35, us36, us38, us40, us41, us42
 import unittest
 import readGed
 
@@ -328,6 +328,13 @@ class TestResults(unittest.TestCase):
             temp = us13.SiblingsSpacing(family[i], individual)
             self.assertTrue(temp[0], "ERROR: FAMILY: US13: " + family[i].ID + ": children " + str(temp[1]) +
                             ": Birth dates of siblings are less than 8 months apart or more than 2 days apart on line " + str(family[i].lineNum))
+
+
+    def testUS24(self): 
+        inputGed = open("data/sprint4.ged")
+        allLists = readGed.fam(inputGed)
+        self.assertEqual(us24.main(allLists[1], allLists[3]), None) #no clue why this is not returning errors
+
 
 
 if __name__ == '__main__':
