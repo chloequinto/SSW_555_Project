@@ -331,7 +331,7 @@ class TestResults(unittest.TestCase):
 
 
     def testUS24(self): 
-        inputGed = open("data/sprint4.ged")
+        inputGed = open("data/Sprint4.ged")
         allLists = readGed.fam(inputGed)
         self.assertEqual(us24.main(allLists[1], allLists[3]), None) #no clue why this is not returning errors
 
