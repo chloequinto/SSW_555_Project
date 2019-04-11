@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us14, us15, us16, us18, us21, us22, us23, us26, us27, us28, us29, us30, us31, us32, us33, us35, us36, us38, us40, us41, us42
+from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us14, us15, us16, us18, us21, us22, us23, us25, us26, us27, us28, us29, us30, us31, us32, us33, us35, us36, us38, us40, us41, us42
 
 valid = {
     "0": ("HEAD", "TRLR", "NOTE"),
@@ -393,11 +393,12 @@ def main():
         print()
         us23.uniqueNameAndBirthday(allLists[0], allLists[2])
         print()
+        us25.uniqueFirstNames(allLists)
+        print()
         us31.checkForLivingSingle(allLists[0], allLists[2])
         print()
         us32.main(allLists[2])
         print()
-
 
 
         print()
@@ -414,8 +415,6 @@ def main():
                         print("ERROR: FAMILY: US08: " + family[index].ID + " : " + child +
                               ": Children born before marriage of parents or more than 9 months after their divorce on line " + str(family[index].lineNum))
 
-        print()
-        us12.main(allLists[0], allLists[1], allLists[2])
         print()
         us14.main(allLists[0], allLists[1], allLists[3])
         print()

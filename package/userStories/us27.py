@@ -1,6 +1,7 @@
 '''
 US27
 List all individuals and their age
+
 '''
 
 def listPeopleAndAge(people, lineNos):
