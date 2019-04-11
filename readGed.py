@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us14, us15, us16, us18, us21, us22, us23, us25, us26, us27, us28, us29, us30, us31, us32, us33, us35, us36, us38, us40, us41, us42
+from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us13, us14, us15, us16, us18, us21, us22, us23, us25, us26, us27, us28, us29, us30, us31, us32, us33, us34, us35, us36, us38, us40, us41, us42
 
 valid = {
     "0": ("HEAD", "TRLR", "NOTE"),
@@ -312,7 +312,7 @@ def table(lists):
 
 def main():
     try:
-        myFile = "data/Sprint3.ged"
+        myFile = "data/Sprint4.ged"
         inputGed = open(myFile, "r")
     except FileNotFoundError:
         print("Cannot open file")
@@ -447,8 +447,18 @@ def main():
         print()
         us22.uniqueIDs(allLists)
         print()
+        us34.largeAgeDifferences(allLists[0], allLists[1], allLists[2])
+        print()
         us42.filterDates(allLists)
         print()
+
+        for i in family:
+            temp = us13.SiblingsSpacing(family[i],individual)
+            if  temp[0]!= True:
+                        print("ERROR: FAMILY: US13: " + family[i].ID + ": children " + str(temp[1])  + 
+                              ": Birth dates of siblings are less than 8 months apart or more than 2 days apart on line " + str(family[i].lineNum))
+        print()
+
 
 
         print("\n")
