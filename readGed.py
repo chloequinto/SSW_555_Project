@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us13, us14, us15, us16, us18, us21, us22, us23, us24, us25, us26, us27, us28, us29, us30, us31, us32, us33, us34, us35, us36, us38, us40, us41, us42
+from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us13, us14, us15, us16, us18, us21, us22, us23, us24, us25, us26, us27, us28, us29, us30, us31, us32, us33, us34, us35, us36, us38, us40, us41, us42, us20
 
 valid = {
     "0": ("HEAD", "TRLR", "NOTE"),
@@ -458,6 +458,14 @@ def main():
                         print("ERROR: FAMILY: US13: " + family[i].ID + ": children " + str(temp[1])  + 
                               ": Birth dates of siblings are less than 8 months apart or more than 2 days apart on line " + str(family[i].lineNum))
         print()
+
+        for i in family: 
+            temp = us20.NotMarryNiecesAndNephews(family[i],family,individual)
+            if  temp[0]!= True:
+                        print("ERROR: FAMILY: US20: " + family[i].ID + ": Aunts and uncles marry their nieces or nephews on line " + str(family[i].lineNum))
+        print()
+
+
 
 
 

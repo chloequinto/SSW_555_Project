@@ -2,7 +2,7 @@
 All Unit Tests 
 '''
 
-from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us13, us14, us15, us16, us18, us21, us22, us23, us24, us25, us26, us27, us28, us29, us30, us31, us32, us33, us34, us35, us36, us38, us40, us41, us42
+from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us13, us14, us15, us16, us18, us21, us22, us23, us24, us25, us26, us27, us28, us29, us30, us31, us32, us33, us34, us35, us36, us38, us40, us41, us42, us20
 import unittest
 import readGed
 
@@ -146,22 +146,17 @@ class TestResults(unittest.TestCase):
         result = us01.parseGed(inputGed)
         individual = result[0]
         for i in individual:
-            self.assertTrue(us01.BirthBeforeCurrent(i), msg="ERROR: INDIVIDUAL: US01: " +
-                            individual[i].ID + ": Birthday " + individual[i].birthDate + " occurs in the future")
-            self.assertTrue(us01.DeathBeforeCurrent(i), msg="ERROR: INDIVIDUAL: US01: " +
-                            individual[i].ID + ": Death date " + individual[i].deathDate + " occurs in the future")
-            self.assertTrue(us01.MarriageBeforeCurrent(i), msg="ERROR: INDIVIDUAL: US01: " +
-                            individual[i].ID + ": Marriage date " + individual[i].marriageDate + " occurs in the future")
-            self.assertTrue(us01.DivorceBeforeCurrent(i), msg="ERROR: INDIVIDUAL: US01: " +
-                            individual[i].ID + ": Divorce date " + individual[i].divorceDate + " occurs in the future")
+            self.assertTrue(us01.BirthBeforeCurrent(i))
+            self.assertTrue(us01.DeathBeforeCurrent(i))
+            self.assertTrue(us01.MarriageBeforeCurrent(i))
+            self.assertTrue(us01.DivorceBeforeCurrent(i))
 
     def testUS02(self):
         inputGed = open("data/inputForTest_MW.ged", "r")
         result = us01.parseGed(inputGed)
         individual = result[0]
         for indi in individual:
-            self.assertTrue(us02.BirthBeforeMarriage(individual[indi]), msg="ERROR: INDIVIDUAL: US02: " + individual[indi].ID +
-                            ": Birthday " + individual[indi].birthDate + " occurs before marriage " + individual[indi].marriageDate)
+            self.assertTrue(us02.BirthBeforeMarriage(individual[indi]))
 
     def testUS35(self):
         inputGed = open("data/inputForTest_MW.ged", "r")
@@ -176,7 +171,7 @@ class TestResults(unittest.TestCase):
         family = result[1]
         for i in family:
             self.assertTrue(us21.CheckGenderForRole(
-                family[i], individual), msg="ERROR: FAMILY: US21: " + family[i].ID + ": gender was wrong")
+                family[i], individual))
 
     def testUS31(self):
         inputGed = open("data/Sprint1.ged", "r")
@@ -262,8 +257,8 @@ class TestResults(unittest.TestCase):
         family = result[1]
         for index in family:
             for child in family[index].children:
-                self.assertTrue(us08.BirthBeforeMarriageOfParents(family[index], individual[child]), "ERROR: FAMILY: US08: " + family[index].ID + ":" + child +
-                                ": Children born before marriage of parents or more than 9 months after their divorce")
+                self.assertTrue(us08.BirthBeforeMarriageOfParents(
+                    family[index], individual[child]))
 
     def testUS09(self):
         inputGed = open("data/inputForTest_MW.ged", "r")
@@ -272,8 +267,8 @@ class TestResults(unittest.TestCase):
         family = result[1]
         for index in family:
             for child in family[index].children:
-                self.assertTrue(us09.BirthBeforeDeathOfParents(family[index], individual[child], individual), "ERROR: FAMILY: US09: " + family[index].ID + ":" + child +
-                                ": Children born after death of mother or after 9 months after death of father")
+                self.assertTrue(us09.BirthBeforeDeathOfParents(
+                    family[index], individual[child], individual))
 
     def testUS28(self):
         inputGed = open("data/Sprint2.ged", "r")
@@ -313,6 +308,7 @@ class TestResults(unittest.TestCase):
         inputGed = open("data/Sprint3.ged")
         output = readGed.fam(inputGed)
         self.assertTrue(us25.uniqueFirstNames(output))
+
     def testUS34(self):
         inputGed = open("data/Sprint3.ged")
         output = readGed.fam(inputGed)
@@ -326,15 +322,22 @@ class TestResults(unittest.TestCase):
         family = result[1]
         for i in family:
             temp = us13.SiblingsSpacing(family[i], individual)
-            self.assertTrue(temp[0], "ERROR: FAMILY: US13: " + family[i].ID + ": children " + str(temp[1]) +
-                            ": Birth dates of siblings are less than 8 months apart or more than 2 days apart on line " + str(family[i].lineNum))
+            self.assertTrue(temp[0])
 
-
-    def testUS24(self): 
+    def testUS24(self):
         inputGed = open("data/Sprint4.ged")
         allLists = readGed.fam(inputGed)
-        self.assertEqual(us24.main(allLists[1], allLists[3]), None) #no clue why this is not returning errors
+        # no clue why this is not returning errors
+        self.assertEqual(us24.main(allLists[1], allLists[3]), None)
 
+    def testUS20(self):
+        inputGed = open("data/inputForTest_MW.ged", "r")
+        result = us01.parseGed(inputGed)
+        individual = result[0]
+        family = result[1]
+        for i in family:
+            temp = us20.NotMarryNiecesAndNephews(family[i], family, individual)
+            self.assertTrue(temp[0])
 
 
 if __name__ == '__main__':
