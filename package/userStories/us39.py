@@ -22,7 +22,7 @@ def upcomingAnniversaries(input, line):
         else:
             pass
 
-                return notes
+    return notes
 
 def main(lists, line):
     upcomingAnniversaries(lists, line)
