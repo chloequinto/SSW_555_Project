@@ -2,7 +2,7 @@
 All Unit Tests 
 '''
 
-from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us13, us14, us15, us16, us18, us21, us22, us23, us24, us25, us26, us27, us28, us29, us30, us31, us32, us33, us34, us35, us36, us38, us40, us41, us42, us20
+from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us13, us14, us15, us16, us18, us21, us22, us23, us24, us25, us26, us27, us28, us29, us30, us31, us32, us33, us34, us35, us36, us38, us40, us41, us42, us20, us39
 import unittest
 import readGed
 
@@ -285,6 +285,12 @@ class TestResults(unittest.TestCase):
         inputGed = open("data/Sprint2.ged", "r")
         output = readGed.fam(inputGed)
         self.assertEqual(us38.main(output[0], output[2]), None)
+        inputGed.close()
+
+    def testUS39(self):
+        inputGed = open("data/Sprint2.ged", "r")
+        output = readGed.fam(inputGed)
+        self.assertEqual(us39.main(output[1], output[3]), None)
         inputGed.close()
 
     def testUS12(self):
