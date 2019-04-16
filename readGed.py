@@ -420,7 +420,7 @@ def main():
         print()
         us15.main(allLists[1], allLists[2])
         print()
-        print(us17.main(allLists[1], allLists[3]))
+        us17.main(allLists[1], allLists[3])
         print()
         us18.main(allLists)
         print()

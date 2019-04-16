@@ -31,4 +31,4 @@ def uniqueFam(family, line):
 
 
 def main(familyLists, familyLine): 
-    uniqueFam(familyLists, familyLine)
+    return uniqueFam(familyLists, familyLine)

@@ -25,10 +25,8 @@ def marr2child(famList, famNumber):
                 err.append("ERROR: FAMILY: US17: HUSBAND MARRIED HIS CHILD ON LINE: " + str(i[0]))
             else: 
                 pass
-    for i in err: 
-        print(i)
     return err
 
 
 def main(famLists, famNumber): 
-    marr2child(famLists, famNumber)
+    return marr2child(famLists, famNumber)

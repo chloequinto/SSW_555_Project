@@ -334,7 +334,7 @@ class TestResults(unittest.TestCase):
         inputGed = open("data/Sprint4.ged")
         allLists = readGed.fam(inputGed)
         # no clue why this is not returning errors
-        self.assertEqual(us24.main(allLists[1], allLists[3]), None)
+        self.assertEqual(us24.main(allLists[1], allLists[3]), ['ERROR: FAMILY: US24: DUPLICATE FAMILY: F11 WITH HUSBAND: Dan /Jones/ AND WIFE Ashley /Jones/ MARRIED ON 2035-04-30 on line 404'])
 
     def testUS20(self):
         inputGed = open("data/inputForTest_MW.ged", "r")
@@ -348,7 +348,7 @@ class TestResults(unittest.TestCase):
     def testUS17(self): 
         inputGed = open("data/Sprint4.ged", "r")
         allLists = readGed.fam(inputGed)
-        self.assertEqual(us17.main(allLists[1], allLists[3]), None)
+        self.assertEqual(us17.main(allLists[1], allLists[3]), ['ERROR: FAMILY: US17: HUSBAND MARRIED HIS CHILD ON LINE: 410'])
 
 
 if __name__ == '__main__':
