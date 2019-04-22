@@ -348,7 +348,7 @@ class TestResults(unittest.TestCase):
     def testUS37(self):
         inputGed = open("data/Sprint2.ged", "r")
         allLists = readGed.fam(inputGed)
-        self.assertEqual(us37.main(allLists[0], allLists[1], allLists[3]), None)
+        self.assertEqual(us37.main(allLists[0], allLists[1], allLists[3]), ["ERROR: FAMILY: US37: I2: passed within the last 30 days leaving behind their spouse: I3 and children: ['I1', 'I4'] on line 231"])
         inputGed.close()
 
     def testUS17(self): 
