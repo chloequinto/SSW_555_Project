@@ -347,7 +347,7 @@ class TestResults(unittest.TestCase):
     
     def testUS37(self):
         inputGed = open("data/Sprint2.ged", "r")
-        output = readGed.fam(inputGed)
+        allLists = readGed.fam(inputGed)
         self.assertEqual(us37.main(allLists[0], allLists[1], allLists[3]), None)
         inputGed.close()
 
