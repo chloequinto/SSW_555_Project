@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us13, us14, us15, us16, us17, us18, us21, us22, us23, us24, us25, us26, us27, us28, us29, us30, us31, us32, us33, us34, us35, us36, us38, us40, us41, us42, us20, us39
+from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us13, us14, us15, us16, us17, us18, us21, us22, us23, us24, us25, us26, us27, us28, us29, us30, us31, us32, us33, us34, us35, us36, us38, us40, us41, us42, us20, us39, us37
 
 valid = {
     "0": ("HEAD", "TRLR", "NOTE"),
@@ -342,6 +342,8 @@ def main():
                       individual[i].birthDate + " was born in the last 30 days on line " + str(individual[i].lineNum))
         print()
         us36.main(allLists)
+        print()
+        us37.main(allLists[0], allLists[1], allLists[3])
         print()
         us38.main(allLists[0], allLists[2])
         print()
