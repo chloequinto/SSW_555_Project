@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 from datetime import datetime
 import re
-from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us14, us15, us16, us18, us21, us22, us26, us28, us29, us30, us31, us32, us33, us35, us36, us38, us40, us41, us42
+from package.userStories import us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us12, us13, us14, us15, us16, us17, us18, us21, us22, us23, us24, us25, us26, us27, us28, us29, us30, us31, us32, us33, us34, us35, us36, us38, us40, us41, us42, us20, us39, us37
 
 valid = {
     "0": ("HEAD", "TRLR", "NOTE"),
@@ -312,7 +312,7 @@ def table(lists):
 
 def main():
     try:
-        myFile = "data/Sprint3.ged"
+        myFile = "data/Sprint4.ged"
         inputGed = open(myFile, "r")
     except FileNotFoundError:
         print("Cannot open file")
@@ -327,19 +327,32 @@ def main():
         print("----------Notes----------")
         print()
 
+        us27.listPeopleAndAge(allLists[0], allLists[2])
+        print()
         us28.orderSiblings(allLists)
+        print()
         us29.deaths(allLists[0], allLists[2])
+        print()
         us30.checkForLivingMarried(allLists)
-        us38.main(allLists[0], allLists[2])
+        print()
         recentBirthList = us35.RecentBirths(individual)
         if len(recentBirthList) > 0:
             for i in recentBirthList:
                 print("NOTIFICATION: INDIVIDUAL: US35: " + i + ": Birthday " +
                       individual[i].birthDate + " was born in the last 30 days on line " + str(individual[i].lineNum))
+        print()
         us36.main(allLists)
+        print()
+        us37.main(allLists[0], allLists[1], allLists[3])
+        print()
+        us38.main(allLists[0], allLists[2])
+        print()
         print(us40.main())
+        print()
         print(us41.main())
+        print()
         us33.checkForOrphan(allLists[0], allLists[1], allLists[2])
+        print()
 
         print()
         print('----------Individual Errors----------')
@@ -362,20 +375,32 @@ def main():
             if us01Test_Divorce != True:
                 print("ERROR: INDIVIDUAL: US01: " + individual[indi].ID + ": Divorce date " +
                       individual[indi].divorceDate + " occurs in the future on line " + str(individual[indi].lineNum))
+            print()
             us02Test = us02.BirthBeforeMarriage(individual[indi])
             if us02Test != True:
                 print("ERROR: INDIVIDUAL: US02: " + individual[indi].ID + ": Birthday " + individual[indi].birthDate +
                       " occurs before marriage " + individual[indi].marriageDate + " on line " + str(individual[indi].lineNum))
 
         us03.main(allLists[0], allLists[2])
+        print()
         us06.main(allLists[0], allLists[1], allLists[3])
+        print()
         us07.main(allLists[0], allLists[2])
+        print()
         us10.main(allLists[0], allLists[1], allLists[3])
+        print()
         us12.main(allLists[0], allLists[1], allLists[2])
+        print()
         us16.sameLastName(allLists[0], allLists[2])
+        print()
+        us23.uniqueNameAndBirthday(allLists[0], allLists[2])
+        print()
+        us25.uniqueFirstNames(allLists)
+        print()
         us31.checkForLivingSingle(allLists[0], allLists[2])
+        print()
         us32.main(allLists[2])
-
+        print()
 
 
         print()
@@ -383,6 +408,7 @@ def main():
         print()
 
         us04.main(allLists[1])
+        print()
 
         for index in family:
             for child in family[index].children:
@@ -391,32 +417,63 @@ def main():
                         print("ERROR: FAMILY: US08: " + family[index].ID + " : " + child +
                               ": Children born before marriage of parents or more than 9 months after their divorce on line " + str(family[index].lineNum))
 
-        us12.main(allLists[0], allLists[1], allLists[2])
+        print()
         us14.main(allLists[0], allLists[1], allLists[3])
+        print()
         us15.main(allLists[1], allLists[2])
+        print()
+        us17.main(allLists[1], allLists[3])
+        print()
         us18.main(allLists)
+        print()
+        us39.main(allLists[1], allLists[3])
+        print()
+
 
         for i in family:
             if us21.CheckGenderForRole(family[i], individual) != True:
                 print("ERROR: FAMILY: US21: " +
                       family[i].ID + ": gender was wrong on line " + str(family[i].lineNum))
-        
+        print()
+        us24.main(allLists[1], allLists[3])
         us26.corrEntries(allLists)
+        print()
         for index in family:
             for child in family[index].children:
                 if child in individual:
                     if us09.BirthBeforeDeathOfParents(family[index], individual[child], individual) != True:
                         print("ERROR: FAMILY: US09: " + family[index].ID + " : " + child +
                               ": Children born after death of mother or after 9 months after death of father on line " + str(family[index].lineNum))
+        print()
 
         print()
         print("------------Individual & Family Errors------------")
         print()
 
         us05.main(allLists[0], allLists[1], allLists[3])
+        print()
         us22.uniqueIDs(allLists)
-
+        print()
+        us34.largeAgeDifferences(allLists[0], allLists[1], allLists[2])
+        print()
         us42.filterDates(allLists)
+        print()
+
+        for i in family:
+            temp = us13.SiblingsSpacing(family[i],individual)
+            if  temp[0]!= True:
+                        print("ERROR: FAMILY: US13: " + family[i].ID + ": children " + str(temp[1])  + 
+                              ": Birth dates of siblings are less than 8 months apart or more than 2 days apart on line " + str(family[i].lineNum))
+        print()
+
+        for i in family: 
+            temp = us20.NotMarryNiecesAndNephews(family[i],family,individual)
+            if  temp[0]!= True:
+                        print("ERROR: FAMILY: US20: " + family[i].ID + ": Aunts and uncles marry their nieces or nephews on line " + str(family[i].lineNum))
+        print()
+
+
+
 
 
         print("\n")

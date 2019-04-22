@@ -228,6 +228,6 @@ def DivorceBeforeCurrent(indi):
 
 
 def main():
-    inputGed = open("data/Sprint3.ged", "r")
+    inputGed = open("data/Sprint4.ged", "r")
     result = parseGed(inputGed)
     return result
